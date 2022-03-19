@@ -99,7 +99,7 @@ void UAttackAbility::HandleAttackInput02()
         GetControlMovement()->DisableMovement();
 
         AttackCounter = ResetAttackCounter();
-        if ( IsValid( AttackCombos[AttackCounter] ) )
+        if ( AttackCombos.Num() && IsValid( AttackCombos[AttackCounter] ) )
         {
             CurrentActiveCombo = AttackCombos[AttackCounter];
         }

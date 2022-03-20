@@ -102,9 +102,30 @@ public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
 	FName WeaponFightingSocket;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile")
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
 	float DamagedImpactRate = 1.0f;
 
+	//¨¤¦â¯à¤OÂ¾
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	int Constitution = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	int Mentality = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	int Endurance = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	int Strength = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	int	Dexterity = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	int Intelligence = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	int Wisdom = 20;
 
 public: 
 	UFUNCTION( BlueprintPure, Category="State" )

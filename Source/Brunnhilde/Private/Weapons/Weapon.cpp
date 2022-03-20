@@ -138,6 +138,11 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
 				LastOwnerAttackCounter = Cast<UAttackAbility>( ActiveAbility )->AttackCounter;
 				
 				UAnimMontage* CurrentMontage = OwnCharacter->GetCurrentMontage();
+				if ( !CurrentMontage->IsValidLowLevel() ) 
+				{
+					return;
+				};
+
 				double delay = OwnCharacter->GetMontageLeftTime( CurrentMontage, OwnCharacter->GetMesh() );
 				GetWorld()->GetTimerManager().SetTimer( ResetCounterHandle, [this]()
 				{

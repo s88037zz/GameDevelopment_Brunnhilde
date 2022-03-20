@@ -62,16 +62,15 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
 	 
 	//* Health Component Setting*/
 	HealthCmp = CreateDefaultSubobject< UHealthComponent >( TEXT( "Health" ) );
-	HealthCmp->MaxHealth = 100;
+	HealthCmp->MaxHealth = Constitution * 5;
 	HealthCmp->OnDied.AddDynamic( this, &ABrunnhildeCharacter::Dead );
 
 	//* Endurance Component Setting*/
 	EnduranceCmp = CreateDefaultSubobject< UEnduranceComponent >( TEXT( "Endurance") );
-	EnduranceCmp->MaxEndurance = 100;
+	EnduranceCmp->MaxEndurance = Endurance * 5;
 
     ObjectDroppedLocation = CreateDefaultSubobject<USceneComponent>( TEXT( "ObjectDroppedLocation" ) );
 	ObjectDroppedLocation->AttachToComponent( GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform );
-
 
 	NormalAttackAbility = CreateDefaultSubobject< UNormalAttackAbility >( TEXT( "NormalAttackAbility" ) );
 	NormalAttackAbility->Initialize( this );
@@ -272,6 +271,16 @@ void ABrunnhildeCharacter::SetMovementTimerHandle( double Duration, bool bEnable
 
 double ABrunnhildeCharacter::GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh )
 {	
+	if ( !Montage->IsValidLowLevelFast() )
+	{
+		return 0;
+	}
+
+	if ( !OwnerMesh->IsValidLowLevelFast() )
+	{
+		return 0;
+	}
+
 	if ( OwnerMesh->GetAnimInstance() )
 	{
         double Pos = OwnerMesh->GetAnimInstance()->Montage_GetPosition( Montage );

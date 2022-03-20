@@ -62,7 +62,7 @@ public:
     UAnimMontage* DeadMontage;
 
     UPROPERTY( BlueprintReadWrite, EditAnywhere, Category="Weapons" )
-    TArray< AWeapon*> WeaponInventory;
+    TArray< AWeapon* > WeaponInventory;
 
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
@@ -93,57 +93,57 @@ public:
     UFUNCTION( BlueprintCallable, Category="Profile" )
     AWeapon* SetEquippedWeapon( AWeapon* NewWeapon );
 
-    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
     FName HoldWeaponSocket;
 
-    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
     FName BackWeaponSocket;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
 	FName WeaponFightingSocket;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
 	float DamagedImpactRate = 1.0f;
 
 	//¨¤¦â¯à¤OÂ¾
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Constitution = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Mentality = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Endurance = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Strength = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int	Dexterity = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Intelligence = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Wisdom = 20;
 
 public: 
-	UFUNCTION( BlueprintPure, Category="State" )
+	UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsDrwanWeapon();
 	
-    UFUNCTION( BlueprintPure, Category="State" )
+    UFUNCTION( BlueprintPure, Category="ActionsStates" )
   	bool IsReadyToAttack();
 
-    UFUNCTION( BlueprintPure, Category="State" )
+    UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsAttacking();
 
-	UFUNCTION( BlueprintPure, Category="State" )
+	UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsSaveAttack();
 
-	UFUNCTION( BlueprintPure, Category="State" )
+	UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsFlinching();
 
-	UFUNCTION( BlueprintPure, Category="State" )
+	UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsLockedEnemy();
 
 public:

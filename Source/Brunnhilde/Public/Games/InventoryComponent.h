@@ -6,14 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "InventoryComponent.generated.h"
 
-UENUM()
-enum class EArmourType : int8
-{
-	Head = 0,
-	Chest,
-	Hand,
-	Feet
-};
+class UBrunnhildeDef;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BRUNNHILDE_API UInventoryComponent : public UActorComponent
@@ -48,19 +41,16 @@ public:
 	AActor* GetEquipmentByType( FString strArmourType );
 	
 	UFUNCTION( BlueprintCallable )
-	void GetAllEquipmentCompetency( TMap< FString, int > kEquipmentQualityMap );
+	void GetAllEquipmentCompetency( TMap< FString, int >& kEquipmentQualityMap );
 
 public:
-	UPROPERTY( EditDefaultsOnly, BlueprintReadOnly, Category="Inventory | CompetencyTypes", DisplayName="Competency Types" )
-	TArray< FString > m_kCompetencyTypes = { "Constitution", "Mentality", "Endurance", "Strength",
-											"Dexterity", "Intelligence", "Wisdom" };
-
-	UPROPERTY( EditDefaultsOnly, BlueprintReadOnly, Category="Inventory | ArmourTypes", DisplayName="Armour Types" )
-	TArray< FString > m_kArmourTypes = { "Head", "Chest", "Hand", "Feet" };
-
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory | Inventory", DisplayName="Armour Iventory" )
 	TArray< AActor* > m_kArmourIventory;
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory | Equiped", DisplayName="Equiped Armours" )
 	TMap< FString, AActor* > m_kEquipedArmours;		
+
+private:
+	UBrunnhildeDef* m_kBrunnhildeDef = nullptr;
+	
 };

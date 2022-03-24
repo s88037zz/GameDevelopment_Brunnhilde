@@ -1,8 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Characters/InventoryComponent.h"
-#include "Weapons/AArmour.h"
+#include "Games/InventoryComponent.h"
+#include "Games/BrunnhildeDef.h"
+#include "Armours/Armour.h"
 
 // Sets default values for this component's properties
 UInventoryComponent::UInventoryComponent()
@@ -13,6 +14,7 @@ UInventoryComponent::UInventoryComponent()
 
 	// Init
 	m_kEquipedArmours.Reserve( 4 );
+	m_kBrunnhildeDef = NewObject< UBrunnhildeDef >();
 }
 
 
@@ -67,22 +69,57 @@ void UInventoryComponent::UnEquipArmour( FString strArmourType )
 
 AActor* UInventoryComponent::GetEquipmentByType( FString strArmourType )
 {
-	return m_kEquipedArmours[ strArmourType ];
+	if ( m_kEquipedArmours.Contains( strArmourType ) )
+	{
+		return m_kEquipedArmours[ strArmourType ];
+	}
+	return nullptr;
 }
 
-void UInventoryComponent::GetAllEquipmentCompetency( TMap< FString, int > kEquipmentQualityMap )
+void UInventoryComponent::GetAllEquipmentCompetency( TMap< FString, int >& kEquipmentQualityMap )
 {
-	auto AddValueToMap = [&]()
+	auto ResetMap = [&]( TMap< FString, int >& kEquipmentQualityMap )
 	{
-		for ( const FString& strCompetencyName : m_kCompetencyTypes )
+		for ( FString& strCompetencyType : m_kBrunnhildeDef->CompetencyTypes )
 		{
-
+			if ( kEquipmentQualityMap.Contains( strCompetencyType ) )
+			{
+				kEquipmentQualityMap[ strCompetencyType ] = 0;
+			}
+			else
+			{
+				kEquipmentQualityMap.Add( strCompetencyType, 0 );
+			}
 		}
 	};
 
-	for ( const FString& strArmourType : m_kArmourTypes )
+	auto AddValueToMap = [&]( AArmour* pArmour, TMap< FString, int >& kEquipmentQualityMap )
 	{
+		if ( !IsValid( pArmour ) )
+		{
+			return;
+		}
 
+		for ( FString& strType : m_kBrunnhildeDef->CompetencyTypes )
+		{
+			int Value = pArmour->GetCompetencyValueByType( strType );
+			if ( kEquipmentQualityMap.Contains( strType ) )
+			{
+				kEquipmentQualityMap[ strType ] += Value;
+			}
+			else
+			{
+				kEquipmentQualityMap.Add( strType, Value );
+
+			}
+		}
+	};
+
+	ResetMap( kEquipmentQualityMap );
+	for ( auto& kArmourItem : m_kEquipedArmours )
+	{
+		AArmour* pArmour = Cast< AArmour >( kArmourItem.Value );
+		AddValueToMap( pArmour, kEquipmentQualityMap );
 	}
 }
 

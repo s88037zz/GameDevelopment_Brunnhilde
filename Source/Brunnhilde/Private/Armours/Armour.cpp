@@ -2,6 +2,7 @@
 
 
 #include "Armour.h"
+#include "..\..\Public\Armours\Armour.h"
 
 // Sets default values
 AArmour::AArmour()
@@ -23,5 +24,10 @@ void AArmour::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+int AArmour::GetCompetencyValueByType( FString strCompetencyType )
+{
+	return 0;
 }
 

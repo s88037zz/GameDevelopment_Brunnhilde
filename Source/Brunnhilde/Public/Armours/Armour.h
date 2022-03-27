@@ -4,27 +4,48 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Games/BrunnhildeDef.h"
+#include "Item.h"
 #include "Armour.generated.h"
 
 UCLASS()
-class BRUNNHILDE_API AArmour : public AActor
+class BRUNNHILDE_API UArmour : public UItem
 {
 	GENERATED_BODY()
-	
+
 public:	
 	// Sets default values for this actor's properties
-	AArmour();
+	UArmour();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void Use( class ABrunnhildeCharacter* Character ) override;
 
 public:
-	UFUNCTION( BlueprintCallable )
-	int GetCompetencyValueByType( FString strCompetencyType );
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	int Constitution = 0;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	int Mentality = 0;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	int Endurance = 0;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	int Strength = 0;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	int Dexterity = 0;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	int Intelligence = 0;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	int Wisdom = 0;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	EItemRarityTypes RarityType = EItemRarityTypes::EIRT_Common;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	EArmourTypes AmorurType = EArmourTypes::EAT_Head;
 
 };

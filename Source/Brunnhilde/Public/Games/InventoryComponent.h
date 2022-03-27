@@ -6,8 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "InventoryComponent.generated.h"
 
-class UBrunnhildeDef;
+class UItem;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE( FOnInventoryUpdated );
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BRUNNHILDE_API UInventoryComponent : public UActorComponent
 {
@@ -26,31 +27,31 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION( BlueprintCallable )
-	void AddArmour( AActor* pArmour );
+	bool AddItem( UItem* Item );
 
 	UFUNCTION( BlueprintCallable )
-	void RemoveArmour( AActor* pArmour );
+	bool RemoveItem( UItem* Item );
 
 	UFUNCTION( BlueprintCallable )
-	void EquipArmour( AActor* pArmour, FString strArmourType );
-
-	UFUNCTION( BlueprintCallable )
-	void UnEquipArmour( FString strArmourType );
-
-	UFUNCTION( BlueprintCallable )
-	AActor* GetEquipmentByType( FString strArmourType );
+	bool EquipItem( UItem* Item );
 	
 	UFUNCTION( BlueprintCallable )
-	void GetAllEquipmentCompetency( TMap< FString, int >& kEquipmentQualityMap );
+	bool UnEquipItem( EArmourTypes ArmourType );
 
 public:
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory | Inventory", DisplayName="Armour Iventory" )
-	TArray< AActor* > m_kArmourIventory;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
+	int32 Capacity;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory | Equiped", DisplayName="Equiped Armours" )
-	TMap< FString, AActor* > m_kEquipedArmours;		
+	UPROPERTY( BlueprintAssignable, Category="Invetory" )
+	FOnInventoryUpdated OnInventoryUpdated;
 
-private:
-	UBrunnhildeDef* m_kBrunnhildeDef = nullptr;
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
+	TArray< UItem* > Items;
+
+	UPROPERTY( EditDefaultsOnly, Instanced, Category="Inventory" )
+	TArray< UItem* > DefaultItems;
+
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
+	TMap< uint8, UItem* > EquipedItems;
 	
 };

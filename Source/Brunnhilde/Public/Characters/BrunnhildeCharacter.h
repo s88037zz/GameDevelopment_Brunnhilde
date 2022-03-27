@@ -19,6 +19,7 @@ class UAnimComposite;
 class AWeapon;
 class UHealthComponent;
 class UEnduranceComponent;
+class UInventoryComponent;
 
 UCLASS(config=Game)
 class ABrunnhildeCharacter : public ACharacter
@@ -85,6 +86,9 @@ public:
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
 	USprintAbility2* SprintAbility;
+
+	UPROPERTY( EditAnywhere, BlueprintReadOnly, Category="Inventory" )
+	UInventoryComponent* Inventory;
 
 public:
     UFUNCTION( BlueprintPure, Category="Profile" )
@@ -177,6 +181,9 @@ public:
 
 	UFUNCTION( BlueprintCallable, Category="Actions" )
 	void StopSprint();
+
+	UFUNCTION( BlueprintCallable, Category="Actions" )
+	void UseItem( class UItem* Item );
 
 public:
 	
@@ -282,7 +289,6 @@ private:
 
 	ULockEnemyAbility* LockEnemyAbility = nullptr;
 	UAbility2* CurrentActiveAbility = nullptr;
-
     FTimerHandle ResetCounterHandle;
 
 };

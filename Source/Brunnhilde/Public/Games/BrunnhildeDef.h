@@ -6,20 +6,33 @@
 #include "UObject/NoExportTypes.h"
 #include "BrunnhildeDef.generated.h"
 
-/**
- * 
- */
-UCLASS()
-class BRUNNHILDE_API UBrunnhildeDef : public UObject
+UENUM( BlueprintType )
+enum class EArmourTypes : uint8
 {
-	GENERATED_BODY()
-public:
-	UBrunnhildeDef() = default;
+	EAT_Head    UMETA( DisplayName = "Head" ),
+	EAT_Chest   UMETA( DisplayName = "Chest" ),
+	EAT_Hand    UMETA( DisplayName = "Hand" ),
+	EAT_Feet    UMETA( DisplayName = "Feet" ),
+};
+ENUM_RANGE_BY_FIRST_AND_LAST( EArmourTypes, EArmourTypes::EAT_Head, EArmourTypes::EAT_Feet );
 
-	UPROPERTY( EditDefaultsOnly, BlueprintReadOnly, Category="Inventory | CompetencyTypes", DisplayName="Competency Types" )
-	TArray< FString > CompetencyTypes = { "Constitution", "Mentality", "Endurance", "Strength",
-												"Dexterity", "Intelligence", "Wisdom" };
+UENUM( BlueprintType )
+enum class ECompetencyTypes : uint8
+{
+	ECT_Constitution    UMETA( DisplayName = "Constitution" ),
+	ECT_Mentality       UMETA( DisplayName = "Mentality" ),
+	ECT_Endurance       UMETA( DisplayName = "Endurance" ),
+	ECT_Strength        UMETA( DisplayName = "Strength" ),
+	ECT_Dexterity       UMETA( DisplayName = "Dexterity" ),
+	ECT_Intelligence    UMETA( DisplayName = "Intelligence" ),
+	ECT_Wisdom          UMETA( DisplayName = "Wisdom" ),
+}; 
 
-	UPROPERTY( EditDefaultsOnly, BlueprintReadOnly, Category="Inventory | ArmourTypes", DisplayName="Armour Types" )
-	TArray< FString > ArmourTypes = { "Head", "Chest", "Hand", "Feet" };
+UENUM( BlueprintType )
+enum class EItemRarityTypes : uint8
+{
+	EIRT_Common UMETA( DisplayName = "Common" ),
+	EIRT_Rare   UMETA( DisplayName = "Rare" ),
+	EIRT_Epic   UMETA( DisplayName = "Epic" ),
+	EIRT_Legend UMETA( DisplayName = "Legend" ),
 };

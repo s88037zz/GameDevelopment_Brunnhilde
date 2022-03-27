@@ -4,6 +4,7 @@
 #include "Games/InventoryComponent.h"
 #include "Games/BrunnhildeDef.h"
 #include "Armours/Armour.h"
+#include "Item.h"
 
 // Sets default values for this component's properties
 UInventoryComponent::UInventoryComponent()
@@ -13,17 +14,27 @@ UInventoryComponent::UInventoryComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// Init
-	m_kEquipedArmours.Reserve( 4 );
-	m_kBrunnhildeDef = NewObject< UBrunnhildeDef >();
+	Capacity = 20;
 }
 
 
 // Called when the game starts
 void UInventoryComponent::BeginPlay()
-{
+{	
 
-	// ...
+	Super::BeginPlay();
+
+	for ( auto& Item : DefaultItems )
+	{
+		Items.Add( Item );
+	}
+
 	
+	for ( EArmourTypes ArmourType :	TEnumRange< EArmourTypes >())
+	{
+		uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourType );
+		EquipedItems.Add( AmorurTypeInt, nullptr);
+	}
 }
 
 
@@ -33,93 +44,56 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	// ...
 }
 
-void UInventoryComponent::AddArmour( AActor* pArmour )
+bool UInventoryComponent::AddItem( UItem* Item )
 {
-	m_kArmourIventory.Add( pArmour );
+	if ( Items.Num() > Capacity || !IsValid( Item ) )
+	{
+		return false;
+	}
+
+	Item->OwningInventory = this;
+	Item->World = GetWorld();
+	Items.Add( Item );
+
+	//Update UI
+	OnInventoryUpdated.Broadcast();
+
+	return true;
 }
 
-void UInventoryComponent::RemoveArmour( AActor* pArmour )
+bool UInventoryComponent::RemoveItem( UItem* Item )
 {
-	int32 iIndex = -1;
-	if ( m_kArmourIventory.Find( pArmour )  >= 0 )
+	if ( Item )
 	{
-		m_kArmourIventory.RemoveAt( iIndex );
+		Item->OwningInventory = nullptr;
+		Item->World = nullptr;
+		Items.RemoveSingle( Item );
+		OnInventoryUpdated.Broadcast();
+
+		return true;
 	}
+	return false;
 }
 
-void UInventoryComponent::EquipArmour( AActor* pArmour, FString strArmourType )
+bool UInventoryComponent::EquipItem( UItem* Item )
 {
-	if ( m_kEquipedArmours.FindChecked( strArmourType ) )
+	if ( CastChecked< UArmour, UItem>( Item ) )
 	{
-		m_kEquipedArmours[ strArmourType ] = pArmour;
+		UArmour* Armour = Cast< UArmour >( Item );
+
+		uint8 AmorurTypeInt = StaticCast< uint8 >( Armour->AmorurType );
+		EquipedItems.Add( AmorurTypeInt, Item );
 	}
-	else
-	{
-		m_kEquipedArmours.Add( strArmourType, pArmour );
-	}
+	return false;
 }
 
-void UInventoryComponent::UnEquipArmour( FString strArmourType )
+bool UInventoryComponent::UnEquipItem( EArmourTypes ArmourType )
 {
-	if ( m_kEquipedArmours.FindChecked( strArmourType ) )
+	uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourType );
+
+	if ( EquipedItems.Contains( AmorurTypeInt ) )
 	{
-		m_kEquipedArmours[ strArmourType ] = nullptr;
+		EquipedItems.Emplace( AmorurTypeInt, nullptr );
 	}
+	return false;
 }
-
-AActor* UInventoryComponent::GetEquipmentByType( FString strArmourType )
-{
-	if ( m_kEquipedArmours.Contains( strArmourType ) )
-	{
-		return m_kEquipedArmours[ strArmourType ];
-	}
-	return nullptr;
-}
-
-void UInventoryComponent::GetAllEquipmentCompetency( TMap< FString, int >& kEquipmentQualityMap )
-{
-	auto ResetMap = [&]( TMap< FString, int >& kEquipmentQualityMap )
-	{
-		for ( FString& strCompetencyType : m_kBrunnhildeDef->CompetencyTypes )
-		{
-			if ( kEquipmentQualityMap.Contains( strCompetencyType ) )
-			{
-				kEquipmentQualityMap[ strCompetencyType ] = 0;
-			}
-			else
-			{
-				kEquipmentQualityMap.Add( strCompetencyType, 0 );
-			}
-		}
-	};
-
-	auto AddValueToMap = [&]( AArmour* pArmour, TMap< FString, int >& kEquipmentQualityMap )
-	{
-		if ( !IsValid( pArmour ) )
-		{
-			return;
-		}
-
-		for ( FString& strType : m_kBrunnhildeDef->CompetencyTypes )
-		{
-			int Value = pArmour->GetCompetencyValueByType( strType );
-			if ( kEquipmentQualityMap.Contains( strType ) )
-			{
-				kEquipmentQualityMap[ strType ] += Value;
-			}
-			else
-			{
-				kEquipmentQualityMap.Add( strType, Value );
-
-			}
-		}
-	};
-
-	ResetMap( kEquipmentQualityMap );
-	for ( auto& kArmourItem : m_kEquipedArmours )
-	{
-		AArmour* pArmour = Cast< AArmour >( kArmourItem.Value );
-		AddValueToMap( pArmour, kEquipmentQualityMap );
-	}
-}
-

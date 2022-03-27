@@ -15,7 +15,9 @@
 #include "HealthComponent.h"
 #include "EnduranceComponent.h"
 #include "Animation/AnimInstance.h"
+#include "InventoryComponent.h"
 #include "Weapon.h"
+#include "Item.h"
 
 
 # define BlockingAttack "BlockingAttack_Start"
@@ -90,6 +92,9 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
 
 	DrawnNSheathAbility = CreateDefaultSubobject< UDrawnNSheathAbility >( TEXT( "DrawnNSheathAbility" ) );
 	DrawnNSheathAbility->SetControlCharacter( this );
+
+	Inventory = CreateDefaultSubobject< UInventoryComponent >( TEXT( "Inventory" ) );
+	Inventory->Capacity = 15.f;
 
 	EquippedWeapon = nullptr;
 	bReadyToAttack = false;
@@ -191,6 +196,15 @@ void ABrunnhildeCharacter::StartSprint()
 void ABrunnhildeCharacter::StopSprint()
 {
 	SprintAbility->StopSprint();
+}
+
+void ABrunnhildeCharacter::UseItem( UItem* Item )
+{
+	if ( Item )
+	{
+		Item->Use( this );
+		Item->OnUse( this );
+	}
 }
 
 void ABrunnhildeCharacter::HandleDrawnWeapon_Notification()

@@ -6,6 +6,7 @@
 #include "UObject/NoExportTypes.h"
 #include "BrunnhildeDef.generated.h"
 
+
 UENUM( BlueprintType )
 enum class EArmourTypes : uint8
 {
@@ -14,7 +15,6 @@ enum class EArmourTypes : uint8
 	EAT_Hand    UMETA( DisplayName = "Hand" ),
 	EAT_Feet    UMETA( DisplayName = "Feet" ),
 };
-ENUM_RANGE_BY_FIRST_AND_LAST( EArmourTypes, EArmourTypes::EAT_Head, EArmourTypes::EAT_Feet );
 
 UENUM( BlueprintType )
 enum class ECompetencyTypes : uint8
@@ -36,3 +36,4 @@ enum class EItemRarityTypes : uint8
 	EIRT_Epic   UMETA( DisplayName = "Epic" ),
 	EIRT_Legend UMETA( DisplayName = "Legend" ),
 };
+

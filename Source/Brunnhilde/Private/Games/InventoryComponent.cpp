@@ -21,20 +21,12 @@ UInventoryComponent::UInventoryComponent()
 // Called when the game starts
 void UInventoryComponent::BeginPlay()
 {	
-
-	Super::BeginPlay();
-
+	
 	for ( auto& Item : DefaultItems )
 	{
 		Items.Add( Item );
 	}
-
 	
-	for ( EArmourTypes ArmourType :	TEnumRange< EArmourTypes >())
-	{
-		uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourType );
-		EquipedItems.Add( AmorurTypeInt, nullptr);
-	}
 }
 
 
@@ -46,6 +38,7 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 
 bool UInventoryComponent::AddItem( UItem* Item )
 {
+	
 	if ( Items.Num() > Capacity || !IsValid( Item ) )
 	{
 		return false;
@@ -57,7 +50,7 @@ bool UInventoryComponent::AddItem( UItem* Item )
 
 	//Update UI
 	OnInventoryUpdated.Broadcast();
-
+	
 	return true;
 }
 
@@ -72,28 +65,33 @@ bool UInventoryComponent::RemoveItem( UItem* Item )
 
 		return true;
 	}
+	
 	return false;
 }
 
 bool UInventoryComponent::EquipItem( UItem* Item )
 {
-	if ( CastChecked< UArmour, UItem>( Item ) )
+	
+	if ( CastChecked< UArmour, UItem >( Item ) )
 	{
 		UArmour* Armour = Cast< UArmour >( Item );
 
 		uint8 AmorurTypeInt = StaticCast< uint8 >( Armour->AmorurType );
 		EquipedItems.Add( AmorurTypeInt, Item );
 	}
+	
 	return false;
 }
 
 bool UInventoryComponent::UnEquipItem( EArmourTypes ArmourType )
 {
+
 	uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourType );
 
 	if ( EquipedItems.Contains( AmorurTypeInt ) )
 	{
 		EquipedItems.Emplace( AmorurTypeInt, nullptr );
 	}
+
 	return false;
 }

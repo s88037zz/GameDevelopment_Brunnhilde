@@ -309,7 +309,7 @@ void ABrunnhildeCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if( LockEnemyClass )
+	if( IsValid( LockEnemyClass ) )
 	{
 		LockEnemyAbility = NewObject<ULockEnemyAbility>( this, LockEnemyClass );
 		check( LockEnemyAbility );

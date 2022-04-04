@@ -43,9 +43,8 @@ public:
 	int Wisdom = 0;
 
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
-	EItemRarityTypes RarityType = EItemRarityTypes::EIRT_Common;
+	EItemRarityTypes RarityType;
 
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
-	EArmourTypes AmorurType = EArmourTypes::EAT_Head;
-
+	EArmourTypes AmorurType;
 };

@@ -37,7 +37,7 @@ public:
 	
 	UFUNCTION( BlueprintCallable )
 	bool UnEquipItem( EArmourTypes ArmourType );
-
+	
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
 	int32 Capacity;
@@ -48,10 +48,11 @@ public:
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
 	TArray< UItem* > Items;
 
-	UPROPERTY( EditDefaultsOnly, Instanced, Category="Inventory" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Instanced, Category="Inventory" )
 	TArray< UItem* > DefaultItems;
-
+	
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
 	TMap< uint8, UItem* > EquipedItems;
+	
 	
 };

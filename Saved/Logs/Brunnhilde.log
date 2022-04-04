@@ -1416,3 +1416,934 @@ Failed to route BeginPlay (InventoryComponent /Game/ThirdPersonCPP/Maps/UEDPIE_0
 [2022.04.04-11.06.16:128][793]LogAudioMixer: Resetting audio stream to device id 
 [2022.04.04-11.06.16:224][793]LogAudioMixer: Display: 0: FrontLeft
 [2022.04.04-11.06.16:224][793]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.09.30:069][977]LogWorld: UWorld::CleanupWorld for World_16, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.09.30:069][977]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.09.30:076][977]LogWorld: UWorld::CleanupWorld for World_15, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.09.30:076][977]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.09.31:405][129]LogWorld: UWorld::CleanupWorld for World_18, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.09.31:406][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.09.31:412][129]LogWorld: UWorld::CleanupWorld for World_17, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.09.31:413][129]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.09.53:523][464]LogContentBrowser: Attempting asset rename: ArmourSlot -> WB_ArmourSlot
+[2022.04.04-11.09.53:552][464]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/ArmourSlot.PackageMetaData'
+[2022.04.04-11.09.53:552][464]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot:EventGraph.K2Node_Event_0' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/ArmourSlot.PackageMetaData'
+[2022.04.04-11.09.53:552][464]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.SKEL_WB_ArmourSlot_C' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/ArmourSlot.PackageMetaData'
+[2022.04.04-11.09.53:552][464]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.SKEL_WB_ArmourSlot_C:PreConstruct' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/ArmourSlot.PackageMetaData'
+[2022.04.04-11.09.53:553][464]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.SKEL_WB_ArmourSlot_C:BndEvt__Button_141_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/ArmourSlot.PackageMetaData'
+[2022.04.04-11.09.53:553][464]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.SKEL_WB_ArmourSlot_C:Construct' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/ArmourSlot.PackageMetaData'
+[2022.04.04-11.09.53:553][464]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.SKEL_WB_ArmourSlot_C:RemoveSlotInventory' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/ArmourSlot.PackageMetaData'
+[2022.04.04-11.09.53:553][464]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.SKEL_WB_ArmourSlot_C:RefreshSlot' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/ArmourSlot.PackageMetaData'
+[2022.04.04-11.09.53:553][464]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:Construct' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/ArmourSlot.PackageMetaData'
+[2022.04.04-11.09.53:646][464]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_ArmourSlotC06A158043BF26F6039FE1A60D7BD815.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.uasset'
+[2022.04.04-11.09.53:745][464]LogUObjectHash: Compacting FUObjectHashTables data took   2.98ms
+[2022.04.04-11.09.53:779][464]LogUObjectHash: Compacting FUObjectHashTables data took   2.22ms
+[2022.04.04-11.09.53:799][464]LogUObjectHash: Compacting FUObjectHashTables data took   0.52ms
+[2022.04.04-11.09.53:835][464]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_SlotInventoryContent9D8F4B8F424128A56B95D39570CF0DE9.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventoryContent.uasset'
+[2022.04.04-11.09.53:848][464]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/CharacterSheetCD7025CB40536C28C28D0397B8F7FB0B.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/CharacterSheet.uasset'
+[2022.04.04-11.09.53:882][464]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_SlotInventory183833194DA6D338779C6FA38E318153.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.uasset'
+[2022.04.04-11.09.53:963][464]AssetCheck: New page: Asset Save: multiple assets
+[2022.04.04-11.09.53:963][464]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot
+[2022.04.04-11.09.53:964][464]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventoryContent.WB_SlotInventoryContent
+[2022.04.04-11.09.53:964][464]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/CharacterSheet.CharacterSheet
+[2022.04.04-11.09.53:965][464]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory
+[2022.04.04-11.09.57:575][889]LogContentBrowser: Attempting asset rename: CharacterSheet -> WB_CharacterSheet
+[2022.04.04-11.09.57:601][889]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.WB_CharacterSheet_C' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/CharacterSheet.PackageMetaData'
+[2022.04.04-11.09.57:601][889]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.WB_CharacterSheet:GetText_0.K2Node_FunctionEntry_0' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/CharacterSheet.PackageMetaData'
+[2022.04.04-11.09.57:601][889]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.WB_CharacterSheet:GetText_0.K2Node_FunctionResult_0' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/CharacterSheet.PackageMetaData'
+[2022.04.04-11.09.57:601][889]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.SKEL_WB_CharacterSheet_C' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/CharacterSheet.PackageMetaData'
+[2022.04.04-11.09.57:601][889]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.SKEL_WB_CharacterSheet_C:Construct' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/CharacterSheet.PackageMetaData'
+[2022.04.04-11.09.57:601][889]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.WB_CharacterSheet_C:Construct' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/CharacterSheet.PackageMetaData'
+[2022.04.04-11.09.57:628][889]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_CharacterSheetAE18ED054873F43360B3F3A4458C4DD3.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.uasset'
+[2022.04.04-11.09.57:704][889]LogUObjectHash: Compacting FUObjectHashTables data took   2.23ms
+[2022.04.04-11.09.57:735][889]LogUObjectHash: Compacting FUObjectHashTables data took   1.67ms
+[2022.04.04-11.09.57:753][889]LogUObjectHash: Compacting FUObjectHashTables data took   0.45ms
+[2022.04.04-11.09.57:771][889]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/HeadUpDisplay62119CDD48FAE652481B5F93483753AC.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.uasset'
+[2022.04.04-11.09.57:830][889]AssetCheck: New page: Asset Save: multiple assets
+[2022.04.04-11.09.57:831][889]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.HeadUpDisplay
+[2022.04.04-11.09.57:832][889]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.WB_CharacterSheet
+[2022.04.04-11.10.01:903][376]LogContentBrowser: Attempting asset rename: HeadUpDisplay -> WB_HeadUpDisplay
+[2022.04.04-11.10.01:934][376]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.WB_HeadUpDisplay_C' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.PackageMetaData'
+[2022.04.04-11.10.01:935][376]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.WB_HeadUpDisplay:EventGraph.K2Node_Event_0' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.PackageMetaData'
+[2022.04.04-11.10.01:935][376]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.WB_HeadUpDisplay:EventGraph.K2Node_Event_1' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.PackageMetaData'
+[2022.04.04-11.10.01:935][376]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.WB_HeadUpDisplay:EventGraph.K2Node_Event_2' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.PackageMetaData'
+[2022.04.04-11.10.01:935][376]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.SKEL_WB_HeadUpDisplay_C' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.PackageMetaData'
+[2022.04.04-11.10.01:935][376]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.SKEL_WB_HeadUpDisplay_C:PreConstruct' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.PackageMetaData'
+[2022.04.04-11.10.01:935][376]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.SKEL_WB_HeadUpDisplay_C:Construct' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.PackageMetaData'
+[2022.04.04-11.10.01:935][376]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.SKEL_WB_HeadUpDisplay_C:Tick' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/HeadUpDisplay.PackageMetaData'
+[2022.04.04-11.10.01:973][376]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_HeadUpDisplay5ADED8234E226787999D378E331BFEA6.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.uasset'
+[2022.04.04-11.10.02:055][376]LogUObjectHash: Compacting FUObjectHashTables data took   2.43ms
+[2022.04.04-11.10.02:086][376]LogUObjectHash: Compacting FUObjectHashTables data took   1.66ms
+[2022.04.04-11.10.02:104][376]LogUObjectHash: Compacting FUObjectHashTables data took   0.45ms
+[2022.04.04-11.10.02:214][376]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/BP_Brunnhilde_Mennequin998A1CC048A5420F4B8792A2DCC2AE20.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/Character/Mannequin/Blueprint/BP_Brunnhilde_Mennequin.uasset'
+[2022.04.04-11.10.02:215][376]Cmd: OBJ SAVEPACKAGE PACKAGE="/Game/Brunnhide/BP_BrunnhildeGameMode" FILE="../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/BP_BrunnhildeGameMode.uasset" SILENT=true
+[2022.04.04-11.10.02:238][376]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/BP_BrunnhildeGameModeDE5C7A22428E6265B0EFDE8DD182EDD4.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/BP_BrunnhildeGameMode.uasset'
+[2022.04.04-11.10.02:276][376]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_ArmourSlotA9A4CDB043B65CEA3DE97A9C62C2D1B0.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.uasset'
+[2022.04.04-11.10.02:324][376]AssetCheck: New page: Asset Save: multiple assets
+[2022.04.04-11.10.02:325][376]LogContentValidation: Display: Validating Blueprint /Game/Brunnhide/Character/Mannequin/Blueprint/BP_Brunnhilde_Mennequin.BP_Brunnhilde_Mennequin
+[2022.04.04-11.10.02:325][376]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_HeadUpDisplay.WB_HeadUpDisplay
+[2022.04.04-11.10.02:326][376]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot
+[2022.04.04-11.10.02:327][376]LogContentValidation: Display: Validating Blueprint /Game/Brunnhide/BP_BrunnhildeGameMode.BP_BrunnhildeGameMode
+[2022.04.04-11.10.05:653][774]LogContentBrowser: Attempting asset rename: WeaponSlot -> WB_WeaponSlot
+[2022.04.04-11.10.05:668][774]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_WeaponSlot.WB_WeaponSlot_C' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/WeaponSlot.PackageMetaData'
+[2022.04.04-11.10.05:668][774]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_WeaponSlot.SKEL_WB_WeaponSlot_C:PreConstruct' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/WeaponSlot.PackageMetaData'
+[2022.04.04-11.10.05:668][774]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_WeaponSlot.SKEL_WB_WeaponSlot_C:Construct' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/WeaponSlot.PackageMetaData'
+[2022.04.04-11.10.05:668][774]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_WeaponSlot.SKEL_WB_WeaponSlot_C:Tick' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/WeaponSlot.PackageMetaData'
+[2022.04.04-11.10.05:668][774]LogMetaData: Removing '/Game/Brunnhide/UserInterface/EquipmentBoard/WB_WeaponSlot.SKEL_WB_WeaponSlot_C' ref from Metadata '/Game/Brunnhide/UserInterface/EquipmentBoard/WeaponSlot.PackageMetaData'
+[2022.04.04-11.10.05:688][774]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_WeaponSlotB3E5277C44D635E2719579B2F65A817E.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_WeaponSlot.uasset'
+[2022.04.04-11.10.05:775][774]LogUObjectHash: Compacting FUObjectHashTables data took   2.55ms
+[2022.04.04-11.10.05:807][774]LogUObjectHash: Compacting FUObjectHashTables data took   1.85ms
+[2022.04.04-11.10.05:825][774]LogUObjectHash: Compacting FUObjectHashTables data took   0.45ms
+[2022.04.04-11.10.05:864][774]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_CharacterSheetEBEE7BFE43DB1550C23DBC97E250E186.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.uasset'
+[2022.04.04-11.10.05:920][774]AssetCheck: New page: Asset Save: multiple assets
+[2022.04.04-11.10.05:920][774]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_CharacterSheet.WB_CharacterSheet
+[2022.04.04-11.10.05:921][774]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_WeaponSlot.WB_WeaponSlot
+[2022.04.04-11.10.08:181][ 46]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{2a48467a-61cd-4e1b-b0f0-82c6717e20d3}.
+[2022.04.04-11.10.08:189][ 46]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.10.08:310][ 46]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.10.08:310][ 46]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.10.09:087][129]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{1d894df1-146f-48d0-9a60-9b7c34cd6d90}.
+[2022.04.04-11.10.09:101][129]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.10.09:179][129]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.10.09:179][129]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.10.15:705][899]LogAssetEditorSubsystem: Opening Asset editor for WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory
+[2022.04.04-11.11.04:354][400]BlueprintLog: New page: Compile WB_SlotInventory
+[2022.04.04-11.11.04:394][400]LogUObjectHash: Compacting FUObjectHashTables data took   2.42ms
+[2022.04.04-11.11.13:386][243]LogEditorViewport: Clicking on Actor (LMB): StaticMeshActor (Linear_Stair_StaticMesh)
+[2022.04.04-11.11.14:181][334]LogTemp: Repeating last play command: Selected Viewport
+[2022.04.04-11.11.14:188][334]BlueprintLog: New page: Pre-Play auto-recompile
+[2022.04.04-11.11.14:192][334]LogPlayLevel: [PlayLevel] Compiling BP_Brunnhilde_Mennequin before play...
+[2022.04.04-11.11.14:252][334]LogPlayLevel: [PlayLevel] Compiling BP_BrunnhildeGameMode before play...
+[2022.04.04-11.11.14:266][334]LogPlayLevel: [PlayLevel] Compiling WB_HeadUpDisplay before play...
+[2022.04.04-11.11.14:280][334]LogPlayLevel: [PlayLevel] Compiling WB_ArmourSlot before play...
+[2022.04.04-11.11.14:313][334]LogPlayLevel: [PlayLevel] Compiling WB_SlotInventoryContent before play...
+[2022.04.04-11.11.14:323][334]LogPlayLevel: [PlayLevel] Compiling WB_CharacterSheet before play...
+[2022.04.04-11.11.14:379][334]LogUObjectHash: Compacting FUObjectHashTables data took   2.92ms
+[2022.04.04-11.11.14:381][334]LogPlayLevel: PlayLevel: Blueprint regeneration took 193 ms (6 blueprints)
+[2022.04.04-11.11.14:381][334]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:11:14)
+[2022.04.04-11.11.14:382][334]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.11.14:394][334]LogPlayLevel: PIE: StaticDuplicateObject took: (0.011995s)
+[2022.04.04-11.11.14:395][334]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.11.14:396][334]LogPlayLevel: PIE: World Init took: (0.001808s)
+[2022.04.04-11.11.14:396][334]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.014309s)
+[2022.04.04-11.11.14:422][334]LogUObjectHash: Compacting FUObjectHashTables data took   1.86ms
+[2022.04.04-11.11.14:423][334]LogAudio: Display: Creating Audio Device:                 Id: 5, Scope: Unique, Realtime: True
+[2022.04.04-11.11.14:423][334]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.11.14:423][334]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.11.14:423][334]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.11.14:424][334]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.11.14:424][334]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.11.14:424][334]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.11.14:424][334]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.11.14:424][334]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.11.14:425][334]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.11.14:425][334]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.11.14:428][334]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.11.14:429][334]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.11.14:467][334]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.11.14:468][334]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.11.14:468][334]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.11.14:468][334]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.11.14:469][334]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.11.14:469][334]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.11.14:469][334]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.11.14:485][334]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.11.14:485][334]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.11.14:485][334]LogInit: FAudioDevice initialized.
+[2022.04.04-11.11.14:485][334]LogAudio: Display: Audio Device (ID: 5) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.11.14:500][334]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.11.14:503][334]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.11.14
+[2022.04.04-11.11.14:504][334]LogWorld: Bringing up level for play took: 0.002253
+[2022.04.04-11.11.14:504][334]LogOnline: OSS: Creating online subsystem instance for: :Context_25
+[2022.04.04-11.11.14:510][334]PIE: Server logged in
+[2022.04.04-11.11.14:510][334]PIE: Play in editor total start time 0.324 seconds.
+[2022.04.04-11.11.16:981][627]LogScript: Warning: Accessed None trying to read property CallFunc_Map_Find_Value
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Head
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:05C4
+[2022.04.04-11.11.16:981][627]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property CallFunc_Map_Find_Value". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Set Brush from Texture
+[2022.04.04-11.11.16:981][627]LogScript: Warning: Accessed None trying to read property CallFunc_Map_Find_Value
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Shouders
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:05C4
+[2022.04.04-11.11.16:982][627]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property CallFunc_Map_Find_Value". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Set Brush from Texture
+[2022.04.04-11.11.16:982][627]LogScript: Warning: Accessed None trying to read property CallFunc_Map_Find_Value
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Chest
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:05C4
+[2022.04.04-11.11.16:982][627]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property CallFunc_Map_Find_Value". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Set Brush from Texture
+[2022.04.04-11.11.16:982][627]LogScript: Warning: Accessed None trying to read property CallFunc_Map_Find_Value
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Hands
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:05C4
+[2022.04.04-11.11.16:983][627]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property CallFunc_Map_Find_Value". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Set Brush from Texture
+[2022.04.04-11.11.22:374][274]LogScript: Warning: Accessed None trying to read property InventoryWidget
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Head
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:049A
+[2022.04.04-11.11.22:375][274]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property InventoryWidget". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Remove from Parent
+[2022.04.04-11.11.22:375][274]LogScript: Warning: Accessed None trying to read property InventoryWidget
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Shouders
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:049A
+[2022.04.04-11.11.22:375][274]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property InventoryWidget". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Remove from Parent
+[2022.04.04-11.11.22:375][274]LogScript: Warning: Accessed None trying to read property InventoryWidget
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Chest
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:049A
+[2022.04.04-11.11.22:376][274]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property InventoryWidget". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Remove from Parent
+[2022.04.04-11.11.22:376][274]LogScript: Warning: Accessed None trying to read property InventoryWidget
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Hands
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:049A
+[2022.04.04-11.11.22:376][274]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property InventoryWidget". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Remove from Parent
+[2022.04.04-11.11.23:123][362]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_SlotInventory_C_0
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.11.23:123][362]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.11.24:171][482]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_SlotInventory_C_1
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.11.24:172][482]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.11.26:039][706]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_SlotInventory_C_2
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.11.26:040][706]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.11.26:639][778]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_SlotInventory_C_3
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.11.26:639][778]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.11.29:208][ 85]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_SlotInventory_C_4
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.11.29:209][ 85]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.11.30:126][195]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_3.WB_SlotInventory_C_5
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.11.30:126][195]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.11.32:109][405]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.11.32:109][405]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.11.32:110][405]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.11.32:111][405]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.11.32:140][405]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.11.32:188][405]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.11.32:230][405]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.11.32:231][405]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.11.32:233][405]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.11.32:284][405]LogUObjectHash: Compacting FUObjectHashTables data took   2.15ms
+[2022.04.04-11.11.32:433][406]LogPlayLevel: Display: Destroying online subsystem :Context_25
+[2022.04.04-11.12.12:439][352]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.12.12:477][352]LogUObjectHash: Compacting FUObjectHashTables data took   2.35ms
+[2022.04.04-11.13.24:419][778]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.13.24:434][778]LogBlueprint: Warning: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] 'BP Brunnhilde Mennequin' does not inherit from 'Player Controller' ( Cast To BP_Brunnhilde_Mennequin  would always fail).
+[2022.04.04-11.13.24:467][778]LogUObjectHash: Compacting FUObjectHashTables data took   3.11ms
+[2022.04.04-11.13.27:640][ 70]LogTemp: Repeating last play command: Selected Viewport
+[2022.04.04-11.13.27:648][ 70]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2022.04.04-11.13.27:648][ 70]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:13:27)
+[2022.04.04-11.13.27:648][ 70]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.13.27:660][ 70]LogPlayLevel: PIE: StaticDuplicateObject took: (0.011684s)
+[2022.04.04-11.13.27:662][ 70]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.13.27:662][ 70]LogPlayLevel: PIE: World Init took: (0.001546s)
+[2022.04.04-11.13.27:662][ 70]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.013707s)
+[2022.04.04-11.13.27:690][ 70]LogUObjectHash: Compacting FUObjectHashTables data took   2.74ms
+[2022.04.04-11.13.27:692][ 70]LogAudio: Display: Creating Audio Device:                 Id: 6, Scope: Unique, Realtime: True
+[2022.04.04-11.13.27:692][ 70]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.13.27:692][ 70]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.13.27:693][ 70]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.13.27:693][ 70]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.13.27:693][ 70]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.13.27:693][ 70]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.13.27:693][ 70]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.13.27:693][ 70]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.13.27:694][ 70]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.13.27:694][ 70]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.13.27:698][ 70]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.13.27:698][ 70]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.13.27:736][ 70]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.13.27:737][ 70]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.13.27:737][ 70]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.13.27:737][ 70]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.13.27:737][ 70]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.13.27:737][ 70]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.13.27:737][ 70]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.13.27:753][ 70]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.13.27:753][ 70]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.13.27:754][ 70]LogInit: FAudioDevice initialized.
+[2022.04.04-11.13.27:754][ 70]LogAudio: Display: Audio Device (ID: 6) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.13.27:768][ 70]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.13.27:770][ 70]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.13.27
+[2022.04.04-11.13.27:771][ 70]LogWorld: Bringing up level for play took: 0.002230
+[2022.04.04-11.13.27:772][ 70]LogOnline: OSS: Creating online subsystem instance for: :Context_26
+[2022.04.04-11.13.27:777][ 70]PIE: Server logged in
+[2022.04.04-11.13.27:778][ 70]PIE: Play in editor total start time 0.13 seconds.
+[2022.04.04-11.13.30:609][403]LogScript: Warning: Accessed None trying to read property InventoryWidget
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_4.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Head
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:049A
+[2022.04.04-11.13.30:609][403]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property InventoryWidget". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Remove from Parent
+[2022.04.04-11.13.30:610][403]LogScript: Warning: Accessed None trying to read property InventoryWidget
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_4.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Shouders
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:049A
+[2022.04.04-11.13.30:610][403]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property InventoryWidget". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Remove from Parent
+[2022.04.04-11.13.30:610][403]LogScript: Warning: Accessed None trying to read property InventoryWidget
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_4.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Chest
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:049A
+[2022.04.04-11.13.30:610][403]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property InventoryWidget". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Remove from Parent
+[2022.04.04-11.13.30:610][403]LogScript: Warning: Accessed None trying to read property InventoryWidget
+	WB_ArmourSlot_C /Engine/Transient.UnrealEdEngine_0:GameInstance_4.WB_HeadUpDisplay_C_0.WidgetTree.CharacterSheet.WidgetTree.Hands
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot:049A
+[2022.04.04-11.13.30:611][403]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property InventoryWidget". Blueprint:  WB_ArmourSlot Function:  Execute Ubergraph WB Armour Slot Graph:  EventGraph Node:  Remove from Parent
+[2022.04.04-11.13.36:707][ 26]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.13.36:707][ 26]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.13.36:707][ 26]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.13.36:708][ 26]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.13.36:720][ 26]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.13.36:738][ 26]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.13.36:759][ 26]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2022.04.04-11.13.36:760][ 26]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.13.36:762][ 26]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.13.36:796][ 26]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.13.36:800][ 26]LogUObjectHash: Compacting FUObjectHashTables data took   1.84ms
+[2022.04.04-11.13.36:887][ 27]LogPlayLevel: Display: Destroying online subsystem :Context_26
+[2022.04.04-11.13.53:690][513]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{2a48467a-61cd-4e1b-b0f0-82c6717e20d3}.
+[2022.04.04-11.13.53:700][513]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.13.53:794][513]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.13.53:795][513]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.13.54:572][572]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{1d894df1-146f-48d0-9a60-9b7c34cd6d90}.
+[2022.04.04-11.13.54:579][572]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.13.54:657][572]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.13.54:657][572]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.14.56:509][316]LogEditorTransaction: Undo Move Nodes
+[2022.04.04-11.15.25:832][942]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.15.25:839][942]LogBlueprint: Warning: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] 'BP Brunnhilde Mennequin' does not inherit from 'Player Controller' ( Cast To BP_Brunnhilde_Mennequin  would always fail).
+[2022.04.04-11.15.25:873][942]LogUObjectHash: Compacting FUObjectHashTables data took   2.78ms
+[2022.04.04-11.16.22:904][525]LogEditorTransaction: Undo Move Node
+[2022.04.04-11.16.23:116][528]LogEditorTransaction: Undo Add Node
+[2022.04.04-11.16.24:058][583]LogEditorTransaction: Undo Delete current selection
+[2022.04.04-11.16.24:740][641]LogEditorTransaction: Undo Move Node
+[2022.04.04-11.16.25:278][691]LogEditorTransaction: Undo Move Nodes
+[2022.04.04-11.16.25:780][736]LogEditorTransaction: Undo Move Nodes
+[2022.04.04-11.16.53:841][523]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.16.53:881][523]LogUObjectHash: Compacting FUObjectHashTables data took   2.60ms
+[2022.04.04-11.16.54:406][561]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_ArmourSlot7275E08147728059CF4111805BA644C9.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.uasset'
+[2022.04.04-11.16.54:422][561]AssetCheck: New page: Asset Save: WB_ArmourSlot
+[2022.04.04-11.16.54:422][561]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot
+[2022.04.04-11.16.55:944][717]LogSlate: Window 'WB_SlotInventory' being destroyed
+[2022.04.04-11.16.55:950][717]LogSlate: Window 'WB_SlotInventory' being destroyed
+[2022.04.04-11.16.55:953][717]LogWorld: UWorld::CleanupWorld for World_14, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.16.55:953][717]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.16.55:963][717]LogWorld: UWorld::CleanupWorld for World_13, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.16.55:963][717]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.16.56:002][717]LogWorld: UWorld::CleanupWorld for World_31, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.16.56:002][717]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.16.56:009][717]LogWorld: UWorld::CleanupWorld for World_30, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.16.56:009][717]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.16.57:490][860]LogTemp: Repeating last play command: Selected Viewport
+[2022.04.04-11.16.57:497][860]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2022.04.04-11.16.57:497][860]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:16:57)
+[2022.04.04-11.16.57:497][860]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.16.57:511][860]LogPlayLevel: PIE: StaticDuplicateObject took: (0.013915s)
+[2022.04.04-11.16.57:512][860]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.16.57:513][860]LogPlayLevel: PIE: World Init took: (0.001314s)
+[2022.04.04-11.16.57:513][860]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.015649s)
+[2022.04.04-11.16.57:543][860]LogUObjectHash: Compacting FUObjectHashTables data took   2.59ms
+[2022.04.04-11.16.57:545][860]LogAudio: Display: Creating Audio Device:                 Id: 7, Scope: Unique, Realtime: True
+[2022.04.04-11.16.57:545][860]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.16.57:545][860]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.16.57:546][860]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.16.57:546][860]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.16.57:546][860]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.16.57:546][860]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.16.57:546][860]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.16.57:546][860]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.16.57:547][860]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.16.57:547][860]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.16.57:551][860]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.16.57:551][860]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.16.57:587][860]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.16.57:587][860]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.16.57:587][860]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.16.57:587][860]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.16.57:588][860]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.16.57:588][860]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.16.57:588][860]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.16.57:604][860]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.16.57:604][860]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.16.57:604][860]LogInit: FAudioDevice initialized.
+[2022.04.04-11.16.57:604][860]LogAudio: Display: Audio Device (ID: 7) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.16.57:615][860]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.16.57:617][860]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.16.57
+[2022.04.04-11.16.57:618][860]LogWorld: Bringing up level for play took: 0.002303
+[2022.04.04-11.16.57:619][860]LogOnline: OSS: Creating online subsystem instance for: :Context_27
+[2022.04.04-11.16.57:625][860]PIE: Server logged in
+[2022.04.04-11.16.57:625][860]PIE: Play in editor total start time 0.129 seconds.
+[2022.04.04-11.17.01:231][285]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_5.WB_SlotInventory_C_0
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.17.01:231][285]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.17.02:297][413]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventoryContent_C /Engine/Transient.UnrealEdEngine_0:GameInstance_5.WB_SlotInventory_C_0.WidgetTree.WB_SlotInventoryContent_C_0
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventoryContent.WB_SlotInventoryContent_C:ExecuteUbergraph_WB_SlotInventoryContent:00CC
+[2022.04.04-11.17.02:298][413]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventoryContent Function:  Execute Ubergraph WB Slot Inventory Content Graph:  EventGraph Node:  Refresh Slot
+[2022.04.04-11.17.02:298][413]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventoryContent_C /Engine/Transient.UnrealEdEngine_0:GameInstance_5.WB_SlotInventory_C_0.WidgetTree.WB_SlotInventoryContent_C_0
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventoryContent.WB_SlotInventoryContent_C:ExecuteUbergraph_WB_SlotInventoryContent:00F2
+[2022.04.04-11.17.02:298][413]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventoryContent Function:  Execute Ubergraph WB Slot Inventory Content Graph:  EventGraph Node:  Remove Slot Inventory
+[2022.04.04-11.17.03:223][524]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_5.WB_SlotInventory_C_1
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.17.03:223][524]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.17.03:964][613]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_5.WB_SlotInventory_C_2
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.17.03:964][613]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.17.04:440][670]LogScript: Warning: Accessed None trying to read property ArmourSlot
+	WB_SlotInventory_C /Engine/Transient.UnrealEdEngine_0:GameInstance_5.WB_SlotInventory_C_3
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory_C:CreateInventoryContent:02B0
+[2022.04.04-11.17.04:440][670]PIE: Error: Blueprint Runtime Error: "Accessed None trying to read property ArmourSlot". Blueprint:  WB_SlotInventory Function:  Create Inventory Content Graph:  CreateInventoryContent Node:  Branch
+[2022.04.04-11.17.06:694][932]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.17.06:694][932]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.17.06:695][932]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.17.06:696][932]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.17.06:717][932]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.17.06:750][932]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.17.06:771][932]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2022.04.04-11.17.06:771][932]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.17.06:773][932]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.17.06:810][932]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.17.06:813][932]LogUObjectHash: Compacting FUObjectHashTables data took   1.86ms
+[2022.04.04-11.17.06:871][933]LogPlayLevel: Display: Destroying online subsystem :Context_27
+[2022.04.04-11.17.20:880][491]LogAssetEditorSubsystem: Opening Asset editor for WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory
+[2022.04.04-11.18.07:905][199]LogEditorTransaction: Undo Delete current selection
+[2022.04.04-11.18.31:397][541]BlueprintLog: New page: Compile WB_SlotInventory
+[2022.04.04-11.18.31:426][541]LogUObjectHash: Compacting FUObjectHashTables data took   2.46ms
+[2022.04.04-11.19.21:383][719]LogAssetEditorSubsystem: Opening Asset editor for WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventoryContent.WB_SlotInventoryContent
+[2022.04.04-11.19.31:184][569]LogAssetEditorSubsystem: Opening Asset editor for WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot
+[2022.04.04-11.20.02:351][935]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.20.02:402][935]LogUObjectHash: Compacting FUObjectHashTables data took   2.95ms
+[2022.04.04-11.20.15:477][296]BlueprintLog: New page: Compile WB_SlotInventory
+[2022.04.04-11.20.15:517][296]LogUObjectHash: Compacting FUObjectHashTables data took   2.66ms
+[2022.04.04-11.20.21:910][967]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.20.21:961][967]LogUObjectHash: Compacting FUObjectHashTables data took   2.98ms
+[2022.04.04-11.20.22:879][ 52]LogSlate: Prevented a slow task dialog from being summoned while a context menu was open
+[2022.04.04-11.20.40:926][989]LogSlate: Prevented a slow task dialog from being summoned while a context menu was open
+[2022.04.04-11.20.41:697][ 57]LogSlate: Prevented a slow task dialog from being summoned while a context menu was open
+[2022.04.04-11.20.42:575][145]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.20.42:618][145]LogUObjectHash: Compacting FUObjectHashTables data took   2.70ms
+[2022.04.04-11.20.43:814][269]LogSlate: Prevented a slow task dialog from being summoned while a context menu was open
+[2022.04.04-11.20.51:764][126]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.20.51:783][126]LogBlueprint: Warning: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] Input pin  Armour Slot  specifying non-default value no longer exists on node  Create Widget . Please refresh node or reset pin to default value to remove pin.
+[2022.04.04-11.20.51:783][126]LogBlueprint: Warning: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] Input pin  Armour Piece  specifying non-default value no longer exists on node  Create Widget . Please refresh node or reset pin to default value to remove pin.
+[2022.04.04-11.20.51:819][126]LogUObjectHash: Compacting FUObjectHashTables data took   2.65ms
+[2022.04.04-11.20.54:038][361]LogSlate: Prevented a slow task dialog from being summoned while a context menu was open
+[2022.04.04-11.21.03:938][449]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.21.03:943][449]LogBlueprint: Warning: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] Input pin  Armour Slot  specifying non-default value no longer exists on node  Create Widget . Please refresh node or reset pin to default value to remove pin.
+[2022.04.04-11.21.03:944][449]LogBlueprint: Warning: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] Input pin  Armour Piece  specifying non-default value no longer exists on node  Create Widget . Please refresh node or reset pin to default value to remove pin.
+[2022.04.04-11.21.03:980][449]LogUObjectHash: Compacting FUObjectHashTables data took   2.77ms
+[2022.04.04-11.21.04:555][511]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.21.04:561][511]LogBlueprint: Warning: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] Input pin  Armour Slot  specifying non-default value no longer exists on node  Create Widget . Please refresh node or reset pin to default value to remove pin.
+[2022.04.04-11.21.04:561][511]LogBlueprint: Warning: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] Input pin  Armour Piece  specifying non-default value no longer exists on node  Create Widget . Please refresh node or reset pin to default value to remove pin.
+[2022.04.04-11.21.04:596][511]LogUObjectHash: Compacting FUObjectHashTables data took   2.56ms
+[2022.04.04-11.21.16:551][723]LogSlate: Prevented a slow task dialog from being summoned while a context menu was open
+[2022.04.04-11.21.36:641][725]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.21.36:684][725]LogUObjectHash: Compacting FUObjectHashTables data took   2.53ms
+[2022.04.04-11.21.54:061][610]BlueprintLog: New page: Compile WB_SlotInventory
+[2022.04.04-11.21.54:102][610]LogUObjectHash: Compacting FUObjectHashTables data took   2.69ms
+[2022.04.04-11.22.10:665][429]BlueprintLog: New page: Compile WB_SlotInventory
+[2022.04.04-11.22.10:700][429]LogUObjectHash: Compacting FUObjectHashTables data took   3.35ms
+[2022.04.04-11.22.35:730][922]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_ArmourSlot09AE16464E420911BEFFC7BA5107A769.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.uasset'
+[2022.04.04-11.22.35:743][922]AssetCheck: New page: Asset Save: WB_ArmourSlot
+[2022.04.04-11.22.35:743][922]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot
+[2022.04.04-11.22.49:732][493]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.22.49:789][493]LogUObjectHash: Compacting FUObjectHashTables data took   2.67ms
+[2022.04.04-11.22.50:863][591]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_ArmourSlotA641E470497BD7DBBD367E8207E30D73.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.uasset'
+[2022.04.04-11.22.50:891][591]AssetCheck: New page: Asset Save: WB_ArmourSlot
+[2022.04.04-11.22.50:891][591]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot
+[2022.04.04-11.22.57:872][192]LogEditorViewport: Clicking on Actor (LMB): StaticMeshActor (Wall9)
+[2022.04.04-11.23.00:359][421]LogTemp: Repeating last play command: Selected Viewport
+[2022.04.04-11.23.00:366][421]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2022.04.04-11.23.00:366][421]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:23:00)
+[2022.04.04-11.23.00:402][421]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.23.00:415][421]LogPlayLevel: PIE: StaticDuplicateObject took: (0.013210s)
+[2022.04.04-11.23.00:416][421]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.23.00:417][421]LogPlayLevel: PIE: World Init took: (0.001685s)
+[2022.04.04-11.23.00:417][421]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.015425s)
+[2022.04.04-11.23.00:448][421]LogUObjectHash: Compacting FUObjectHashTables data took   2.35ms
+[2022.04.04-11.23.00:450][421]LogAudio: Display: Creating Audio Device:                 Id: 8, Scope: Unique, Realtime: True
+[2022.04.04-11.23.00:450][421]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.23.00:450][421]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.23.00:450][421]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.23.00:451][421]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.23.00:451][421]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.23.00:451][421]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.23.00:451][421]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.23.00:451][421]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.23.00:452][421]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.23.00:452][421]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.23.00:455][421]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.23.00:456][421]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.23.00:489][421]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.23.00:490][421]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.23.00:490][421]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.23.00:490][421]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.23.00:490][421]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.23.00:491][421]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.23.00:491][421]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.23.00:506][421]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.23.00:506][421]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.23.00:506][421]LogInit: FAudioDevice initialized.
+[2022.04.04-11.23.00:506][421]LogAudio: Display: Audio Device (ID: 8) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.23.00:519][421]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.23.00:521][421]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.23.00
+[2022.04.04-11.23.00:522][421]LogWorld: Bringing up level for play took: 0.002406
+[2022.04.04-11.23.00:523][421]LogOnline: OSS: Creating online subsystem instance for: :Context_36
+[2022.04.04-11.23.00:528][421]PIE: Server logged in
+[2022.04.04-11.23.00:529][421]PIE: Play in editor total start time 0.163 seconds.
+[2022.04.04-11.23.08:256][335]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.23.08:257][335]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.23.08:257][335]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.23.08:260][335]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.23.08:290][335]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.23.08:330][335]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.23.08:373][335]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2022.04.04-11.23.08:374][335]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.23.08:376][335]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.23.08:430][335]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.23.08:437][335]LogUObjectHash: Compacting FUObjectHashTables data took   4.50ms
+[2022.04.04-11.23.08:482][336]LogPlayLevel: Display: Destroying online subsystem :Context_36
+[2022.04.04-11.23.11:039][571]LogUObjectHash: Compacting FUObjectHashTables data took   1.68ms
+[2022.04.04-11.24.43:240][571]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{2a48467a-61cd-4e1b-b0f0-82c6717e20d3}.
+[2022.04.04-11.27.48:312][571]LogSlate: Window 'Save Content' being destroyed
+[2022.04.04-11.27.48:337][571]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/Brunnhilde_Armour_DataStructureDA93AEF540E9D57653B02187CE7DF3F8.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/Data/Brunnhilde_Armour_DataStructure.uasset'
+[2022.04.04-11.27.48:377][571]LogUObjectHash: Compacting FUObjectHashTables data took   0.67ms
+[2022.04.04-11.27.48:400][571]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/ThirdPersonExampleMapAB3EF42D438526ED845EB5BB3CE720E0.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/ThirdPersonCPP/Maps/ThirdPersonExampleMap.umap'
+[2022.04.04-11.27.48:426][571]LogFileHelpers: Saving map 'ThirdPersonExampleMap' took 0.077
+[2022.04.04-11.27.48:446][571]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_SlotInventory96AA5DD34C7AC5C108DA8186D3D7A0E4.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.uasset'
+[2022.04.04-11.27.48:495][571]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.27.48:563][571]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.27.48:563][571]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.27.48:680][572]AssetCheck: New page: Asset Save: multiple assets
+[2022.04.04-11.27.48:681][572]LogContentValidation: Display: Validating UserDefinedStruct /Game/Brunnhide/Data/Brunnhilde_Armour_DataStructure.Brunnhilde_Armour_DataStructure
+[2022.04.04-11.27.48:681][572]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_SlotInventory.WB_SlotInventory
+[2022.04.04-11.27.48:681][572]LogContentValidation: Display: Validating World /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap
+[2022.04.04-11.29.42:839][ 89]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{2a48467a-61cd-4e1b-b0f0-82c6717e20d3}.
+[2022.04.04-11.29.42:839][ 89]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.29.42:885][ 89]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.29.42:886][ 89]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.29.43:506][ 91]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{1d894df1-146f-48d0-9a60-9b7c34cd6d90}.
+[2022.04.04-11.29.43:506][ 91]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.29.43:584][ 91]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.29.43:584][ 91]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.40.39:409][808]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{2a48467a-61cd-4e1b-b0f0-82c6717e20d3}.
+[2022.04.04-11.40.39:409][808]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.40.39:465][808]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.40.39:465][808]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.40.40:081][810]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{1d894df1-146f-48d0-9a60-9b7c34cd6d90}.
+[2022.04.04-11.40.40:081][810]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.40.40:135][810]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.40.40:135][810]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.47.40:799][259]LogTemp: Repeating last play command: Standalone Game
+[2022.04.04-11.47.40:837][259]LogUObjectHash: Compacting FUObjectHashTables data took   2.32ms
+[2022.04.04-11.47.42:110][259]LogSlate: Window 'Save Content' being destroyed
+[2022.04.04-11.47.42:166][259]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_ArmourSlot153852D144007BC5892A3EBD3674D953.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Content/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.uasset'
+[2022.04.04-11.47.42:189][260]AssetCheck: New page: Asset Save: WB_ArmourSlot
+[2022.04.04-11.47.42:189][260]LogContentValidation: Display: Validating WidgetBlueprint /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot
+[2022.04.04-11.47.48:726][948]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2022.04.04-11.47.48:726][948]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:47:48)
+[2022.04.04-11.47.48:727][948]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.47.48:742][948]LogPlayLevel: PIE: StaticDuplicateObject took: (0.016009s)
+[2022.04.04-11.47.48:744][948]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.47.48:744][948]LogPlayLevel: PIE: World Init took: (0.001867s)
+[2022.04.04-11.47.48:744][948]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.018325s)
+[2022.04.04-11.47.48:775][948]LogUObjectHash: Compacting FUObjectHashTables data took   1.75ms
+[2022.04.04-11.47.48:776][948]LogAudio: Display: Creating Audio Device:                 Id: 9, Scope: Unique, Realtime: True
+[2022.04.04-11.47.48:776][948]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.47.48:776][948]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.47.48:777][948]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.47.48:777][948]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.47.48:777][948]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.47.48:777][948]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.47.48:777][948]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.47.48:777][948]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.47.48:777][948]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.47.48:778][948]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.47.48:781][948]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.47.48:781][948]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.47.48:814][948]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.47.48:815][948]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.47.48:815][948]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.47.48:815][948]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.47.48:815][948]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.47.48:815][948]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.47.48:815][948]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.47.48:831][948]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.47.48:831][948]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.47.48:831][948]LogInit: FAudioDevice initialized.
+[2022.04.04-11.47.48:831][948]LogAudio: Display: Audio Device (ID: 9) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.47.48:844][948]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.47.48:846][948]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.47.48
+[2022.04.04-11.47.48:847][948]LogWorld: Bringing up level for play took: 0.002183
+[2022.04.04-11.47.48:847][948]LogOnline: OSS: Creating online subsystem instance for: :Context_37
+[2022.04.04-11.47.48:853][948]PIE: Server logged in
+[2022.04.04-11.47.48:854][948]PIE: Play in editor total start time 0.13 seconds.
+[2022.04.04-11.47.54:485][587]LogBlueprintDebug: Warning: Hit breakpoint on node 'K2Node_CustomEvent', from offset 0
+[2022.04.04-11.47.54:485][587]LogBlueprintDebug: 
+Script call stack:
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:RemoveSlotInventory
+
+[2022.04.04-11.47.54:609][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.47.54:609][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.47.54:609][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.47.54:609][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.48.06:264][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.48.06:264][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.48.06:265][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.48.06:265][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.48.07:498][587]LogBlueprintDebug: Warning: Hit breakpoint on node 'K2Node_CustomEvent', from offset 0
+[2022.04.04-11.48.07:498][587]LogBlueprintDebug: 
+Script call stack:
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:RemoveSlotInventory
+
+[2022.04.04-11.48.07:505][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.48.07:505][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.48.07:505][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.48.07:505][587]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.49.09:446][257]LogBlueprintDebug: Warning: Hit breakpoint on node 'K2Node_CustomEvent', from offset 0
+[2022.04.04-11.49.09:446][257]LogBlueprintDebug: 
+Script call stack:
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:RemoveSlotInventory
+
+[2022.04.04-11.49.09:460][257]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.49.09:460][257]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.49.09:460][257]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.49.09:460][257]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.49.09:460][257]LogScriptCore: Warning: Cannot call UnrealScript (BrushBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_7.WB_SlotInventory_C_0.WidgetTree.WB_SlotInventoryContent_C_0.WidgetTree.Border_0.BrushBinding_0 - Function /Script/UMG.BrushBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.49.12:094][257]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.49.12:094][257]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.49.12:094][257]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.49.12:095][257]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.49.12:108][257]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.49.12:127][257]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.49.12:150][257]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2022.04.04-11.49.12:150][257]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.49.12:152][257]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.49.12:189][257]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.49.12:192][257]LogUObjectHash: Compacting FUObjectHashTables data took   2.05ms
+[2022.04.04-11.49.12:223][258]LogPlayLevel: Display: Destroying online subsystem :Context_37
+[2022.04.04-11.49.21:103][135]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{2a48467a-61cd-4e1b-b0f0-82c6717e20d3}.
+[2022.04.04-11.49.21:113][135]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.49.21:227][135]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.49.21:227][135]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.49.21:969][177]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{1d894df1-146f-48d0-9a60-9b7c34cd6d90}.
+[2022.04.04-11.49.21:972][177]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.49.22:083][177]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.49.22:083][177]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.49.51:453][222]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.49.51:485][222]LogBlueprint: Error: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] This blueprint (self) is not a BP_Brunnhilde_Mennequin_C, therefore ' Target ' must have a connection.
+[2022.04.04-11.49.51:522][222]LogUObjectHash: Compacting FUObjectHashTables data took   2.87ms
+[2022.04.04-11.50.31:581][983]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{2a48467a-61cd-4e1b-b0f0-82c6717e20d3}.
+[2022.04.04-11.50.31:586][983]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.50.31:675][983]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.50.31:676][983]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.50.32:464][ 39]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{1d894df1-146f-48d0-9a60-9b7c34cd6d90}.
+[2022.04.04-11.50.32:472][ 39]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.50.32:535][ 39]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.50.32:535][ 39]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.52.12:557][522]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.52.12:581][522]LogBlueprint: Error: [AssetLog] D:\Epic Games\Projects\GameDevelopment_Brunnhilde\Content\Brunnhide\UserInterface\EquipmentBoard\WB_ArmourSlot.uasset: [Compiler] Binding: Property ' /Script/UMG.Image:OnMouseButtonDownEvent ' on Widget ' SlotImage ': Binding: 'None' : 'None' was not found on 'WB Armour Slot'.
+[2022.04.04-11.52.12:617][522]LogUObjectHash: Compacting FUObjectHashTables data took   2.56ms
+[2022.04.04-11.52.14:786][723]LogBlueprint: Warning: Unknown type of hyperlinked object (SlotImage), cannot focus it
+[2022.04.04-11.52.15:442][794]LogBlueprint: Warning: Unknown type of hyperlinked object (SlotImage), cannot focus it
+[2022.04.04-11.52.15:641][815]LogBlueprint: Warning: Unknown type of hyperlinked object (SlotImage), cannot focus it
+[2022.04.04-11.52.22:386][465]LogBlueprint: Warning: Unknown type of hyperlinked object (SlotImage), cannot focus it
+[2022.04.04-11.52.42:680][378]LogTemp: Repeating last play command: Selected Viewport
+[2022.04.04-11.52.42:690][378]BlueprintLog: New page: Pre-Play auto-recompile
+[2022.04.04-11.52.42:694][378]LogPlayLevel: [PlayLevel] Compiling WB_ArmourSlot before play...
+[2022.04.04-11.52.42:768][378]LogUObjectHash: Compacting FUObjectHashTables data took   4.25ms
+[2022.04.04-11.52.42:770][378]LogPlayLevel: PlayLevel: Blueprint regeneration took 79 ms (1 blueprints)
+[2022.04.04-11.52.42:770][378]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:52:42)
+[2022.04.04-11.52.42:770][378]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.52.42:785][378]LogPlayLevel: PIE: StaticDuplicateObject took: (0.013981s)
+[2022.04.04-11.52.42:787][378]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.52.42:787][378]LogPlayLevel: PIE: World Init took: (0.002343s)
+[2022.04.04-11.52.42:787][378]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.016900s)
+[2022.04.04-11.52.42:815][378]LogUObjectHash: Compacting FUObjectHashTables data took   1.94ms
+[2022.04.04-11.52.42:815][378]LogAudio: Display: Creating Audio Device:                 Id: 10, Scope: Unique, Realtime: True
+[2022.04.04-11.52.42:816][378]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.52.42:816][378]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.52.42:816][378]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.52.42:816][378]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.52.42:816][378]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.52.42:816][378]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.52.42:816][378]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.52.42:816][378]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.52.42:817][378]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.52.42:817][378]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.52.42:821][378]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.52.42:821][378]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.52.42:856][378]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.52.42:857][378]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.52.42:857][378]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.52.42:857][378]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.52.42:858][378]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.52.42:858][378]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.52.42:858][378]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.52.42:874][378]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.52.42:874][378]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.52.42:875][378]LogInit: FAudioDevice initialized.
+[2022.04.04-11.52.42:875][378]LogAudio: Display: Audio Device (ID: 10) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.52.42:886][378]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.52.42:889][378]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.52.42
+[2022.04.04-11.52.42:890][378]LogWorld: Bringing up level for play took: 0.002205
+[2022.04.04-11.52.42:890][378]LogOnline: OSS: Creating online subsystem instance for: :Context_38
+[2022.04.04-11.52.42:896][378]PIE: Server logged in
+[2022.04.04-11.52.42:896][378]PIE: Play in editor total start time 0.207 seconds.
+[2022.04.04-11.52.45:309][602]LogBlueprintDebug: Warning: Hit breakpoint on node 'K2Node_CustomEvent', from offset 0
+[2022.04.04-11.52.45:309][602]LogBlueprintDebug: 
+Script call stack:
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:RemoveSlotInventory
+
+[2022.04.04-11.52.45:322][602]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_8.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.52.45:322][602]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_8.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.52.45:322][602]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_8.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.52.45:323][602]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_8.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.52.45:323][602]LogScriptCore: Warning: Cannot call UnrealScript (BrushBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_8.WB_SlotInventory_C_0.WidgetTree.WB_SlotInventoryContent_C_0.WidgetTree.Border_0.BrushBinding_0 - Function /Script/UMG.BrushBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.53.08:133][  4]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.53.08:134][  4]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.53.08:134][  4]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.53.08:135][  4]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.53.08:150][  4]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.53.08:180][  4]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.53.08:203][  4]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.53.08:204][  4]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.53.08:205][  4]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.53.08:242][  4]LogUObjectHash: Compacting FUObjectHashTables data took   1.92ms
+[2022.04.04-11.53.08:272][  5]LogPlayLevel: Display: Destroying online subsystem :Context_38
+[2022.04.04-11.53.10:974][255]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.53.11:025][255]LogUObjectHash: Compacting FUObjectHashTables data took   2.22ms
+[2022.04.04-11.53.12:153][344]LogTemp: Repeating last play command: Selected Viewport
+[2022.04.04-11.53.12:161][344]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2022.04.04-11.53.12:161][344]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:53:12)
+[2022.04.04-11.53.12:161][344]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.53.12:173][344]LogPlayLevel: PIE: StaticDuplicateObject took: (0.011197s)
+[2022.04.04-11.53.12:174][344]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.53.12:175][344]LogPlayLevel: PIE: World Init took: (0.001780s)
+[2022.04.04-11.53.12:175][344]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.013508s)
+[2022.04.04-11.53.12:205][344]LogUObjectHash: Compacting FUObjectHashTables data took   2.51ms
+[2022.04.04-11.53.12:206][344]LogAudio: Display: Creating Audio Device:                 Id: 11, Scope: Unique, Realtime: True
+[2022.04.04-11.53.12:207][344]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.53.12:207][344]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.53.12:207][344]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.53.12:207][344]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.53.12:207][344]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.53.12:207][344]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.53.12:207][344]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.53.12:208][344]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.53.12:208][344]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.53.12:208][344]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.53.12:212][344]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.53.12:212][344]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.53.12:252][344]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.53.12:252][344]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.53.12:253][344]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.53.12:253][344]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.53.12:253][344]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.53.12:253][344]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.53.12:253][344]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.53.12:256][344]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.53.12:256][344]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.53.12:256][344]LogInit: FAudioDevice initialized.
+[2022.04.04-11.53.12:256][344]LogAudio: Display: Audio Device (ID: 11) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.53.12:285][344]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.53.12:288][344]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.53.12
+[2022.04.04-11.53.12:289][344]LogWorld: Bringing up level for play took: 0.002905
+[2022.04.04-11.53.12:289][344]LogOnline: OSS: Creating online subsystem instance for: :Context_39
+[2022.04.04-11.53.12:296][344]PIE: Server logged in
+[2022.04.04-11.53.12:297][344]PIE: Play in editor total start time 0.137 seconds.
+[2022.04.04-11.53.41:453][140]LogSelectionDetails: Warning: NavigateToFunctionSource:  Unable to find symbols for 'UWidget::RemoveFromParent' [元素找不到。]
+[2022.04.04-11.54.46:423][851]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.54.46:424][851]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.54.46:424][851]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.54.46:425][851]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.54.46:448][851]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.54.46:498][851]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.54.46:539][851]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2022.04.04-11.54.46:539][851]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.54.46:541][851]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.54.46:586][851]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.54.46:590][851]LogUObjectHash: Compacting FUObjectHashTables data took   1.97ms
+[2022.04.04-11.54.46:620][852]LogPlayLevel: Display: Destroying online subsystem :Context_39
+[2022.04.04-11.55.37:754][785]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.55.37:809][785]LogUObjectHash: Compacting FUObjectHashTables data took   2.23ms
+[2022.04.04-11.55.38:578][845]LogTemp: Repeating last play command: Selected Viewport
+[2022.04.04-11.55.38:585][845]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2022.04.04-11.55.38:585][845]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:55:38)
+[2022.04.04-11.55.38:586][845]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.55.38:596][845]LogPlayLevel: PIE: StaticDuplicateObject took: (0.010960s)
+[2022.04.04-11.55.38:597][845]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.55.38:598][845]LogPlayLevel: PIE: World Init took: (0.001850s)
+[2022.04.04-11.55.38:598][845]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.013302s)
+[2022.04.04-11.55.38:629][845]LogUObjectHash: Compacting FUObjectHashTables data took   2.61ms
+[2022.04.04-11.55.38:630][845]LogAudio: Display: Creating Audio Device:                 Id: 12, Scope: Unique, Realtime: True
+[2022.04.04-11.55.38:630][845]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.55.38:630][845]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.55.38:631][845]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.55.38:631][845]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.55.38:631][845]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.55.38:631][845]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.55.38:631][845]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.55.38:631][845]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.55.38:632][845]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.55.38:632][845]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.55.38:635][845]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.55.38:635][845]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.55.38:668][845]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.55.38:669][845]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.55.38:669][845]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.55.38:669][845]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.55.38:669][845]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.55.38:669][845]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.55.38:669][845]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.55.38:685][845]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.55.38:685][845]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.55.38:685][845]LogInit: FAudioDevice initialized.
+[2022.04.04-11.55.38:685][845]LogAudio: Display: Audio Device (ID: 12) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.55.38:702][845]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.55.38:706][845]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.55.38
+[2022.04.04-11.55.38:706][845]LogWorld: Bringing up level for play took: 0.003623
+[2022.04.04-11.55.38:707][845]LogOnline: OSS: Creating online subsystem instance for: :Context_40
+[2022.04.04-11.55.38:714][845]PIE: Server logged in
+[2022.04.04-11.55.38:716][845]PIE: Play in editor total start time 0.131 seconds.
+[2022.04.04-11.55.44:793][447]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.55.44:793][447]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.55.44:794][447]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.55.44:794][447]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.55.44:805][447]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.55.44:837][447]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.55.44:868][447]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2022.04.04-11.55.44:868][447]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.55.44:870][447]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.55.44:910][447]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.55.44:913][447]LogUObjectHash: Compacting FUObjectHashTables data took   2.29ms
+[2022.04.04-11.55.44:946][448]LogPlayLevel: Display: Destroying online subsystem :Context_40
+[2022.04.04-11.55.52:052][ 48]LogTemp: Repeating last play command: Selected Viewport
+[2022.04.04-11.55.52:059][ 48]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2022.04.04-11.55.52:059][ 48]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:55:52)
+[2022.04.04-11.55.52:082][ 48]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.55.52:093][ 48]LogPlayLevel: PIE: StaticDuplicateObject took: (0.011034s)
+[2022.04.04-11.55.52:095][ 48]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.55.52:095][ 48]LogPlayLevel: PIE: World Init took: (0.001615s)
+[2022.04.04-11.55.52:095][ 48]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.013193s)
+[2022.04.04-11.55.52:124][ 48]LogUObjectHash: Compacting FUObjectHashTables data took   1.83ms
+[2022.04.04-11.55.52:125][ 48]LogAudio: Display: Creating Audio Device:                 Id: 13, Scope: Unique, Realtime: True
+[2022.04.04-11.55.52:125][ 48]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.55.52:125][ 48]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.55.52:126][ 48]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.55.52:126][ 48]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.55.52:126][ 48]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.55.52:126][ 48]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.55.52:126][ 48]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.55.52:126][ 48]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.55.52:127][ 48]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.55.52:127][ 48]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.55.52:130][ 48]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.55.52:130][ 48]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.55.52:164][ 48]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.55.52:165][ 48]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.55.52:165][ 48]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.55.52:165][ 48]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.55.52:165][ 48]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.55.52:166][ 48]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.55.52:166][ 48]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.55.52:183][ 48]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.55.52:183][ 48]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.55.52:183][ 48]LogInit: FAudioDevice initialized.
+[2022.04.04-11.55.52:183][ 48]LogAudio: Display: Audio Device (ID: 13) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.55.52:194][ 48]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.55.52:197][ 48]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.55.52
+[2022.04.04-11.55.52:197][ 48]LogWorld: Bringing up level for play took: 0.001995
+[2022.04.04-11.55.52:198][ 48]LogOnline: OSS: Creating online subsystem instance for: :Context_41
+[2022.04.04-11.55.52:203][ 48]PIE: Server logged in
+[2022.04.04-11.55.52:204][ 48]PIE: Play in editor total start time 0.145 seconds.
+[2022.04.04-11.56.04:343][223]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.56.04:343][223]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.56.04:343][223]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.56.04:344][223]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.56.04:356][223]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.56.04:376][223]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.56.04:411][223]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2022.04.04-11.56.04:411][223]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.56.04:412][223]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.56.04:451][223]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.56.04:454][223]LogUObjectHash: Compacting FUObjectHashTables data took   1.72ms
+[2022.04.04-11.56.04:483][224]LogPlayLevel: Display: Destroying online subsystem :Context_41
+[2022.04.04-11.56.04:774][247]Cmd: SELECT NONE
+[2022.04.04-11.56.11:587][869]BlueprintLog: New page: Compile WB_ArmourSlot
+[2022.04.04-11.56.11:639][869]LogUObjectHash: Compacting FUObjectHashTables data took   2.23ms
+[2022.04.04-11.56.12:356][930]LogTemp: Repeating last play command: Selected Viewport
+[2022.04.04-11.56.12:363][930]LogPlayLevel: PlayLevel: No blueprints needed recompiling
+[2022.04.04-11.56.12:364][930]PIE: New page: PIE session: ThirdPersonExampleMap (2022年4月5日 上午3:56:12)
+[2022.04.04-11.56.12:393][930]LogPlayLevel: Creating play world package: /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.56.12:405][930]LogPlayLevel: PIE: StaticDuplicateObject took: (0.011922s)
+[2022.04.04-11.56.12:406][930]LogAIModule: Creating AISystem for world ThirdPersonExampleMap
+[2022.04.04-11.56.12:407][930]LogPlayLevel: PIE: World Init took: (0.001553s)
+[2022.04.04-11.56.12:407][930]LogPlayLevel: PIE: Created PIE world by copying editor world from /Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap.ThirdPersonExampleMap to /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap (0.014040s)
+[2022.04.04-11.56.12:438][930]LogUObjectHash: Compacting FUObjectHashTables data took   2.63ms
+[2022.04.04-11.56.12:439][930]LogAudio: Display: Creating Audio Device:                 Id: 14, Scope: Unique, Realtime: True
+[2022.04.04-11.56.12:439][930]LogAudioMixer: Display: Audio Mixer Platform Settings:
+[2022.04.04-11.56.12:440][930]LogAudioMixer: Display: 	Sample Rate:						  48000
+[2022.04.04-11.56.12:440][930]LogAudioMixer: Display: 	Callback Buffer Frame Size Requested: 1024
+[2022.04.04-11.56.12:440][930]LogAudioMixer: Display: 	Callback Buffer Frame Size To Use:	  1024
+[2022.04.04-11.56.12:440][930]LogAudioMixer: Display: 	Number of buffers to queue:			  2
+[2022.04.04-11.56.12:440][930]LogAudioMixer: Display: 	Max Channels (voices):				  32
+[2022.04.04-11.56.12:440][930]LogAudioMixer: Display: 	Number of Async Source Workers:		  0
+[2022.04.04-11.56.12:440][930]LogAudio: Display: AudioDevice MaxSources: 32
+[2022.04.04-11.56.12:441][930]LogAudio: Display: Using built-in audio occlusion.
+[2022.04.04-11.56.12:441][930]LogAudioMixer: Display: Initializing audio mixer.
+[2022.04.04-11.56.12:444][930]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.56.12:444][930]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.56.12:485][930]LogAudioMixer: Display: Using Audio Device 喇叭 (Realtek(R) Audio)
+[2022.04.04-11.56.12:485][930]LogAudioMixer: Display: Initializing Sound Submixes...
+[2022.04.04-11.56.12:486][930]LogAudioMixer: Display: Creating Master Submix 'MasterSubmixDefault'
+[2022.04.04-11.56.12:486][930]LogAudioMixer: Display: Creating Master Submix 'MasterReverbSubmixDefault'
+[2022.04.04-11.56.12:486][930]LogAudioMixer: Display: Creating Master Submix 'MasterEQSubmixDefault'
+[2022.04.04-11.56.12:486][930]LogAudioMixer: FMixerPlatformXAudio2::StartAudioStream() called
+[2022.04.04-11.56.12:486][930]LogAudioMixer: Display: Output buffers initialized: Frames=1024, Channels=2, Samples=2048
+[2022.04.04-11.56.12:503][930]LogAudioMixer: Display: Starting AudioMixerPlatformInterface::RunInternal()
+[2022.04.04-11.56.12:503][930]LogAudioMixer: Display: FMixerPlatformXAudio2::SubmitBuffer() called for the first time
+[2022.04.04-11.56.12:503][930]LogInit: FAudioDevice initialized.
+[2022.04.04-11.56.12:503][930]LogAudio: Display: Audio Device (ID: 14) registered with world 'ThirdPersonExampleMap'.
+[2022.04.04-11.56.12:523][930]LogLoad: Game class is 'BP_BrunnhildeGameMode_C'
+[2022.04.04-11.56.12:526][930]LogWorld: Bringing World /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap.ThirdPersonExampleMap up for play (max tick rate 0) at 2022.04.04-19.56.12
+[2022.04.04-11.56.12:526][930]LogWorld: Bringing up level for play took: 0.002962
+[2022.04.04-11.56.12:527][930]LogOnline: OSS: Creating online subsystem instance for: :Context_42
+[2022.04.04-11.56.12:533][930]PIE: Server logged in
+[2022.04.04-11.56.12:534][930]PIE: Play in editor total start time 0.171 seconds.
+[2022.04.04-11.56.16:307][292]LogBlueprintDebug: Warning: Hit breakpoint on node 'CallFunc_RemoveFromParent', from offset 309
+[2022.04.04-11.56.16:308][292]LogBlueprintDebug: 
+Script call stack:
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:BndEvt__Button_141_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature
+	Function /Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot.WB_ArmourSlot_C:ExecuteUbergraph_WB_ArmourSlot
+
+[2022.04.04-11.56.16:319][292]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_12.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.56.16:320][292]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_12.UI_PlayerPlayBoard_C_0.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.56.16:320][292]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_12.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerHealthWidget.WidgetTree.ProgressBar_0.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.56.16:320][292]LogScriptCore: Warning: Cannot call UnrealScript (FloatBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_12.UI_PlayerPlayBoard_C_1.WidgetTree.UI_PlayerEnduranceWidget.WidgetTree.ProgressBar_71.FloatBinding_0 - Function /Script/UMG.FloatBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.56.16:320][292]LogScriptCore: Warning: Cannot call UnrealScript (BrushBinding /Engine/Transient.UnrealEdEngine_0:GameInstance_12.WB_SlotInventory_C_0.WidgetTree.WB_SlotInventoryContent_C_0.WidgetTree.Border_0.BrushBinding_0 - Function /Script/UMG.BrushBinding:GetValue) while stopped at a breakpoint.
+[2022.04.04-11.56.28:823][  9]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.56.28:824][  9]LogWorld: BeginTearingDown for /Game/ThirdPersonCPP/Maps/UEDPIE_0_ThirdPersonExampleMap
+[2022.04.04-11.56.28:824][  9]LogWorld: UWorld::CleanupWorld for ThirdPersonExampleMap, bSessionEnded=true, bCleanupResources=true
+[2022.04.04-11.56.28:825][  9]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.56.28:840][  9]LogPlayLevel: Display: Shutting down PIE online subsystems
+[2022.04.04-11.56.28:844][  9]LogSlate: InvalidateAllWidgets triggered.  All widgets were invalidated
+[2022.04.04-11.56.28:866][  9]LogAudio: Display: Audio Device unregistered from world 'None'.
+[2022.04.04-11.56.28:867][  9]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.56.28:869][  9]LogAudioMixer: FMixerPlatformXAudio2::StopAudioStream() called
+[2022.04.04-11.56.28:902][  9]LogSlate: Updating window title bar state: overlay mode, drag disabled, window buttons hidden, title bar hidden
+[2022.04.04-11.56.28:906][  9]LogUObjectHash: Compacting FUObjectHashTables data took   1.94ms
+[2022.04.04-11.56.28:930][ 10]LogPlayLevel: Display: Destroying online subsystem :Context_42
+[2022.04.04-11.56.29:077][ 23]Cmd: SELECT NONE
+[2022.04.04-11.56.34:265][155]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{2a48467a-61cd-4e1b-b0f0-82c6717e20d3}.
+[2022.04.04-11.56.34:265][155]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.56.34:319][155]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.56.34:319][155]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.56.35:268][158]LogAudioMixer: Warning: Changing default audio render device to new device: {0.0.0.00000000}.{1d894df1-146f-48d0-9a60-9b7c34cd6d90}.
+[2022.04.04-11.56.35:268][158]LogAudioMixer: Resetting audio stream to device id 
+[2022.04.04-11.56.35:311][158]LogAudioMixer: Display: 0: FrontLeft
+[2022.04.04-11.56.35:311][158]LogAudioMixer: Display: 1: FrontRight
+[2022.04.04-11.56.57:166][223]LogUObjectHash: Compacting FUObjectHashTables data took   2.38ms
+[2022.04.04-11.56.57:167][223]LogFileHelpers: Editor autosave (incl. external actors) for '/Game/ThirdPersonCPP/Maps/ThirdPersonExampleMap' took 0.036
+[2022.04.04-11.56.57:168][223]OBJ SavePackage: Generating thumbnails for [0] asset(s) in package [/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot] ([1] browsable assets)...
+[2022.04.04-11.56.57:168][223]OBJ SavePackage: Finished generating thumbnails for package [/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot]
+[2022.04.04-11.56.57:192][223]LogSavePackage: Moving '../../../../Projects/GameDevelopment_Brunnhilde/Saved/WB_ArmourSlot_Auto5774984034903DCE5387CADB58C5F4505.tmp' to '../../../../Projects/GameDevelopment_Brunnhilde/Saved/Autosaves/Game/Brunnhide/UserInterface/EquipmentBoard/WB_ArmourSlot_Auto5.uasset'
+[2022.04.04-11.56.57:193][223]LogFileHelpers: Auto-saving content packages took 0.026

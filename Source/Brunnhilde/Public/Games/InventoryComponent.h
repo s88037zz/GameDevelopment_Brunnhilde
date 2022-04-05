@@ -6,9 +6,11 @@
 #include "Components/ActorComponent.h"
 #include "InventoryComponent.generated.h"
 
-class UItem;
+class AItem;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE( FOnInventoryUpdated );
+DECLARE_DYNAMIC_MULTICAST_DELEGATE( FOnEquipmentUpdated );
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BRUNNHILDE_API UInventoryComponent : public UActorComponent
 {
@@ -27,32 +29,38 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION( BlueprintCallable )
-	bool AddItem( UItem* Item );
+	TMap< uint8, AItem* > GetEquipment() { return EquipedItems; }
 
 	UFUNCTION( BlueprintCallable )
-	bool RemoveItem( UItem* Item );
+	bool AddItem( AItem* Item );
 
 	UFUNCTION( BlueprintCallable )
-	bool EquipItem( UItem* Item );
+	bool RemoveItem( AItem* Item );
+
+	UFUNCTION( BlueprintCallable )
+	bool EquipItem( AItem* Item );
 	
 	UFUNCTION( BlueprintCallable )
 	bool UnEquipItem( EArmourTypes ArmourType );
 	
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
-	int32 Capacity;
+	int32 Capacity = 20;
 
 	UPROPERTY( BlueprintAssignable, Category="Invetory" )
 	FOnInventoryUpdated OnInventoryUpdated;
 
+	UPROPERTY( BlueprintAssignable, Category="Inventory" )
+	FOnEquipmentUpdated OnEquipmentUpdated;
+
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
-	TArray< UItem* > Items;
+	TArray< AItem* > Items;
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Instanced, Category="Inventory" )
-	TArray< UItem* > DefaultItems;
+	TArray< AItem* > DefaultItems;
 	
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
-	TMap< uint8, UItem* > EquipedItems;
+	TMap< uint8, AItem* > EquipedItems;
 	
 	
 };

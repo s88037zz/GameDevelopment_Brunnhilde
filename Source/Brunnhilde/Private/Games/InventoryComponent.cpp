@@ -4,6 +4,7 @@
 #include "Games/InventoryComponent.h"
 #include "Games/BrunnhildeDef.h"
 #include "Armours/Armour.h"
+#include "ItemData/ArmourData.h"
 #include "Item.h"
 
 // Sets default values for this component's properties
@@ -13,15 +14,12 @@ UInventoryComponent::UInventoryComponent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// Init
-	Capacity = 20;
 }
 
 
 // Called when the game starts
 void UInventoryComponent::BeginPlay()
 {	
-	
 	for ( auto& Item : DefaultItems )
 	{
 		Items.Add( Item );
@@ -36,16 +34,14 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	// ...
 }
 
-bool UInventoryComponent::AddItem( UItem* Item )
+bool UInventoryComponent::AddItem( AItem* Item )
 {
-	
 	if ( Items.Num() > Capacity || !IsValid( Item ) )
 	{
 		return false;
 	}
 
 	Item->OwningInventory = this;
-	Item->World = GetWorld();
 	Items.Add( Item );
 
 	//Update UI
@@ -54,12 +50,11 @@ bool UInventoryComponent::AddItem( UItem* Item )
 	return true;
 }
 
-bool UInventoryComponent::RemoveItem( UItem* Item )
+bool UInventoryComponent::RemoveItem( AItem* Item )
 {
 	if ( Item )
 	{
 		Item->OwningInventory = nullptr;
-		Item->World = nullptr;
 		Items.RemoveSingle( Item );
 		OnInventoryUpdated.Broadcast();
 
@@ -69,15 +64,17 @@ bool UInventoryComponent::RemoveItem( UItem* Item )
 	return false;
 }
 
-bool UInventoryComponent::EquipItem( UItem* Item )
+bool UInventoryComponent::EquipItem( AItem* Item )
 {
-	
-	if ( CastChecked< UArmour, UItem >( Item ) )
+	if ( CastChecked< AArmour, AItem >( Item ) )
 	{
-		UArmour* Armour = Cast< UArmour >( Item );
+		AArmour* Armour = Cast< AArmour >( Item );
 
-		uint8 AmorurTypeInt = StaticCast< uint8 >( Armour->AmorurType );
+		uint8 AmorurTypeInt = StaticCast< uint8 >( Armour->ArmourData->AmorurType );
 		EquipedItems.Add( AmorurTypeInt, Item );
+		OnEquipmentUpdated.Broadcast();
+
+		return true;
 	}
 	
 	return false;
@@ -85,12 +82,12 @@ bool UInventoryComponent::EquipItem( UItem* Item )
 
 bool UInventoryComponent::UnEquipItem( EArmourTypes ArmourType )
 {
-
 	uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourType );
 
 	if ( EquipedItems.Contains( AmorurTypeInt ) )
 	{
 		EquipedItems.Emplace( AmorurTypeInt, nullptr );
+		OnEquipmentUpdated.Broadcast();
 	}
 
 	return false;

@@ -18,7 +18,8 @@
 #include "InventoryComponent.h"
 #include "Weapon.h"
 #include "Item.h"
-
+#include "Armour.h"
+#include "ItemData/ArmourData.h"
 
 # define BlockingAttack "BlockingAttack_Start"
 # define ActiveMotionSlot "ActiveMotionSlot"
@@ -95,6 +96,7 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
 
 	Inventory = CreateDefaultSubobject< UInventoryComponent >( TEXT( "Inventory" ) );
 	Inventory->Capacity = 15.f;
+	Inventory->OnEquipmentUpdated.AddDynamic( this, &ABrunnhildeCharacter::HandleEquipmentUpdated );
 
 	EquippedWeapon = nullptr;
 	bReadyToAttack = false;
@@ -198,7 +200,7 @@ void ABrunnhildeCharacter::StopSprint()
 	SprintAbility->StopSprint();
 }
 
-void ABrunnhildeCharacter::UseItem( UItem* Item )
+void ABrunnhildeCharacter::UseItem( AItem* Item )
 {
 	if ( Item )
 	{
@@ -440,17 +442,17 @@ AWeapon* ABrunnhildeCharacter::SetEquippedWeapon( AWeapon* NewWeapon )
 
 		if ( EquippedWeapon )
 		{
-			EquippedWeapon->OnDrop();
+			EquippedWeapon->HandleDrop();
 		}
 
 		UMeshComponent* WeaponMesh = Weapon->GetMeshComponent();
 		if ( WeaponMesh->IsSimulatingPhysics() )
 		{
-			Weapon = Weapon->OnPickup_Copy();
+			Weapon = Weapon->HandlePickupByCopy();
 		}
 		else
 		{
-			Weapon->OnPickup(this);
+			Weapon->HandlePickup(this);
 		}
 
 		EquippedWeapon = Weapon;
@@ -492,4 +494,35 @@ void ABrunnhildeCharacter::SetActiveAbility( UAbility2* ActiveAbility )
 void ABrunnhildeCharacter::SetLockedEnemy( bool Locked )
 {
 	bIsLockedEnemy = Locked;
+}
+
+void ABrunnhildeCharacter::HandleEquipmentUpdated()
+{
+	ResetStatsToDefault();
+
+	for ( auto& Equpiment : Inventory->GetEquipment() )
+	{	
+		AArmour* Armour = Cast< AArmour >( Equpiment.Value );
+		if (  IsValid( Armour ) )
+		{
+			Constitution += Armour->ArmourData->Constitution;
+			Mentality += Armour->ArmourData->Mentality;
+			Endurance += Armour->ArmourData->Endurance;
+			Strength += Armour->ArmourData->Strength;
+			Dexterity += Armour->ArmourData->Dexterity;
+			Intelligence += Armour->ArmourData->Intelligence;
+			Wisdom += Armour->ArmourData->Wisdom;
+		}
+	}
+}
+
+void ABrunnhildeCharacter::ResetStatsToDefault()
+{
+	Constitution = DefaultConstitution;
+	Mentality = DefaultMentality;
+	Endurance = DefaultEndurance;
+	Strength = DefaultStrength;
+	Dexterity = DefaultDexterity;
+	Intelligence = DefaultIntelligence;
+	Wisdom = DefaultWisdom;
 }

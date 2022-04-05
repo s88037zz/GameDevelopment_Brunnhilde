@@ -2,17 +2,17 @@
 
 
 #include "Armour.h"
-#include "..\..\Public\Armours\Armour.h"
+#include "ItemData/ArmourData.h"
 #include "Characters/BrunnhildeCharacter.h"
 
 // Sets default values
-UArmour::UArmour()
+AArmour::AArmour()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 
 }
 
-void UArmour::Use( ABrunnhildeCharacter* Character )
+void AArmour::Use( ABrunnhildeCharacter* Character )
 {
 	if ( Character )
 	{

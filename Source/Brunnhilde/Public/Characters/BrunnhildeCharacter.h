@@ -110,26 +110,49 @@ public:
 	float DamagedImpactRate = 1.0f;
 
 	//¨¤¦â¯à¤OÂ¾
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Constitution = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Mentality = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Endurance = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Strength = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int	Dexterity = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Intelligence = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Wisdom = 20;
+
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	int DefaultConstitution = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	int DefaultMentality = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	int DefaultEndurance = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	int DefaultStrength = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	int	DefaultDexterity = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	int DefaultIntelligence = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	int DefaultWisdom = 20;
+
 
 public: 
 	UFUNCTION( BlueprintPure, Category="ActionsStates" )
@@ -183,19 +206,20 @@ public:
 	void StopSprint();
 
 	UFUNCTION( BlueprintCallable, Category="Actions" )
-	void UseItem( class UItem* Item );
-
-public:
+	void UseItem( class AItem* Item );
 	
 	UFUNCTION( BlueprintCallable, Category="Notification")
 	void HandleDrawnWeapon_Notification();
 
-    UFUNCTION( BlueprintCallable, Category="Notification" )
+	UFUNCTION( BlueprintCallable, Category="Notification" )
 	void HandleSheathWeapon_Notification();
 
-public:
-	UFUNCTION(BlueprintImplementableEvent, Category="Events")
+	UFUNCTION( BlueprintImplementableEvent, Category="Events" )
 	void OnLightAttack();
+
+	UFUNCTION( BlueprintCallable, Category="Notification" )
+	void HandleEquipmentUpdated();
+
 
 /* Third Person Character Default function */
 protected:
@@ -276,6 +300,9 @@ public:
 public:
     double GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh );
 
+
+private:
+	void ResetStatsToDefault();
 
 private:
 	AWeapon* EquippedWeapon;	

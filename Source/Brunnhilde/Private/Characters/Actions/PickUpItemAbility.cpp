@@ -23,17 +23,17 @@ void UPickUpItemAbility::PickUp()
 
             if ( EquippedWeapon )
             {
-                EquippedWeapon->OnDrop();
+                EquippedWeapon->HandleDrop();
             }
 
             UMeshComponent* WeaponMesh = Weapon->GetMeshComponent();
             if ( WeaponMesh->IsSimulatingPhysics() )
             {
-                Weapon = Weapon->OnPickup_Copy();
+                Weapon = Weapon->HandlePickupByCopy();
             }
             else
             {
-                Weapon->OnPickup( GetControlCharacter() );
+                Weapon->HandlePickup( GetControlCharacter() );
             }
 
             GetControlCharacter()->SetEquippedWeapon( Weapon );

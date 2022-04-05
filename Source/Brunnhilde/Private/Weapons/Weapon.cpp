@@ -7,8 +7,13 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/BoxComponent.h"
+#include "ItemData/WeaponData.h"
 #include "BrunnhildeCharacter.h"
 #include "Kismet/GameplayStatics.h"
+
+void AWeapon::Use( ABrunnhildeCharacter* Character )
+{
+}
 
 // Sets default values
 AWeapon::AWeapon()
@@ -33,12 +38,12 @@ AWeapon::AWeapon()
 	LastOwnerAttackCounter = -1;
 }
 
-AWeapon::AWeapon( AWeapon* Weapon ) :AWeapon()
+AWeapon::AWeapon( AWeapon* Weapon )
 {
-	Damage = Weapon->Damage;
+	WeaponData = NewObject< UWeaponData >( Weapon->WeaponData );
 }
 
-void AWeapon::OnPickup( AActor* EquippedActor )
+void AWeapon::HandlePickup( AActor* EquippedActor )
 {
 
 	if ( EquippedActor )
@@ -54,7 +59,7 @@ void AWeapon::OnPickup( AActor* EquippedActor )
 
 }
 
-AWeapon* AWeapon::OnPickup_Copy()
+AWeapon* AWeapon::HandlePickupByCopy()
 {
 	AActor* PlayerActor = UGameplayStatics::GetPlayerPawn( GetWorld(), 0 );
 	if ( PlayerActor )
@@ -63,7 +68,7 @@ AWeapon* AWeapon::OnPickup_Copy()
 		if ( Character )
 		{
 			// Let weapon can attach on character
-			AWeapon* Copy = Duplicate();
+			AWeapon* Copy = DeepCopy();
 			if ( Copy )
 			{
                 Copy->AttachToComponent( Character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, Character->BackWeaponSocket );
@@ -76,7 +81,7 @@ AWeapon* AWeapon::OnPickup_Copy()
 	return nullptr;
 }
 
-void AWeapon::OnDrop()
+void AWeapon::HandleDrop()
 {
     AActor* PlayerActor = UGameplayStatics::GetPlayerCharacter( GetWorld(), 0 );
     if ( PlayerActor )
@@ -94,7 +99,7 @@ void AWeapon::OnDrop()
     }
 }
 
-AWeapon* AWeapon::Duplicate()
+AWeapon* AWeapon::DeepCopy()
 {	
 	FActorSpawnParameters Params;
 	AWeapon* Copy = GetWorld()->SpawnActor< AWeapon >( GetClass(),
@@ -134,7 +139,7 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
 			if( Cast<UAttackAbility>( ActiveAbility ) &&
 				LastOwnerAttackCounter != Cast<UAttackAbility>( ActiveAbility )->AttackCounter )
 			{
-				UGameplayStatics::ApplyDamage( DamagedCharacter, Damage, nullptr, this, UDamageType::StaticClass() );
+				UGameplayStatics::ApplyDamage( DamagedCharacter, WeaponData->Damage, nullptr, this, UDamageType::StaticClass() );
 				LastOwnerAttackCounter = Cast<UAttackAbility>( ActiveAbility )->AttackCounter;
 				
 				UAnimMontage* CurrentMontage = OwnCharacter->GetCurrentMontage();
@@ -153,19 +158,3 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
 		
 	}
 }
-
-
-// Called when the game starts or when spawned
-void AWeapon::BeginPlay()
-{
-	Super::BeginPlay();
-	//BoxCmp->OnComponentBeginOverlap.AddDynamic( this, &AWeapon::ApplyDamage );
-}
-
-// Called every frame
-void AWeapon::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

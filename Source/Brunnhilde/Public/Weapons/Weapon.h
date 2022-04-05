@@ -3,75 +3,66 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Item.h"
 #include "Weapon.generated.h"
 
-class UArrowComponent;
-class UBoxComponent;
-
 UCLASS()
-class BRUNNHILDE_API AWeapon : public AActor
+class BRUNNHILDE_API AWeapon : public AItem
 {
 	GENERATED_BODY()
 
-    UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon", meta=( AllowPrivateAccess="true" ) )
-	USceneComponent* RootCmp;
+    UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon | Components", meta=( AllowPrivateAccess="true" ) )
+	class USceneComponent* RootCmp;
 
-    UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon", meta=( AllowPrivateAccess="true" ) )
-    UArrowComponent* ArrowCmp;
+    UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon | Components", meta=( AllowPrivateAccess="true" ) )
+	class UArrowComponent* ArrowCmp;
 	
-    UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon", meta=( AllowPrivateAccess="true" ) )
-    UStaticMeshComponent* MeshCmp;
+    UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon | Components", meta=( AllowPrivateAccess="true" ) )
+	class UStaticMeshComponent* MeshCmp;
 
-	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon", meta=( AllowPrivateAccess="true" ) )
-	UBoxComponent* BoxCmp;
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon | Components", meta=( AllowPrivateAccess="true" ) )
+	class UBoxComponent* BoxCmp;
+
+protected:
+	virtual void Use( class ABrunnhildeCharacter* Character ) override;
 
 public:	
 	// Sets default values for this actor's properties
 	AWeapon();
 	AWeapon( AWeapon* Weapon );
 
-    UPROPERTY( BlueprintReadWrite, EditAnywhere, Category="Weapon" )
-    float Damage = 10;
+	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Weapon | Profile | States" )
+	class UWeaponData* WeaponData;
 
-	UFUNCTION( BlueprintImplementableEvent, Category="Weapon")
+	UFUNCTION( BlueprintCallable, Category="Functions" )
+	UMeshComponent* GetMeshComponent() { return MeshCmp; }
+
+	UFUNCTION( BlueprintImplementableEvent, Category="Weapon | ImplementableEvents")
 	void OnEquipped();
  
-    UFUNCTION( BlueprintImplementableEvent, Category="Weapon" )
+    UFUNCTION( BlueprintImplementableEvent, Category="Weapon | ImplementableEvents" )
     void OnUnEquipped();
 
-    UFUNCTION( BlueprintImplementableEvent, Category="Weapon" )
+    UFUNCTION( BlueprintImplementableEvent, Category="Weapon | ImplementableEvents" )
     void OnHit();
 
-	UFUNCTION()
-	void OnPickup( AActor* EquippedActor );
+	UFUNCTION( BlueprintCallable, Category="Weapon | Functions")
+	void HandlePickup( AActor* EquippedActor );
 
-	UFUNCTION()
-	AWeapon* OnPickup_Copy();
+	UFUNCTION( BlueprintCallable, Category="Weapon | Functions" )
+	AWeapon* HandlePickupByCopy();
 
-	UFUNCTION()
-	void OnDrop();
+	UFUNCTION( BlueprintCallable, Category="Weapon | Functions" )
+	void HandleDrop();
 
-	UFUNCTION()
-	AWeapon* Duplicate();
+	UFUNCTION( BlueprintCallable, Category="Weapon | Functions" )
+	AWeapon* DeepCopy();
 
-	UFUNCTION( BlueprintCallable )
+	UFUNCTION( BlueprintCallable, Category="Weapon | Functions" )
 	void ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 					  int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult );
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:
-	FORCEINLINE UMeshComponent* GetMeshComponent() { return MeshCmp; }
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 private:
 	int LastOwnerAttackCounter;
 	FTimerHandle ResetCounterHandle;
-
 };

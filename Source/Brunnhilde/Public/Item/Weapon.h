@@ -6,6 +6,8 @@
 #include "Item.h"
 #include "Weapon.generated.h"
 
+class UWeaponData;
+
 UCLASS()
 class BRUNNHILDE_API AWeapon : public AItem
 {
@@ -30,6 +32,7 @@ public:
 	// Sets default values for this actor's properties
 	AWeapon();
 	AWeapon( AWeapon* Weapon );
+	AWeapon( UWeaponData* WeaponData );
 
 	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Weapon | Profile | States" )
 	class UWeaponData* WeaponData;

@@ -5,7 +5,6 @@
 #include "Games/BrunnhildeDef.h"
 #include "Armours/Armour.h"
 #include "ItemData/ArmourData.h"
-#include "Item.h"
 
 // Sets default values for this component's properties
 UInventoryComponent::UInventoryComponent()
@@ -34,7 +33,7 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	// ...
 }
 
-bool UInventoryComponent::AddItem( AItem* Item )
+bool UInventoryComponent::AddItemData( UItemData* Item )
 {
 	if ( Items.Num() > Capacity || !IsValid( Item ) )
 	{
@@ -50,7 +49,7 @@ bool UInventoryComponent::AddItem( AItem* Item )
 	return true;
 }
 
-bool UInventoryComponent::RemoveItem( AItem* Item )
+bool UInventoryComponent::RemoveItemData( UItemData* Item )
 {
 	if ( Item )
 	{
@@ -64,13 +63,13 @@ bool UInventoryComponent::RemoveItem( AItem* Item )
 	return false;
 }
 
-bool UInventoryComponent::EquipItem( AItem* Item )
+bool UInventoryComponent::EquipItemData( UItemData* Item )
 {
-	if ( CastChecked< AArmour, AItem >( Item ) )
-	{
-		AArmour* Armour = Cast< AArmour >( Item );
+	UArmourData* ArmourData = Cast< UArmourData >( Item );
 
-		uint8 AmorurTypeInt = StaticCast< uint8 >( Armour->ArmourData->AmorurType );
+	if ( IsValid( ArmourData ) )
+	{
+		uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourData->AmorurType );
 		EquipedItems.Add( AmorurTypeInt, Item );
 		OnEquipmentUpdated.Broadcast();
 
@@ -80,7 +79,7 @@ bool UInventoryComponent::EquipItem( AItem* Item )
 	return false;
 }
 
-bool UInventoryComponent::UnEquipItem( EArmourTypes ArmourType )
+bool UInventoryComponent::UnEquipItemData( EArmourTypes ArmourType )
 {
 	uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourType );
 

@@ -500,18 +500,18 @@ void ABrunnhildeCharacter::HandleEquipmentUpdated()
 {
 	ResetStatsToDefault();
 
-	for ( auto& Equpiment : Inventory->GetEquipment() )
+	for ( auto& Equpiment : Inventory->GetEquipments() )
 	{	
-		AArmour* Armour = Cast< AArmour >( Equpiment.Value );
-		if (  IsValid( Armour ) )
+		UArmourData* ArmourData = Cast< UArmourData >( Equpiment.Value );
+		if (  IsValid( ArmourData ) )
 		{
-			Constitution += Armour->ArmourData->Constitution;
-			Mentality += Armour->ArmourData->Mentality;
-			Endurance += Armour->ArmourData->Endurance;
-			Strength += Armour->ArmourData->Strength;
-			Dexterity += Armour->ArmourData->Dexterity;
-			Intelligence += Armour->ArmourData->Intelligence;
-			Wisdom += Armour->ArmourData->Wisdom;
+			Constitution += ArmourData->Constitution;
+			Mentality += ArmourData->Mentality;
+			Endurance += ArmourData->Endurance;
+			Strength += ArmourData->Strength;
+			Dexterity += ArmourData->Dexterity;
+			Intelligence += ArmourData->Intelligence;
+			Wisdom += ArmourData->Wisdom;
 		}
 	}
 }

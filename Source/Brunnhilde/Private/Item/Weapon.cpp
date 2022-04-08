@@ -35,12 +35,20 @@ AWeapon::AWeapon()
 	BoxCmp->AttachToComponent( RootCmp, FAttachmentTransformRules::KeepRelativeTransform );
 	BoxCmp->SetCollisionEnabled( ECollisionEnabled::QueryAndPhysics );
 
+	WeaponData = NewObject< UWeaponData >();
+
 	LastOwnerAttackCounter = -1;
 }
 
 AWeapon::AWeapon( AWeapon* Weapon )
 {
-	WeaponData = NewObject< UWeaponData >( Weapon->WeaponData );
+	this->WeaponData = NewObject< UWeaponData >( Weapon->WeaponData );
+}
+
+AWeapon::AWeapon( UWeaponData* WeaponData )
+{
+	AWeapon();
+	this->WeaponData = WeaponData;
 }
 
 void AWeapon::HandlePickup( AActor* EquippedActor )
@@ -123,6 +131,11 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
 	}
 
 	if( GetOwner() == OtherActor )
+	{
+		return;
+	}
+
+	if ( !WeaponData )
 	{
 		return;
 	}

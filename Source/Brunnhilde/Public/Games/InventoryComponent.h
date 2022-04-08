@@ -6,7 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "InventoryComponent.generated.h"
 
-class AItem;
+class UItemData;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE( FOnInventoryUpdated );
 DECLARE_DYNAMIC_MULTICAST_DELEGATE( FOnEquipmentUpdated );
@@ -29,19 +29,19 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION( BlueprintCallable )
-	TMap< uint8, AItem* > GetEquipment() { return EquipedItems; }
+	TMap< uint8, UItemData* > GetEquipments() { return EquipedItems; }
 
 	UFUNCTION( BlueprintCallable )
-	bool AddItem( AItem* Item );
+	bool AddItemData( UItemData* Item );
 
 	UFUNCTION( BlueprintCallable )
-	bool RemoveItem( AItem* Item );
+	bool RemoveItemData( UItemData* Item );
 
 	UFUNCTION( BlueprintCallable )
-	bool EquipItem( AItem* Item );
+	bool EquipItemData( UItemData* Item );
 	
 	UFUNCTION( BlueprintCallable )
-	bool UnEquipItem( EArmourTypes ArmourType );
+	bool UnEquipItemData( EArmourTypes ArmourType );
 	
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
@@ -54,13 +54,13 @@ public:
 	FOnEquipmentUpdated OnEquipmentUpdated;
 
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
-	TArray< AItem* > Items;
+	TArray< UItemData* > Items;
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Instanced, Category="Inventory" )
-	TArray< AItem* > DefaultItems;
+	TArray< UItemData* > DefaultItems;
 	
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
-	TMap< uint8, AItem* > EquipedItems;
+	TMap< uint8, UItemData* > EquipedItems;
 	
 	
 };

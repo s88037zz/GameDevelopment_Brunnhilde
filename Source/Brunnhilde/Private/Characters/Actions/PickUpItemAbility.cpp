@@ -2,7 +2,7 @@
 
 
 #include "Characters/Actions/PickUpItemAbility.h"
-#include "Weapon.h"
+#include "Item/Weapon.h"
 #include "BrunnhildeCharacter.h"
 
 

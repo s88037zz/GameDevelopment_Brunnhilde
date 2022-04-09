@@ -2,7 +2,7 @@
 
 
 #include "Characters/Actions/FlinchAbility2.h"
-#include "Weapons/Weapon.h"
+#include "Item/Weapon.h"
 #include "BrunnhildeCharacter.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"

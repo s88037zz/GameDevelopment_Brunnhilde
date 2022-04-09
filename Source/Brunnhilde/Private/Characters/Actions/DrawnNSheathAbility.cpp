@@ -3,7 +3,7 @@
 
 #include "Characters/Actions/DrawnNSheathAbility.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "Weapons/Weapon.h"
+#include "Item/Weapon.h"
 #include "BrunnhildeCharacter.h"
 #include "Components/SkeletalMeshComponent.h"
 

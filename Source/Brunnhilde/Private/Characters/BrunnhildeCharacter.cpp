@@ -16,9 +16,9 @@
 #include "EnduranceComponent.h"
 #include "Animation/AnimInstance.h"
 #include "InventoryComponent.h"
-#include "Weapon.h"
-#include "Item.h"
-#include "Armour.h"
+#include "Item/Weapon.h"
+#include "Item/Item.h"
+#include "Item/Armour.h"
 #include "ItemData/ArmourData.h"
 
 # define BlockingAttack "BlockingAttack_Start"

@@ -3,7 +3,7 @@
 
 #include "Games/InventoryComponent.h"
 #include "Games/BrunnhildeDef.h"
-#include "Armours/Armour.h"
+#include "Item/Armour.h"
 #include "ItemData/ArmourData.h"
 
 // Sets default values for this component's properties

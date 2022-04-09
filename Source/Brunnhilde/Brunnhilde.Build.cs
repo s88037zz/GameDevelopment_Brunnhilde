@@ -16,7 +16,7 @@ public class Brunnhilde : ModuleRules
 			Path.Combine( ModuleDirectory, "Public/Characters"),
             Path.Combine( ModuleDirectory, "Public/Weapons"),
             Path.Combine( ModuleDirectory, "Public/Games"),
-			Path.Combine( ModuleDirectory, "Public/Armours"),
+			Path.Combine( ModuleDirectory, "Public/Item"),
 			Path.Combine( ModuleDirectory, "Public/ItemData")
         });
 

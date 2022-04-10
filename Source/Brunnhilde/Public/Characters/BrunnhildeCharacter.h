@@ -55,7 +55,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
 
-public:
+	//測試效果
     UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Montages", meta=( DisplayName="BlockingMontage" ) )
     UAnimMontage* BlockingMontage;
 
@@ -65,7 +65,7 @@ public:
     UPROPERTY( BlueprintReadWrite, EditAnywhere, Category="Weapons" )
     TArray< AWeapon* > WeaponInventory;
 
-public:
+	// 角色重要能力
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
 	UPickUpItemAbility* PickUpItemAbility;
 
@@ -87,16 +87,10 @@ public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
 	USprintAbility2* SprintAbility;
 
-	UPROPERTY( EditAnywhere, BlueprintReadOnly, Category="Inventory" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
 	UInventoryComponent* Inventory;
 
-public:
-    UFUNCTION( BlueprintPure, Category="Profile" )
-    AWeapon* GetEquippedWeapon();
-
-    UFUNCTION( BlueprintCallable, Category="Profile" )
-    AWeapon* SetEquippedWeapon( AWeapon* NewWeapon );
-
+	//裝備參數設定
     UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
     FName HoldWeaponSocket;
 
@@ -109,7 +103,7 @@ public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
 	float DamagedImpactRate = 1.0f;
 
-	//角色能力職
+	//角色能力值
 	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Constitution = 20;
 
@@ -130,7 +124,6 @@ public:
 
 	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int Wisdom = 20;
-
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int DefaultConstitution = 20;
@@ -153,8 +146,14 @@ public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int DefaultWisdom = 20;
 
+public:
+	UFUNCTION( BlueprintPure, Category="Profile" )
+	AWeapon* GetEquippedWeapon();
 
-public: 
+	UFUNCTION( BlueprintCallable, Category="Profile" )
+	AWeapon* SetEquippedWeapon( AWeapon* NewWeapon );
+
+	//角色狀態機
 	UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsDrwanWeapon();
 	
@@ -173,8 +172,7 @@ public:
 	UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsLockedEnemy();
 
-public:
-
+	// 角色使用能力
     UFUNCTION( BlueprintCallable, Category="Actions" )
     void PickupWeapon();
 
@@ -208,6 +206,7 @@ public:
 	UFUNCTION( BlueprintCallable, Category="Actions" )
 	void UseItem( class AItem* Item );
 	
+	//動畫判定
 	UFUNCTION( BlueprintCallable, Category="Notification")
 	void HandleDrawnWeapon_Notification();
 
@@ -261,13 +260,10 @@ protected:
 	// End of APawn interface
 
 public:
-	/** Returns CameraBoom subobject **/
+	// Getter
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-	/** Returns HealthComponent subobject **/
 	FORCEINLINE class UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
-	/** Returns EnduranceComponent subobject **/
 	FORCEINLINE class UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
 
 	UFUNCTION( BlueprintCallable )
@@ -279,7 +275,6 @@ public:
 	UFUNCTION( BlueprintCallable )
     UNormalAttackAbility* GetNormalAttackAbility() const { return NormalAttackAbility; }
 
-	//FORCEINLINE UNormalAttackAbility* GetNormalAttackAbility() const { return NormalAttackAbility; }
 	FORCEINLINE UMeleeAttackAbility* GetMeleeAttackAbility() const { return MeleeAttackAbility; }
 	FORCEINLINE UFlinchAbility2* GetFlinchAbility() const { return FlinchAbility; }
 	FORCEINLINE UAbility2* GetCurrentActiveAbility() const { return CurrentActiveAbility; }
@@ -287,8 +282,9 @@ public:
 	FORCEINLINE FVector GetObjectDroppedLocation() const { return ObjectDroppedLocation->GetComponentLocation(); }
 	FORCEINLINE FTimerHandle GetMovementTimeHandle() const { return TimeHandle; }
 
-	
-public:
+	double GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh );
+
+	//Setter
 	void SetMovementTimerHandle( double Duration, bool bEnableMovement );
 	void SetAttacking( bool bAttack );
 	void SetReadyToAttack( bool bStatus );
@@ -296,10 +292,6 @@ public:
 	void SetIsFlinching( bool bFlinch );
 	void SetActiveAbility( UAbility2* ActiveAbility );
 	void SetLockedEnemy( bool Locked );
-
-public:
-    double GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh );
-
 
 private:
 	void ResetStatsToDefault();

@@ -2,6 +2,7 @@
 
 
 #include "ItemData/ItemData.h"
+#include "Item/Item.h"
 
 UItemData::UItemData()
 {
@@ -19,4 +20,9 @@ UItemData::UItemData( UItemData* ItemData )
     ItemDiscription       = ItemData->ItemDiscription;
     Weight                = ItemData->Weight;
     OwningInventory       = ItemData->OwningInventory;
+}
+
+AItem* UItemData::CreateInstance()
+{
+    return NewObject< AItem >( this );
 }

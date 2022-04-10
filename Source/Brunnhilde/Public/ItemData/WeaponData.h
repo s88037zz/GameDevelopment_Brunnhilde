@@ -6,6 +6,8 @@
 #include "ItemData/ItemData.h"
 #include "WeaponData.generated.h"
 
+class ABrunnhildeCharacter;
+
 /**
  * 
  */
@@ -20,4 +22,7 @@ public:
 
     UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Weapon | Profile | States" )
     float Damage = 10;
+
+public:
+    virtual void EquipOn( ABrunnhildeCharacter* Character ) override;
 };

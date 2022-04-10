@@ -5,18 +5,19 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "GameFramework/Actor.h"
+#include "ItemData/ItemData.h"
 #include "Item.generated.h"
 
 /**
  * 
  */
-
 UCLASS( Abstract, BlueprintType, Blueprintable, DefaultToInstanced )
 class BRUNNHILDE_API AItem : public AActor
 {
 	GENERATED_BODY()
 public: 
 	AItem();
+	AItem( UItemData* ItemData );
 
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item" )
 	FText UseActionText;
@@ -43,4 +44,7 @@ public:
 
 	UFUNCTION( BlueprintImplementableEvent )
 	void OnUse( class ABrunnhildeCharacter* Character );
+
+private:
+	UItemData* ItemData = nullptr;
 };

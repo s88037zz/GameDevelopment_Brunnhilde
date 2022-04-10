@@ -6,6 +6,8 @@
 #include "UObject/NoExportTypes.h"
 #include "ItemData.generated.h"
 
+class ABrunnhildeCharacter;
+class AItem;
 /**
  * 
  */
@@ -39,9 +41,13 @@ public:
 	UPROPERTY()
 	class UInventoryComponent* OwningInventory;
 
-	virtual void Use( class ABrunnhildeCharacter* Character ) PURE_VIRTUAL( AItem, );
+	// 物件要作用在哪個角色上
+	virtual void UseOn( ABrunnhildeCharacter* Character ) PURE_VIRTUAL( UItemData, );
+	virtual void EquipOn( ABrunnhildeCharacter* Character ) PURE_VIRTUAL( UItemData, );
+	
+	virtual AItem* CreateInstance();
 
 	UFUNCTION( BlueprintImplementableEvent )
-	void OnUse( class ABrunnhildeCharacter* Character );
+	void OnUse( ABrunnhildeCharacter* Character );
 	
 };

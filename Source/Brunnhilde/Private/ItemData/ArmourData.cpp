@@ -2,6 +2,8 @@
 
 
 #include "ItemData/ArmourData.h"
+#include "Characters/BrunnhildeCharacter.h"
+#include "InventoryComponent.h"
 
 UArmourData::UArmourData( UArmourData* ArmourData )
 {
@@ -14,4 +16,15 @@ UArmourData::UArmourData( UArmourData* ArmourData )
 	Wisdom          = ArmourData->Wisdom;
 	RarityType      = ArmourData->RarityType;
 	AmorurType      = ArmourData->AmorurType;
+}
+
+void UArmourData::EquipOn( ABrunnhildeCharacter* Character )
+{
+	if ( nullptr == Character )
+	{
+		return;
+	}
+
+	Character->Inventory->EquipItem( this );
+	return;
 }

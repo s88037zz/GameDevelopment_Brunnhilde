@@ -32,16 +32,16 @@ public:
 	TMap< uint8, UItemData* > GetEquipments() { return EquipedItems; }
 
 	UFUNCTION( BlueprintCallable )
-	bool AddItemData( UItemData* Item );
+	bool AddItem( UItemData* Item );
 
 	UFUNCTION( BlueprintCallable )
-	bool RemoveItemData( UItemData* Item );
+	bool RemoveItem( UItemData* Item );
 
 	UFUNCTION( BlueprintCallable )
-	bool EquipItemData( UItemData* Item );
+	bool EquipItem( UItemData* Item );
 	
 	UFUNCTION( BlueprintCallable )
-	bool UnEquipItemData( EArmourTypes ArmourType );
+	bool UnEquipItem( EArmourTypes ArmourType );
 	
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )

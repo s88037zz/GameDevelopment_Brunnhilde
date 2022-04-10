@@ -33,7 +33,7 @@ void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FA
 	// ...
 }
 
-bool UInventoryComponent::AddItemData( UItemData* Item )
+bool UInventoryComponent::AddItem( UItemData* Item )
 {
 	if ( Items.Num() > Capacity || !IsValid( Item ) )
 	{
@@ -49,7 +49,7 @@ bool UInventoryComponent::AddItemData( UItemData* Item )
 	return true;
 }
 
-bool UInventoryComponent::RemoveItemData( UItemData* Item )
+bool UInventoryComponent::RemoveItem( UItemData* Item )
 {
 	if ( Item )
 	{
@@ -63,14 +63,23 @@ bool UInventoryComponent::RemoveItemData( UItemData* Item )
 	return false;
 }
 
-bool UInventoryComponent::EquipItemData( UItemData* Item )
+bool UInventoryComponent::EquipItem( UItemData* Item )
 {
-	UArmourData* ArmourData = Cast< UArmourData >( Item );
+	if ( nullptr == Item )
+	{
+		return false;
+	}
 
+	UArmourData* ArmourData = Cast< UArmourData >( Item );
 	if ( IsValid( ArmourData ) )
 	{
+		UnEquipItem( ArmourData->AmorurType );
+
 		uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourData->AmorurType );
 		EquipedItems.Add( AmorurTypeInt, Item );
+
+		RemoveItem( Item );
+
 		OnEquipmentUpdated.Broadcast();
 
 		return true;
@@ -79,15 +88,20 @@ bool UInventoryComponent::EquipItemData( UItemData* Item )
 	return false;
 }
 
-bool UInventoryComponent::UnEquipItemData( EArmourTypes ArmourType )
+bool UInventoryComponent::UnEquipItem( EArmourTypes ArmourType )
 {
 	uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourType );
 
 	if ( EquipedItems.Contains( AmorurTypeInt ) )
 	{
+		UItemData* Item = EquipedItems[ AmorurTypeInt ];
 		EquipedItems.Emplace( AmorurTypeInt, nullptr );
+
+		if ( IsValid( Item ) )
+		{
+			AddItem( Item );
+		}
 		OnEquipmentUpdated.Broadcast();
 	}
-
 	return false;
 }

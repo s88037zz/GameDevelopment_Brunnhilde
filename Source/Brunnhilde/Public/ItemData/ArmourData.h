@@ -44,4 +44,7 @@ public:
 
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
 	EArmourTypes AmorurType = EArmourTypes::EAT_Head;
+
+public:
+	virtual void EquipOn( ABrunnhildeCharacter* Character ) override;
 };

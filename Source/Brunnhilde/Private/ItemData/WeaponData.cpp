@@ -5,7 +5,13 @@
 #include "Characters/BrunnhildeCharacter.h"
 #include "InventoryComponent.h"
 
-UWeaponData::UWeaponData( UWeaponData* WeaponData ) : UItemData( WeaponData )
+
+UWeaponData::UWeaponData() : UEquipmentData()
+{
+	ItemType = EItemTypes::EIT_WEAPON;
+}
+
+UWeaponData::UWeaponData( UWeaponData* WeaponData ) : UEquipmentData( WeaponData )
 {
     Damage = WeaponData->Damage;
 }

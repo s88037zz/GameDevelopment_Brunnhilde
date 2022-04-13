@@ -20,6 +20,8 @@ UItemData::UItemData( UItemData* ItemData )
     ItemDiscription       = ItemData->ItemDiscription;
     Weight                = ItemData->Weight;
     OwningInventory       = ItemData->OwningInventory;
+    RarityType            = ItemData->RarityType;
+    ItemType              = ItemData->ItemType;
 }
 
 AItem* UItemData::CreateInstance()

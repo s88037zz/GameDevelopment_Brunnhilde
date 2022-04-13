@@ -4,12 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Games/BrunnhildeDef.h"
 #include "InventoryComponent.generated.h"
-
-class UItemData;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE( FOnInventoryUpdated );
 DECLARE_DYNAMIC_MULTICAST_DELEGATE( FOnEquipmentUpdated );
+
+class UItemData;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BRUNNHILDE_API UInventoryComponent : public UActorComponent
@@ -29,7 +30,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION( BlueprintCallable )
-	TMap< uint8, UItemData* > GetEquipments() { return EquipedItems; }
+	TMap< EItemTypes, UItemData* > GetEquipments() { return EquipedItems; }
 
 	UFUNCTION( BlueprintCallable )
 	bool AddItem( UItemData* Item );
@@ -41,7 +42,7 @@ public:
 	bool EquipItem( UItemData* Item );
 	
 	UFUNCTION( BlueprintCallable )
-	bool UnEquipItem( EArmourTypes ArmourType );
+	bool UnEquipItem( EItemTypes EquipmentType );
 	
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
@@ -60,7 +61,5 @@ public:
 	TArray< UItemData* > DefaultItems;
 	
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
-	TMap< uint8, UItemData* > EquipedItems;
-	
-	
+	TMap< EItemTypes, UItemData* > EquipedItems;
 };

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Games/BrunnhildeDef.h"
 #include "ItemData.generated.h"
 
 class ABrunnhildeCharacter;
@@ -18,7 +19,7 @@ class BRUNNHILDE_API UItemData : public UObject
 
 public:
 	UItemData();
-	UItemData( UItemData* ItemData);
+	UItemData( UItemData* ItemData );
 
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | Profile " )
 	FText UseActionText;
@@ -37,6 +38,12 @@ public:
 
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | Profile ", meta=( Clamp=0.0 ) )
 	float Weight;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	EItemRarityTypes RarityType = EItemRarityTypes::EIRT_Common;
+
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
+	EItemTypes ItemType = EItemTypes::EIT_PROP;
 
 	UPROPERTY()
 	class UInventoryComponent* OwningInventory;

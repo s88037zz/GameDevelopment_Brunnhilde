@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ItemData/ItemData.h"
+#include "ItemData/EquipmentData.h"
 #include "WeaponData.generated.h"
 
 class ABrunnhildeCharacter;
@@ -12,12 +12,12 @@ class ABrunnhildeCharacter;
  * 
  */
 UCLASS()
-class BRUNNHILDE_API UWeaponData : public UItemData
+class BRUNNHILDE_API UWeaponData : public UEquipmentData
 {
 	GENERATED_BODY()
 
 public:
-    UWeaponData() = default;
+    UWeaponData();
     UWeaponData( UWeaponData* Weapon );
 
     UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Weapon | Profile | States" )

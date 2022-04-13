@@ -8,6 +8,17 @@
 
 
 UENUM( BlueprintType )
+enum class EItemTypes : uint8
+{
+	EIT_PROP           UMETA( DisplayName = "Prop"),
+	EIT_ARMOUR_Head    UMETA( DisplayName = "ArmourHead" ),
+	EIT_ARMOUR_Chest   UMETA( DisplayName = "ArmourChest" ),
+	EIT_ARMOUR_Hand    UMETA( DisplayName = "ArmourHand" ),
+	EIT_ARMOUR_Feet    UMETA( DisplayName = "ArmourFeet" ),
+	EIT_WEAPON         UMETA( DisplayName = "Weapon" )
+};
+
+UENUM( BlueprintType )
 enum class EArmourTypes : uint8
 {
 	EAT_Head    UMETA( DisplayName = "Head" ),

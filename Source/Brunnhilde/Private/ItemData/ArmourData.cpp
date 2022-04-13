@@ -5,7 +5,13 @@
 #include "Characters/BrunnhildeCharacter.h"
 #include "InventoryComponent.h"
 
-UArmourData::UArmourData( UArmourData* ArmourData )
+
+UArmourData::UArmourData() : UEquipmentData()
+{
+	ItemType = EItemTypes::EIT_ARMOUR_Head;
+}
+
+UArmourData::UArmourData( UArmourData* ArmourData ) : UEquipmentData( ArmourData )
 {
     Constitution    = ArmourData->Constitution;
     Mentality       = ArmourData->Mentality;
@@ -14,8 +20,6 @@ UArmourData::UArmourData( UArmourData* ArmourData )
 	Dexterity       = ArmourData->Dexterity;
 	Intelligence    = ArmourData->Intelligence;
 	Wisdom          = ArmourData->Wisdom;
-	RarityType      = ArmourData->RarityType;
-	AmorurType      = ArmourData->AmorurType;
 }
 
 void UArmourData::EquipOn( ABrunnhildeCharacter* Character )

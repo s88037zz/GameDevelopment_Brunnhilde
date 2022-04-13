@@ -2,7 +2,6 @@
 
 
 #include "Games/InventoryComponent.h"
-#include "Games/BrunnhildeDef.h"
 #include "Item/Armour.h"
 #include "ItemData/ArmourData.h"
 
@@ -70,13 +69,12 @@ bool UInventoryComponent::EquipItem( UItemData* Item )
 		return false;
 	}
 
-	UArmourData* ArmourData = Cast< UArmourData >( Item );
-	if ( IsValid( ArmourData ) )
+	UArmourData* EquipmentData = Cast< UArmourData >( Item );
+	if ( IsValid( EquipmentData ) )
 	{
-		UnEquipItem( ArmourData->AmorurType );
+		UnEquipItem( EquipmentData->ItemType );
 
-		uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourData->AmorurType );
-		EquipedItems.Add( AmorurTypeInt, Item );
+		EquipedItems.Add( EquipmentData->ItemType, Item );
 
 		RemoveItem( Item );
 
@@ -88,14 +86,12 @@ bool UInventoryComponent::EquipItem( UItemData* Item )
 	return false;
 }
 
-bool UInventoryComponent::UnEquipItem( EArmourTypes ArmourType )
+bool UInventoryComponent::UnEquipItem( EItemTypes EquipementType )
 {
-	uint8 AmorurTypeInt = StaticCast< uint8 >( ArmourType );
-
-	if ( EquipedItems.Contains( AmorurTypeInt ) )
+	if ( EquipedItems.Contains( EquipementType ) )
 	{
-		UItemData* Item = EquipedItems[ AmorurTypeInt ];
-		EquipedItems.Emplace( AmorurTypeInt, nullptr );
+		UItemData* Item = EquipedItems[ EquipementType ];
+		EquipedItems.Emplace( EquipementType, nullptr );
 
 		if ( IsValid( Item ) )
 		{

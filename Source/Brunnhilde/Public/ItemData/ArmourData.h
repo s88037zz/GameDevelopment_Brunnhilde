@@ -3,19 +3,18 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ItemData/ItemData.h"
-#include "Games/BrunnhildeDef.h"
+#include "ItemData/EquipmentData.h"
 #include "ArmourData.generated.h"
 /**
  * 
  */
 UCLASS()
-class BRUNNHILDE_API UArmourData : public UItemData
+class BRUNNHILDE_API UArmourData : public UEquipmentData
 {
 	GENERATED_BODY()
 
 public:
-	UArmourData() = default;
+	UArmourData();
 	UArmourData( UArmourData* ArmourData );
 
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
@@ -38,12 +37,6 @@ public:
 
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
 	int Wisdom = 0;
-
-	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
-	EItemRarityTypes RarityType = EItemRarityTypes::EIRT_Common;
-
-	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
-	EArmourTypes AmorurType = EArmourTypes::EAT_Head;
 
 public:
 	virtual void EquipOn( ABrunnhildeCharacter* Character ) override;

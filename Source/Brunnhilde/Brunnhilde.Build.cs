@@ -14,7 +14,6 @@ public class Brunnhilde : ModuleRules
 			new string[]
 		{
 			Path.Combine( ModuleDirectory, "Public/Characters"),
-            Path.Combine( ModuleDirectory, "Public/Weapons"),
             Path.Combine( ModuleDirectory, "Public/Games"),
 			Path.Combine( ModuleDirectory, "Public/Item"),
 			Path.Combine( ModuleDirectory, "Public/ItemData")

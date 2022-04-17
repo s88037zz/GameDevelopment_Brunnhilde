@@ -7,61 +7,43 @@
 #include "Weapon.generated.h"
 
 class UWeaponData;
-
+class UStaticMesh;
 UCLASS()
 class BRUNNHILDE_API AWeapon : public AItem
 {
 	GENERATED_BODY()
 
-    UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon | Components", meta=( AllowPrivateAccess="true" ) )
-	class USceneComponent* RootCmp;
-
-    UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon | Components", meta=( AllowPrivateAccess="true" ) )
-	class UArrowComponent* ArrowCmp;
-	
-    UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon | Components", meta=( AllowPrivateAccess="true" ) )
-	class UStaticMeshComponent* MeshCmp;
-
-	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon | Components", meta=( AllowPrivateAccess="true" ) )
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Weapon | UPROPERTY", meta=( AllowPrivateAccess="true" ) )
 	class UBoxComponent* BoxCmp;
-
-protected:
-	virtual void Use( class ABrunnhildeCharacter* Character ) override;
 
 public:	
 	// Sets default values for this actor's properties
 	AWeapon();
 	AWeapon( AWeapon* Weapon );
-	AWeapon( UWeaponData* WeaponData );
 
-	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Weapon | Profile | States" )
-	class UWeaponData* WeaponData;
+	virtual void Use( class ABrunnhildeCharacter* Character ) override;
+	virtual void Equip( ABrunnhildeCharacter* Character, FString AttachSocket ) override;
+	virtual void UnEquip() override;
 
-	UFUNCTION( BlueprintCallable, Category="Functions" )
-	UMeshComponent* GetMeshComponent() { return MeshCmp; }
+	UFUNCTION( BlueprintCallable, Category="Weapon | UFUNCTION" )
+	void Drawn( AActor* ACharacter, FString AttachSocket );
+	UFUNCTION( BlueprintCallable, Category="Weapon | UFUNCTION" )
+	void Sheath( AActor* ACharacter, FString AttachSocket );
 
-	UFUNCTION( BlueprintImplementableEvent, Category="Weapon | ImplementableEvents")
-	void OnEquipped();
- 
-    UFUNCTION( BlueprintImplementableEvent, Category="Weapon | ImplementableEvents" )
-    void OnUnEquipped();
-
-    UFUNCTION( BlueprintImplementableEvent, Category="Weapon | ImplementableEvents" )
+	UFUNCTION( BlueprintImplementableEvent, Category="Weapon | UFUNCTION" )
     void OnHit();
 
-	UFUNCTION( BlueprintCallable, Category="Weapon | Functions")
-	void HandlePickup( AActor* EquippedActor );
-
-	UFUNCTION( BlueprintCallable, Category="Weapon | Functions" )
+	/*
+	UFUNCTION( BlueprintCallable, Category="Weapon | UFUNCTION" )
 	AWeapon* HandlePickupByCopy();
-
-	UFUNCTION( BlueprintCallable, Category="Weapon | Functions" )
+	*/
+	UFUNCTION( BlueprintCallable, Category="Weapon | UFUNCTION" )
 	void HandleDrop();
 
-	UFUNCTION( BlueprintCallable, Category="Weapon | Functions" )
+	UFUNCTION( BlueprintCallable, Category="Weapon | UFUNCTION" )
 	AWeapon* DeepCopy();
 
-	UFUNCTION( BlueprintCallable, Category="Weapon | Functions" )
+	UFUNCTION( BlueprintCallable, Category="Weapon | UFUNCTION" )
 	void ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 					  int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult );
 

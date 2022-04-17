@@ -48,3 +48,9 @@ enum class EItemRarityTypes : uint8
 	EIRT_Legend UMETA( DisplayName = "Legend" ),
 };
 
+#define DEFAULT_WEAPON_EQEUIPED_SOCKET     "Weapon_Equiped_Socket"
+#define DEFAULT_WEAPON_HOLD_SOCKET         "Weapon_Hold_Socket"
+#define DEFAULT_ARMOUR_HEAD_SOCKET         "Armour_Head_Socket"
+#define DEFAULT_ARMOUR_CHEST_SOCKET        "Armour_Chest_Socket"
+#define DEFAULT_ARMOUR_HAND_SOCKET         "Armour_Hand_Socket"
+#define DEFAULT_ARMOUR_FEET_SOCKET         "Armour_Feet_Socket"

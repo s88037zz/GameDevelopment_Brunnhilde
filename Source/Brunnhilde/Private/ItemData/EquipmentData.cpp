@@ -2,6 +2,7 @@
 
 
 #include "ItemData/EquipmentData.h"
+#include "Engine/StaticMesh.h"
 
 UEquipmentData::UEquipmentData() : UItemData()
 {

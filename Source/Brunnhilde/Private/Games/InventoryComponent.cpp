@@ -3,15 +3,15 @@
 
 #include "Games/InventoryComponent.h"
 #include "Item/Armour.h"
-#include "ItemData/ArmourData.h"
+#include "BrunnhildeCharacter.h"
+#include "ItemData/EquipmentData.h"
 
 // Sets default values for this component's properties
-UInventoryComponent::UInventoryComponent()
+UInventoryComponent::UInventoryComponent( ABrunnhildeCharacter* Owner )
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
-
+	PrimaryComponentTick.bCanEverTick = true;	
 }
 
 
@@ -62,6 +62,30 @@ bool UInventoryComponent::RemoveItem( UItemData* Item )
 	return false;
 }
 
+
+bool UInventoryComponent::UseItem( UItemData* Item )
+{
+	if ( nullptr == Item || Item->ItemType != EItemTypes::EIT_PROP )
+	{
+		return false;
+	}
+
+	if ( GetOwner() )
+	{
+		return false;
+	}
+
+	ABrunnhildeCharacter* Character = Cast<ABrunnhildeCharacter>( GetOwner() );
+	if ( IsValid( Character ) )
+	{
+		Item->OnUse( Character );
+	}
+	RemoveItem( Item );
+	OnInventoryUpdated.Broadcast();
+	return true;
+}
+
+
 bool UInventoryComponent::EquipItem( UItemData* Item )
 {
 	if ( nullptr == Item )
@@ -69,17 +93,23 @@ bool UInventoryComponent::EquipItem( UItemData* Item )
 		return false;
 	}
 
-	UArmourData* EquipmentData = Cast< UArmourData >( Item );
-	if ( IsValid( EquipmentData ) )
+	if ( nullptr == GetOwner() )
 	{
+		return false;
+	}
+
+	ABrunnhildeCharacter* Character = Cast< ABrunnhildeCharacter >( GetOwner() );
+	UEquipmentData* EquipmentData = Cast< UEquipmentData >( Item );
+	if ( IsValid( EquipmentData ) && IsValid( Character ) )
+	{	
+		//Excute Equip Weapon
+		EquipmentData->OnEquiped( Character );
+
+		//Update Inventory Data
 		UnEquipItem( EquipmentData->ItemType );
-
-		EquipedItems.Add( EquipmentData->ItemType, Item );
-
+		EquipedEquipments.Add( EquipmentData->ItemType, Item );
 		RemoveItem( Item );
-
 		OnEquipmentUpdated.Broadcast();
-
 		return true;
 	}
 	
@@ -88,16 +118,43 @@ bool UInventoryComponent::EquipItem( UItemData* Item )
 
 bool UInventoryComponent::UnEquipItem( EItemTypes EquipementType )
 {
-	if ( EquipedItems.Contains( EquipementType ) )
-	{
-		UItemData* Item = EquipedItems[ EquipementType ];
-		EquipedItems.Emplace( EquipementType, nullptr );
 
+	ABrunnhildeCharacter* Character = Cast< ABrunnhildeCharacter >( GetOwner() );
+	if ( nullptr == Character )
+	{
+		return false;
+	}
+
+	if ( EquipedEquipments.Contains( EquipementType ) )
+	{
+		UItemData* Item = EquipedEquipments[ EquipementType ];
+		Item->OnUnEquiped( Character );
+
+		//Update Inventory Data
+		EquipedEquipments.Emplace( EquipementType, nullptr );
 		if ( IsValid( Item ) )
 		{
 			AddItem( Item );
 		}
 		OnEquipmentUpdated.Broadcast();
 	}
-	return false;
+	return true;
+}
+
+bool UInventoryComponent::IsWeaponEquiped()
+{
+	if ( nullptr == GetOwner() || nullptr == Cast<ABrunnhildeCharacter>( GetOwner() ) )
+	{
+		return false;
+	}
+	return EquipedEquipments.Find( EItemTypes::EIT_WEAPON ) != nullptr;
+}
+
+UItemData* UInventoryComponent::GetEquipedWeapon( EItemTypes WeaponType )
+{
+	if ( IsWeaponEquiped() )
+	{
+		return EquipedEquipments[ WeaponType ];
+	}
+	return nullptr;
 }

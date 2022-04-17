@@ -17,10 +17,10 @@
 #include "Animation/AnimInstance.h"
 #include "InventoryComponent.h"
 #include "Item/Weapon.h"
-#include "Item/Item.h"
 #include "Item/Armour.h"
 #include "ItemData/ArmourData.h"
-
+#include "ItemData/ItemData.h"
+#include "ItemData/EquipmentData.h"
 # define BlockingAttack "BlockingAttack_Start"
 # define ActiveMotionSlot "ActiveMotionSlot"
 
@@ -200,38 +200,40 @@ void ABrunnhildeCharacter::StopSprint()
 	SprintAbility->StopSprint();
 }
 
-void ABrunnhildeCharacter::UseItem( AItem* Item )
+void ABrunnhildeCharacter::UseItem( UItemData* Item )
 {
 	if ( Item )
 	{
-		Item->Use( this );
 		Item->OnUse( this );
 	}
 }
 
-void ABrunnhildeCharacter::HandleDrawnWeapon_Notification()
+void ABrunnhildeCharacter::HandleDrawnNotification()
 {
 	if ( !IsValid( DrawnNSheathAbility ) )
 	{
 		return;
 	}
-	if ( EquippedWeapon )
+
+	UItemData* WeaponData = GetEquipedWeapon();
+	if ( WeaponData )
 	{	
-		EquippedWeapon->AttachToComponent( GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, HoldWeaponSocket );
+		WeaponData->OnDrawn( this );
 		DrawnNSheathAbility->bWeaponDrawn = true;
 	}
 }
 
-void ABrunnhildeCharacter::HandleSheathWeapon_Notification()
+void ABrunnhildeCharacter::HandleSheathNotification()
 {
 	if ( !IsValid( DrawnNSheathAbility ) )
 	{
 		return;
 	}
 
-	if ( EquippedWeapon )
+	UItemData* WeaponData = GetEquipedWeapon();
+	if ( WeaponData )
 	{
-		EquippedWeapon->AttachToComponent( GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, BackWeaponSocket );
+		WeaponData->OnSeath( this );	
 		DrawnNSheathAbility->bWeaponDrawn = false;
 	}
 }
@@ -264,6 +266,15 @@ void ABrunnhildeCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ABrunnhildeCharacter::OnResetVR);
+}
+
+UItemData* ABrunnhildeCharacter::GetEquipedWeapon()
+{
+	if ( Inventory->IsWeaponEquiped() )
+	{
+		return Inventory->GetEquipedWeapon();
+	}
+	return nullptr;
 }
 
 
@@ -426,44 +437,6 @@ bool ABrunnhildeCharacter::IsFlinching()
 bool ABrunnhildeCharacter::IsLockedEnemy()
 {
 	return bIsLockedEnemy;
-}
-
-AWeapon* ABrunnhildeCharacter::GetEquippedWeapon()
-{
-	return EquippedWeapon;
-}
-
-// Setter
-AWeapon* ABrunnhildeCharacter::SetEquippedWeapon( AWeapon* NewWeapon )
-{
-	if ( Cast< AWeapon >( NewWeapon ) && NewWeapon != EquippedWeapon )
-	{
-		AWeapon* Weapon = Cast< AWeapon >( NewWeapon );
-
-		if ( EquippedWeapon )
-		{
-			EquippedWeapon->HandleDrop();
-		}
-
-		UMeshComponent* WeaponMesh = Weapon->GetMeshComponent();
-		if ( WeaponMesh->IsSimulatingPhysics() )
-		{
-			Weapon = Weapon->HandlePickupByCopy();
-		}
-		else
-		{
-			Weapon->HandlePickup(this);
-		}
-
-		EquippedWeapon = Weapon;
-
-		if ( !WeaponInventory.Contains( Weapon ) )
-		{
-			WeaponInventory.Add( Weapon );
-		}
-
-	}
-    return EquippedWeapon;
 }
 
 void ABrunnhildeCharacter::SetAttacking( bool bAttack )

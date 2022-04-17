@@ -22,9 +22,5 @@ UItemData::UItemData( UItemData* ItemData )
     OwningInventory       = ItemData->OwningInventory;
     RarityType            = ItemData->RarityType;
     ItemType              = ItemData->ItemType;
-}
-
-AItem* UItemData::CreateInstance()
-{
-    return NewObject< AItem >( this );
+    ItemActor             = ItemData->ItemActor;
 }

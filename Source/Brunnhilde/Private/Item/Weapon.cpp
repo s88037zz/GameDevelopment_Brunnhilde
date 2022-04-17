@@ -5,9 +5,7 @@
 #include "Components/ArrowComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/StaticMeshComponent.h"
-#include "Components/CapsuleComponent.h"
 #include "Components/BoxComponent.h"
-#include "ItemData/WeaponData.h"
 #include "BrunnhildeCharacter.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -35,38 +33,64 @@ AWeapon::AWeapon()
 	BoxCmp->AttachToComponent( RootCmp, FAttachmentTransformRules::KeepRelativeTransform );
 	BoxCmp->SetCollisionEnabled( ECollisionEnabled::QueryAndPhysics );
 
-	WeaponData = NewObject< UWeaponData >();
-
 	LastOwnerAttackCounter = -1;
 }
 
 AWeapon::AWeapon( AWeapon* Weapon )
 {
-	this->WeaponData = NewObject< UWeaponData >( Weapon->WeaponData );
+	this->RootCmp     = Weapon->RootCmp;
+	this->ArrowCmp    = Weapon->ArrowCmp;
+	this->MeshCmp     = Weapon->MeshCmp;
+	this->BoxCmp      = Weapon->BoxCmp;
 }
 
-AWeapon::AWeapon( UWeaponData* WeaponData )
+void AWeapon::Equip( ABrunnhildeCharacter* Character, FString AttachSocket )
 {
-	AWeapon();
-	this->WeaponData = WeaponData;
-}
-
-void AWeapon::HandlePickup( AActor* EquippedActor )
-{
-
-	if ( EquippedActor )
+	if ( Character )
 	{
-		ABrunnhildeCharacter* Character = Cast<ABrunnhildeCharacter>( EquippedActor );
-		if ( Character )
-		{
-			// Let weapon can attach on character
-			AttachToComponent( Character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, Character->BackWeaponSocket );
-			SetOwner( EquippedActor );
-		}
+		// Let weapon can attach on character
+ 		AttachToComponent( Character->GetMesh(),
+						   FAttachmentTransformRules::SnapToTargetIncludingScale,
+						   FName( *AttachSocket ) );
+		SetOwner( Character );
+		OnEquiped();
 	}
+}
+
+
+void AWeapon::UnEquip()
+{
+	// Let weapon can attach on character
+	OnUnEquiped();
+	FDetachmentTransformRules Rule = FDetachmentTransformRules::KeepWorldTransform;
+	DetachFromActor( Rule );
+	SetOwner( nullptr );
 
 }
 
+void AWeapon::Drawn( AActor* ACharacter, FString AttachSocket )
+{
+	ABrunnhildeCharacter* Character = Cast<ABrunnhildeCharacter>( ACharacter );
+	if ( IsValid( Character ) )
+	{
+		GetMeshComponent()->AttachToComponent( Character->GetMesh(), 
+											   FAttachmentTransformRules::SnapToTargetIncludingScale,
+											   FName( *AttachSocket ) );
+	}
+}
+
+void AWeapon::Sheath( AActor* ACharacter, FString AttachSocket )
+
+{
+	ABrunnhildeCharacter* Character = Cast<ABrunnhildeCharacter>( ACharacter );
+	if ( IsValid( Character ) )
+	{
+		GetMeshComponent()->AttachToComponent( Character->GetMesh(),
+											   FAttachmentTransformRules::SnapToTargetIncludingScale,
+											   FName( *AttachSocket ) );
+	}
+}
+/*
 AWeapon* AWeapon::HandlePickupByCopy()
 {
 	AActor* PlayerActor = UGameplayStatics::GetPlayerPawn( GetWorld(), 0 );
@@ -79,7 +103,9 @@ AWeapon* AWeapon::HandlePickupByCopy()
 			AWeapon* Copy = DeepCopy();
 			if ( Copy )
 			{
-                Copy->AttachToComponent( Character->GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, Character->BackWeaponSocket );
+                Copy->AttachToComponent( Character->GetMesh(), 
+										 FAttachmentTransformRules::SnapToTargetIncludingScale, 
+										 FName( *EquipedSocket );
                 Copy->SetOwner( PlayerActor );
                 Destroy();
                 return Copy;
@@ -88,6 +114,7 @@ AWeapon* AWeapon::HandlePickupByCopy()
 	}
 	return nullptr;
 }
+*/
 
 void AWeapon::HandleDrop()
 {
@@ -135,11 +162,6 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
 		return;
 	}
 
-	if ( !WeaponData )
-	{
-		return;
-	}
-
 	if ( Cast<ABrunnhildeCharacter>(GetOwner()) &&
 		OtherActor->IsA( ABrunnhildeCharacter::StaticClass() ) )
 	{
@@ -152,7 +174,7 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
 			if( Cast<UAttackAbility>( ActiveAbility ) &&
 				LastOwnerAttackCounter != Cast<UAttackAbility>( ActiveAbility )->AttackCounter )
 			{
-				UGameplayStatics::ApplyDamage( DamagedCharacter, WeaponData->Damage, nullptr, this, UDamageType::StaticClass() );
+				UGameplayStatics::ApplyDamage( DamagedCharacter, 10, nullptr, this, UDamageType::StaticClass() );
 				LastOwnerAttackCounter = Cast<UAttackAbility>( ActiveAbility )->AttackCounter;
 				
 				UAnimMontage* CurrentMontage = OwnCharacter->GetCurrentMontage();

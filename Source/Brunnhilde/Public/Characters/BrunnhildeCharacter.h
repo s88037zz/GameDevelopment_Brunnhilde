@@ -17,6 +17,7 @@
 class UAnimMontage;
 class UAnimComposite;
 class AWeapon;
+class UItemData;
 class UHealthComponent;
 class UEnduranceComponent;
 class UInventoryComponent;
@@ -74,7 +75,7 @@ public:
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
 	UNormalAttackAbility* NormalAttackAbility;
-
+	
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
 	UMeleeAttackAbility* MeleeAttackAbility;
 
@@ -91,14 +92,27 @@ public:
 	UInventoryComponent* Inventory;
 
 	//裝備參數設定
-    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
-    FName HoldWeaponSocket;
+    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
+    FName WeaponHoldSocket;
 
-    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
-    FName BackWeaponSocket;
+    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
+    FName WeaponEquippedSocket;
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
 	FName WeaponFightingSocket;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
+	FName ArmourHeadSocket;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
+	FName ArmourChestSocket;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
+	FName ArmourHandSocket;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
+	FName ArmourFeetSocket;
+
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
 	float DamagedImpactRate = 1.0f;
@@ -147,12 +161,6 @@ public:
 	int DefaultWisdom = 20;
 
 public:
-	UFUNCTION( BlueprintPure, Category="Profile" )
-	AWeapon* GetEquippedWeapon();
-
-	UFUNCTION( BlueprintCallable, Category="Profile" )
-	AWeapon* SetEquippedWeapon( AWeapon* NewWeapon );
-
 	//角色狀態機
 	UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsDrwanWeapon();
@@ -204,14 +212,14 @@ public:
 	void StopSprint();
 
 	UFUNCTION( BlueprintCallable, Category="Actions" )
-	void UseItem( class AItem* Item );
-	
+	void UseItem( UItemData* Item );
+
 	//動畫判定
 	UFUNCTION( BlueprintCallable, Category="Notification")
-	void HandleDrawnWeapon_Notification();
+	void HandleDrawnNotification();
 
 	UFUNCTION( BlueprintCallable, Category="Notification" )
-	void HandleSheathWeapon_Notification();
+	void HandleSheathNotification();
 
 	UFUNCTION( BlueprintImplementableEvent, Category="Events" )
 	void OnLightAttack();
@@ -260,6 +268,9 @@ protected:
 	// End of APawn interface
 
 public:
+	UFUNCTION( BlueprintCallable, Category="Getter" )
+	UItemData* GetEquipedWeapon();
+
 	// Getter
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }

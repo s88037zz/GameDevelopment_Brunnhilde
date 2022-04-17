@@ -7,7 +7,7 @@
 #include "WeaponData.generated.h"
 
 class ABrunnhildeCharacter;
-
+class AWeapon;
 /**
  * 
  */
@@ -19,10 +19,15 @@ class BRUNNHILDE_API UWeaponData : public UEquipmentData
 public:
     UWeaponData();
     UWeaponData( UWeaponData* Weapon );
-
-    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Weapon | Profile | States" )
-    float Damage = 10;
+    virtual void OnEquiped( ABrunnhildeCharacter* Character ) override;
+    virtual void OnUnEquiped( ABrunnhildeCharacter* Character ) override;
+    virtual void OnDrawn( ABrunnhildeCharacter* Character ) override;
+    virtual void OnSeath( ABrunnhildeCharacter* Character ) override;
 
 public:
-    virtual void EquipOn( ABrunnhildeCharacter* Character ) override;
+    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Weapon | UPROPERTY" )
+    FString EquipedSocket = DEFAULT_WEAPON_EQEUIPED_SOCKET;
+
+    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Weapon| UPROPERTY" )
+    FString HoldSocket = DEFAULT_WEAPON_HOLD_SOCKET;
 };

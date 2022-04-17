@@ -10,9 +10,3 @@ AItem::AItem()
     ItemDisplayName = FText::FromString( "Item" );
     UseActionText =  FText::FromString( "Text" );
 }
-
-AItem::AItem( UItemData* ItemData ) : AItem()
-{
-
-    this->ItemData = ItemData;
-}

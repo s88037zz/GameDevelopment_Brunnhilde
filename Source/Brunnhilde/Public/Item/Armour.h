@@ -12,14 +12,11 @@ class BRUNNHILDE_API AArmour : public AItem
 {
 	GENERATED_BODY()
 
-protected:
-	virtual void Use( class ABrunnhildeCharacter* Character ) override;
-
 public:	
 	// Sets default values for this actor's properties
 	AArmour();
 
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Armour | Profile" )
-	class UArmourData* ArmourData;
-
+	virtual void Use( class ABrunnhildeCharacter* Character ) override;
+	virtual void Equip( ABrunnhildeCharacter* Character, FString AttachSocket ) override;
+	virtual void UnEquip() override;
 };

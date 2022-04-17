@@ -8,6 +8,7 @@
 
 void UPickUpItemAbility::PickUp()
 {
+    /*
     TArray<AActor*> OverlappingActors;
     TSubclassOf<AWeapon> ClassFilter;
     GetControlCharacter()->GetOverlappingActors( OverlappingActors, ClassFilter );
@@ -46,4 +47,5 @@ void UPickUpItemAbility::PickUp()
             break;
         }
     }
+    */
 }

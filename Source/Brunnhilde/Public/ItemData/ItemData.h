@@ -9,6 +9,8 @@
 
 class ABrunnhildeCharacter;
 class AItem;
+class AActor;
+class UInventoryComponent;
 /**
  * 
  */
@@ -23,38 +25,35 @@ public:
 
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | Profile " )
 	FText UseActionText;
-
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | Profile " )
 	class UStaticMesh* PickupMesh;
-
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | Profile " )
 	class UTexture2D* Thumnail;
-
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | Profile " )
 	FText ItemDisplayName;
-
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | Profile ", meta=( MultiLine=true ) )
 	FText ItemDiscription;
-
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | Profile ", meta=( Clamp=0.0 ) )
 	float Weight;
-
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
 	EItemRarityTypes RarityType = EItemRarityTypes::EIRT_Common;
-
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Attribution" )
 	EItemTypes ItemType = EItemTypes::EIT_PROP;
 
+	UFUNCTION( BlueprintCallable )
+	AItem* GetActor() { return ItemActor; }
+	UFUNCTION( BlueprintCallable )
+	void SetActor( AItem* Item ) { ItemActor = Item; }
+
 	UPROPERTY()
-	class UInventoryComponent* OwningInventory;
+	UInventoryComponent* OwningInventory;
 
-	// 物件要作用在哪個角色上
-	virtual void UseOn( ABrunnhildeCharacter* Character ) PURE_VIRTUAL( UItemData, );
-	virtual void EquipOn( ABrunnhildeCharacter* Character ) PURE_VIRTUAL( UItemData, );
-	
-	virtual AItem* CreateInstance();
-
-	UFUNCTION( BlueprintImplementableEvent )
-	void OnUse( ABrunnhildeCharacter* Character );
-	
+	// 物件被使用或裝備...時要做的事
+	virtual void OnUse( ABrunnhildeCharacter* Character ) PURE_VIRTUAL( UItemData, );
+	virtual void OnEquiped( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( UItemData, );
+	virtual void OnUnEquiped( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( UItemData, );
+	virtual void OnDrawn( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( UItemData, );
+	virtual void OnSeath( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( UItemData, );
+protected:
+	AItem* ItemActor = nullptr;
 };

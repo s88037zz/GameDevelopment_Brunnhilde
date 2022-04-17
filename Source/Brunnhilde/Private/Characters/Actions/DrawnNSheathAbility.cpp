@@ -4,7 +4,8 @@
 #include "Characters/Actions/DrawnNSheathAbility.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Item/Weapon.h"
-#include "BrunnhildeCharacter.h"
+#include "Characters/BrunnhildeCharacter.h"
+#include "Games/InventoryComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 
 void UDrawnNSheathAbility::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
@@ -37,20 +38,24 @@ void UDrawnNSheathAbility::Drawn()
     }
 
 
+    ABrunnhildeCharacter* Character =  Cast<ABrunnhildeCharacter>( GetControlCharacter() );
     if ( !bWeaponDrawn &&
-         GetControlCharacter()->GetEquippedWeapon() )
+         Character->Inventory->IsWeaponEquiped() )
     {
+
         GetControlMovement()->DisableMovement();
 
         double Duration = SetControlPlayAnimMontage( DrawnWeaponMontage );
 
         FTimerHandle TimerHandle = GetControlMovementTimeHandle();
+
         GetWorld()->GetTimerManager().SetTimer( TimerHandle, [this]()
         {
             GetControlCharacter()->SetReadyToAttack( true );
             GetControlMovement()->SetMovementMode( MOVE_Walking );      
         }, Duration, false );
 
+        bWeaponDrawn = true;
     }
 
 }
@@ -63,8 +68,9 @@ void UDrawnNSheathAbility::Sheath()
         return;
     }
 
+    ABrunnhildeCharacter* Character =  Cast<ABrunnhildeCharacter>( GetControlCharacter() );
     if ( bWeaponDrawn &&
-         GetControlCharacter()->GetEquippedWeapon() )
+         Character->Inventory->IsWeaponEquiped() )
     {
         GetControlCharacter()->SetReadyToAttack( false );
         GetControlMovement()->DisableMovement();
@@ -76,6 +82,7 @@ void UDrawnNSheathAbility::Sheath()
             GetControlMovement()->SetMovementMode( MOVE_Walking );
         }, Duration, false );
 
+        bWeaponDrawn = false;
     }
 }
 

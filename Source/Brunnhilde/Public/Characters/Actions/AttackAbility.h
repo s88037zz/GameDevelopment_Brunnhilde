@@ -48,6 +48,5 @@ protected:
 private:
 	TArray< UAttackCombo* > AttackCombos;
 	UAttackCombo* CurrentActiveCombo;
-
-
 };
+

@@ -63,7 +63,7 @@ void UAttackAbility::HandleNotification_AttackComboNext()
     else
     {
         ResetAttackCounter();
-        Character->SetAttacking( false );
+        Character->SetCurrentState( ECharacterStates::ECS_Idle );
         Character->SetActiveAbility( nullptr );
 
     }
@@ -92,9 +92,8 @@ void UAttackAbility::HandleAttackInput02()
     }
 
     // Handle Input
-    if ( Character->IsAttacking() == false )
+    if ( Character->GetCurrentState() == ECharacterStates::ECS_Attacking )
     {
-        Character->SetAttacking( true );
         Character->SetActiveAbility( this );
         GetControlMovement()->DisableMovement();
 
@@ -122,7 +121,7 @@ void UAttackAbility::HandleAttackInput02()
         GetWorld()->GetTimerManager().SetTimer( AttackStatusHandle, [this]()
         {
             ResetAttackCounter();
-            GetControlCharacter()->SetAttacking( false );
+            GetControlCharacter()->SetCurrentState( ECharacterStates::ECS_Idle );
             GetControlCharacter()->SetActiveAbility( nullptr );
         }, Duration, false );
     }
@@ -160,8 +159,8 @@ void UAttackAbility::HandleAttackInput02()
                 GetWorld()->GetTimerManager().SetTimer( AttackStatusHandle, [this]()
                 {
                     ResetAttackCounter();
-                    GetControlCharacter()->SetAttacking( false );
                     GetControlCharacter()->SetActiveAbility( nullptr );
+                    GetControlCharacter()->SetCurrentState( ECharacterStates::ECS_Idle);
                 }, Duration, false );
             }
         }

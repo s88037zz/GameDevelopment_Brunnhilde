@@ -99,8 +99,6 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
 	Inventory->OnEquipmentUpdated.AddDynamic( this, &ABrunnhildeCharacter::HandleEquipmentUpdated );
 
 	EquippedWeapon = nullptr;
-	bReadyToAttack = false;
-	bAttacking = false;
 	bSaveAttack = false;
 	bFlinching =false;
 }
@@ -120,7 +118,9 @@ void ABrunnhildeCharacter::DrawnWeapon()
 	if ( IsValid( DrawnNSheathAbility ) )
 	{
 		DrawnNSheathAbility->Drawn();
+		return;
 	}
+	SetCurrentState( ECharacterStates::ECS_Idle );
 }
 
 void ABrunnhildeCharacter::SheathWeapon()
@@ -133,33 +133,27 @@ void ABrunnhildeCharacter::SheathWeapon()
 
 void ABrunnhildeCharacter::LightAttack()
 {	
-	if ( !IsDrwanWeapon() && 
-		 !GetCharacterMovement()->IsFalling() )
+	if ( CurrentState != ECharacterStates::ECS_ReadyToAttack  && CurrentState != ECharacterStates::ECS_Move )
 	{
-		DrawnWeapon();
-		return;
+		SetCurrentState( ECharacterStates::ECS_ReadyToAttack );
 	}
 
-	if ( bReadyToAttack && IsValid( NormalAttackAbility ) )
+	else if ( ( CurrentState == ECharacterStates::ECS_ReadyToAttack || CurrentState == ECharacterStates::ECS_Attacking )  && IsValid( NormalAttackAbility ) )
 	{
-		DrawnNSheathAbility->ResetIdle2SheathCounter();
-		NormalAttackAbility->HandleAttackInput02();
+		SetCurrentState( ECharacterStates::ECS_Attacking );
 	}
 }
 
 void ABrunnhildeCharacter::MeleeAttack()
 {
-	if ( !IsDrwanWeapon() &&
-		 !GetCharacterMovement()->IsFalling() )
+	if ( CurrentState != ECharacterStates::ECS_ReadyToAttack && CurrentState != ECharacterStates::ECS_Move )
 	{
-		DrawnWeapon();
-		return;
+		SetCurrentState( ECharacterStates::ECS_ReadyToAttack );
 	}
 
-	if ( bReadyToAttack & IsValid( MeleeAttackAbility ) )
+	else if ( ( CurrentState == ECharacterStates::ECS_ReadyToAttack || CurrentState == ECharacterStates::ECS_Attacking ) && IsValid( NormalAttackAbility ) )
 	{
-		DrawnNSheathAbility->ResetIdle2SheathCounter();
-		MeleeAttackAbility->HandleAttackInput02();
+		SetCurrentState( ECharacterStates::ECS_Attacking );
 	}
 }
 
@@ -335,6 +329,22 @@ void ABrunnhildeCharacter::BeginPlay()
 void ABrunnhildeCharacter::Tick( float DeltaSeconds )
 {
 	Super::Tick( DeltaSeconds );
+	switch ( CurrentState )
+	{
+		case ECharacterStates::ECS_Idle:
+			break;
+		case ECharacterStates::ECS_PrepareToAttck:
+			DrawnWeapon();
+			break;
+		case ECharacterStates::ECS_ReadyToAttack:
+			DrawnNSheathAbility->ResetIdle2SheathCounter();
+			break;
+		case ECharacterStates::ECS_Attacking:
+			NormalAttackAbility->HandleAttackInput02();
+			break;
+		default:
+			return;
+	}
 }
 
 void ABrunnhildeCharacter::OnResetVR()
@@ -404,26 +414,6 @@ void ABrunnhildeCharacter::MoveRight(float Value)
 
 
 //Getter 
-
-bool ABrunnhildeCharacter::IsDrwanWeapon()
-{
-	if ( IsValid( DrawnNSheathAbility ) )
-	{
-		return DrawnNSheathAbility->bWeaponDrawn;
-	}
-	return false;
-}
-
-bool ABrunnhildeCharacter::IsReadyToAttack()
-{
-	return bReadyToAttack;
-}
-
-bool ABrunnhildeCharacter::IsAttacking()
-{
-	return bAttacking;
-}
-
 bool ABrunnhildeCharacter::IsSaveAttack()
 {
 	return bSaveAttack;
@@ -437,16 +427,6 @@ bool ABrunnhildeCharacter::IsFlinching()
 bool ABrunnhildeCharacter::IsLockedEnemy()
 {
 	return bIsLockedEnemy;
-}
-
-void ABrunnhildeCharacter::SetAttacking( bool bAttack )
-{
-	bAttacking = bAttack;
-}
-
-void ABrunnhildeCharacter::SetReadyToAttack( bool bStatus )
-{
-	bReadyToAttack = bStatus;
 }
 
 void ABrunnhildeCharacter::SetSaveAttack( bool bInputAttack )

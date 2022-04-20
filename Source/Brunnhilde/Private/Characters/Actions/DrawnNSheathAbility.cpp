@@ -51,8 +51,9 @@ void UDrawnNSheathAbility::Drawn()
 
         GetWorld()->GetTimerManager().SetTimer( TimerHandle, [this]()
         {
-            GetControlCharacter()->SetReadyToAttack( true );
             GetControlMovement()->SetMovementMode( MOVE_Walking );      
+            GetControlCharacter()->SetCurrentState( ECharacterStates::ECS_ReadyToAttack );
+
         }, Duration, false );
 
         bWeaponDrawn = true;
@@ -72,7 +73,6 @@ void UDrawnNSheathAbility::Sheath()
     if ( bWeaponDrawn &&
          Character->Inventory->IsWeaponEquiped() )
     {
-        GetControlCharacter()->SetReadyToAttack( false );
         GetControlMovement()->DisableMovement();
         double Duration = SetControlPlayAnimMontage( SheathWeaponMontage );
 
@@ -80,6 +80,7 @@ void UDrawnNSheathAbility::Sheath()
         GetWorld()->GetTimerManager().SetTimer( TimerHandle, [this]()
         {
             GetControlMovement()->SetMovementMode( MOVE_Walking );
+            GetControlCharacter()->SetCurrentState( ECharacterStates::ECS_Idle );
         }, Duration, false );
 
         bWeaponDrawn = false;

@@ -168,7 +168,7 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
 		ABrunnhildeCharacter* OwnCharacter = Cast<ABrunnhildeCharacter>( GetOwner() );
         ABrunnhildeCharacter* DamagedCharacter = Cast<ABrunnhildeCharacter>( OtherActor );
 
-        if ( OwnCharacter->IsAttacking() )
+        if ( OwnCharacter->GetCurrentState() == ECharacterStates::ECS_Attacking )
         {
             UAbility2* ActiveAbility = OwnCharacter->GetCurrentActiveAbility();
 			if( Cast<UAttackAbility>( ActiveAbility ) &&

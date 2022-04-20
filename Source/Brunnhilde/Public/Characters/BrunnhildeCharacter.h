@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Games/BrunnhildeDef.h"
 #include "Actions/NormalAttackAbility.h"
 #include "Actions/MeleeAttackAbility.h"
 #include "Actions/FlinchAbility2.h"
@@ -162,6 +163,7 @@ public:
 
 public:
 	//¨¤¦âª¬ºA¾÷
+	/*
 	UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsDrwanWeapon();
 	
@@ -170,7 +172,7 @@ public:
 
     UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsAttacking();
-
+	*/
 	UFUNCTION( BlueprintPure, Category="ActionsStates" )
 	bool IsSaveAttack();
 
@@ -272,10 +274,10 @@ public:
 	UItemData* GetEquipedWeapon();
 
 	// Getter
-	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-	FORCEINLINE class UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
-	FORCEINLINE class UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
+	class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+	class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+	class UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
+	class UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
 
 	UFUNCTION( BlueprintCallable )
 	UPickUpItemAbility* GetPickUpItemAbility() const { return PickUpItemAbility; }
@@ -286,23 +288,22 @@ public:
 	UFUNCTION( BlueprintCallable )
     UNormalAttackAbility* GetNormalAttackAbility() const { return NormalAttackAbility; }
 
-	FORCEINLINE UMeleeAttackAbility* GetMeleeAttackAbility() const { return MeleeAttackAbility; }
-	FORCEINLINE UFlinchAbility2* GetFlinchAbility() const { return FlinchAbility; }
-	FORCEINLINE UAbility2* GetCurrentActiveAbility() const { return CurrentActiveAbility; }
-
-	FORCEINLINE FVector GetObjectDroppedLocation() const { return ObjectDroppedLocation->GetComponentLocation(); }
-	FORCEINLINE FTimerHandle GetMovementTimeHandle() const { return TimeHandle; }
+	UMeleeAttackAbility* GetMeleeAttackAbility() const { return MeleeAttackAbility; }
+	UFlinchAbility2* GetFlinchAbility() const { return FlinchAbility; }
+	UAbility2* GetCurrentActiveAbility() const { return CurrentActiveAbility; }
+	FVector GetObjectDroppedLocation() const { return ObjectDroppedLocation->GetComponentLocation(); }
+	FTimerHandle GetMovementTimeHandle() const { return TimeHandle; }
+	ECharacterStates GetCurrentState() const { return CurrentState; }
 
 	double GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh );
 
 	//Setter
 	void SetMovementTimerHandle( double Duration, bool bEnableMovement );
-	void SetAttacking( bool bAttack );
-	void SetReadyToAttack( bool bStatus );
 	void SetSaveAttack( bool bInputAttack );
 	void SetIsFlinching( bool bFlinch );
 	void SetActiveAbility( UAbility2* ActiveAbility );
 	void SetLockedEnemy( bool Locked );
+	void SetCurrentState( ECharacterStates eState ) { CurrentState = eState; }
 
 private:
 	void ResetStatsToDefault();
@@ -311,8 +312,6 @@ private:
 	AWeapon* EquippedWeapon;	
 	FTimerHandle TimeHandle;
 
-    bool bReadyToAttack;
-    bool bAttacking;
     bool bSaveAttack;
 	bool bFlinching;
 	bool bIsLockedEnemy;
@@ -321,4 +320,5 @@ private:
 	UAbility2* CurrentActiveAbility = nullptr;
     FTimerHandle ResetCounterHandle;
 
+	ECharacterStates  CurrentState = ECharacterStates::ECS_Idle;
 };

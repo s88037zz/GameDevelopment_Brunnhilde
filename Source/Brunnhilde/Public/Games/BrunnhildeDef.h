@@ -48,6 +48,17 @@ enum class EItemRarityTypes : uint8
 	EIRT_Legend UMETA( DisplayName = "Legend" ),
 };
 
+UENUM( BlueprintType )
+enum class ECharacterStates : uint8
+{
+	ECS_Idle,
+	ECS_Move,
+	ECS_PrepareToAttck,
+	ECS_ReadyToAttack,
+	ECS_Attacking,
+	ECS_Damaged,
+};
+
 #define DEFAULT_WEAPON_EQEUIPED_SOCKET     "Weapon_Equiped_Socket"
 #define DEFAULT_WEAPON_HOLD_SOCKET         "Weapon_Hold_Socket"
 #define DEFAULT_ARMOUR_HEAD_SOCKET         "Armour_Head_Socket"

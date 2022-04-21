@@ -5,7 +5,7 @@
 
 void UStateMachine::Tick()
 {
-    switch ( eState )
+    switch ( eCurrentState )
     {
 
         case ECharacterFSM::ECFSM_ReadyToAttack:
@@ -42,7 +42,7 @@ void UStateMachine::DoAttackAction()
 {
     if ( ECharacterFSM::ECFSM_ReadyToAttack == eCurrentState )
     {
-        eCurrentState = ECharacterFSM::ECFSM__Attacking;
+        eCurrentState = ECharacterFSM::ECFSM_Attacking;
     }
     else if ( ECharacterFSM::ECFSM_Attacking == eCurrentState )
     {

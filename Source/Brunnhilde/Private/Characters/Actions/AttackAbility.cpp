@@ -7,6 +7,10 @@
 #include "Kismet/GameplayStatics.h"
 #include "BrunnhildeCharacter.h"
 
+void UAttackAbility::BeginAbility()
+{
+    HandleAttackInput02();
+}
 
 int UAttackAbility::ResetAttackCounter()
 {
@@ -40,6 +44,7 @@ void UAttackAbility::InitMontage()
     }
 }
 
+
 void UAttackAbility::HandleNotification_AttackComboNext()
 {
     //Check validate
@@ -50,51 +55,49 @@ void UAttackAbility::HandleNotification_AttackComboNext()
     }
 
     // Handle Notification
-    if ( Character->IsSaveAttack() )
+    if ( IsState( ECharacterFSM::ECFSM_AcceptedAttackCombo ) )
     {
-        Character->SetSaveAttack( false );
         GetControlMovement()->DisableMovement();
 
         AttackCounter = ( AttackCounter + 1 ) % AttackCombos.Num();
         double Duration = SetControlPlayAnimMontage( AttackCombos[AttackCounter]->AttackMontage );
         Character->SetMovementTimerHandle( Duration, true );
 
+        ChangeStateTo( ECharacterFSM::ECFSM_Attacking );
     }
     else
     {
         ResetAttackCounter();
-        Character->SetCurrentState( ECharacterStates::ECS_Idle );
-        Character->SetActiveAbility( nullptr );
-
+        ChangeStateTo( ECharacterFSM::ECFSM_Idle );
     }
 
 }
 
 void UAttackAbility::HandleAttackInput02()
+
 {
     //Check validation
-    ABrunnhildeCharacter* Character = GetControlCharacter();
-    if ( !IsValid( Character ) )
+    if ( !IsValid( GetControlCharacter() ) )
     {
         return;
     }
 
-    UCharacterMovementComponent* ControlMovement = GetControlMovement();
-    if ( !IsValid( ControlMovement ) )
+    if ( !IsValid( GetControlMovement() ) )
     {
         return;
     }
 
     // Is Endurance Enough
+
+    ABrunnhildeCharacter* Character = GetControlCharacter();
     if ( Character->GetEnduranceCmp()->GetCurrentEndurance() < EnduranceCost )
     {
         return;
     }
 
     // Handle Input
-    if ( Character->GetCurrentState() == ECharacterStates::ECS_Attacking )
+    if ( Character->CurrentState == ECharacterFSM::ECFSM_Attacking )
     {
-        Character->SetActiveAbility( this );
         GetControlMovement()->DisableMovement();
 
         AttackCounter = ResetAttackCounter();
@@ -121,8 +124,6 @@ void UAttackAbility::HandleAttackInput02()
         GetWorld()->GetTimerManager().SetTimer( AttackStatusHandle, [this]()
         {
             ResetAttackCounter();
-            GetControlCharacter()->SetCurrentState( ECharacterStates::ECS_Idle );
-            GetControlCharacter()->SetActiveAbility( nullptr );
         }, Duration, false );
     }
     else
@@ -158,9 +159,7 @@ void UAttackAbility::HandleAttackInput02()
 
                 GetWorld()->GetTimerManager().SetTimer( AttackStatusHandle, [this]()
                 {
-                    ResetAttackCounter();
-                    GetControlCharacter()->SetActiveAbility( nullptr );
-                    GetControlCharacter()->SetCurrentState( ECharacterStates::ECS_Idle);
+                    ResetAttackCounter();                   
                 }, Duration, false );
             }
         }

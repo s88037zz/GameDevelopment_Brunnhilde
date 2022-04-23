@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Games/BrunnhildeDef.h"
 #include "Ability2.generated.h"
 
 class UCharacterMovementComponent;
@@ -15,33 +16,35 @@ class BRUNNHILDE_API UAbility2 : public UActorComponent
 {
 	GENERATED_BODY()
 
+protected:
+    // Called when the game starts
+    virtual void BeginPlay() override;
+
 /* Created In UE4 Deafault */
 public:	
 	// Sets default values for this component's properties
 	UAbility2();
 
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
-public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-/* Created In Brunnhilde Project */
-
-public: /* Setter */
+    /* Setter */
     void Initialize( ABrunnhildeCharacter* Character );
-
     void SetControlCharacter( ABrunnhildeCharacter* Character );
     double SetControlPlayAnimMontage( UAnimMontage* Montage );
-public: /* Getter */
+
+    UFUNCTION( BlueprintCallable )
+    virtual void BeginAbility() PURE_VIRTUAL( UAbility2, );
+
+public:
     ABrunnhildeCharacter* GetControlCharacter();
     UCharacterMovementComponent* GetControlMovement();
     UAnimMontage* GetControlActiveMontage();
     FTimerHandle GetControlMovementTimeHandle();
     USkeletalMeshComponent* GetControlMesh();
-
+    
+    void ChangeStateTo( ECharacterFSM State );
+    bool IsState( ECharacterFSM State );
 private:
     ABrunnhildeCharacter* ControlCharacter = nullptr;
 

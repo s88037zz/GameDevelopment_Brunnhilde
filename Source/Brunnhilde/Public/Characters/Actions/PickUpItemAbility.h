@@ -15,7 +15,11 @@ class BRUNNHILDE_API UPickUpItemAbility : public UAbility2
 	GENERATED_BODY()
 
 public:
-	UFUNCTION( BlueprintCallable )
+	virtual void BeginAbility() override;
+
 	void PickUp();
 
+public:
+	UPROPERTY( EditAnywhere, BlueprintReadWrite )
+	UAnimMontage* FlinchMontage_R;	UAnimMontage* PickUpMontage = nullptr;
 };

@@ -13,45 +13,52 @@ USprintAbility2::USprintAbility2()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
+    bIsSprint = false;
 }
 
 
-// Called when the game starts
-void USprintAbility2::BeginPlay()
+void USprintAbility2::BeginAbility()
 {
-	Super::BeginPlay();
-
-	// ...
-	
+    if ( bIsSprint )
+    {
+        StopSprint();
+    }
+    if ( !bIsSprint )
+    {
+        StartSprint();
+    }
 }
 
-
-// Called every frame
-void USprintAbility2::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}
 
 void USprintAbility2::StartSprint()
 { 
-    ABrunnhildeCharacter* Character = GetControlCharacter();
-    Character->GetCharacterMovement()->MaxWalkSpeed = MaxSprintSpeed;
+    if ( bIsSprint )
+    {
+        return;
+    }
 
+    ABrunnhildeCharacter* Character = GetControlCharacter();
+
+    Character->GetCharacterMovement()->MaxWalkSpeed = MaxSprintSpeed;
     GetWorld()->GetTimerManager().SetTimer( SprintCostTimer, [this]()
     {
         float Cost = EnduranceCost / 100;
         GetControlCharacter()->GetEnduranceCmp()->Reduce( Cost );
     }, 0.01, true );
+    bIsSprint = true;
 }
 
 
 void USprintAbility2::StopSprint()
 {
+    if ( !bIsSprint )
+    {
+        return;
+    }
+
     ABrunnhildeCharacter* Character = GetControlCharacter();
 
     Character->GetCharacterMovement()->MaxWalkSpeed = MaxWalkSpeed;
     GetWorld()->GetTimerManager().ClearTimer( SprintCostTimer );
+    bIsSprint = false;
 }

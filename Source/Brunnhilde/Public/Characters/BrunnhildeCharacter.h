@@ -22,6 +22,7 @@ class UItemData;
 class UHealthComponent;
 class UEnduranceComponent;
 class UInventoryComponent;
+class UStateMachine;
 
 UCLASS(config=Game)
 class ABrunnhildeCharacter : public ACharacter
@@ -68,27 +69,6 @@ public:
     TArray< AWeapon* > WeaponInventory;
 
 	// 角色重要能力
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	UPickUpItemAbility* PickUpItemAbility;
-
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	UDrawnNSheathAbility* DrawnNSheathAbility;
-
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	UNormalAttackAbility* NormalAttackAbility;
-	
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	UMeleeAttackAbility* MeleeAttackAbility;
-
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	UFlinchAbility2* FlinchAbility;
-
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	TSubclassOf< ULockEnemyAbility > LockEnemyClass;
-
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	USprintAbility2* SprintAbility;
-
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
 	UInventoryComponent* Inventory;
 
@@ -114,9 +94,14 @@ public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
 	FName ArmourFeetSocket;
 
-
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
 	float DamagedImpactRate = 1.0f;
+	
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State" )
+	ECharacterFSM CurrentState = ECharacterFSM::ECFSM_Idle;
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State" )
+	UStateMachine* StateMachine;
 
 	//角色能力值
 	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | States" )
@@ -162,69 +147,11 @@ public:
 	int DefaultWisdom = 20;
 
 public:
-	//角色狀態機
-	/*
-	UFUNCTION( BlueprintPure, Category="ActionsStates" )
-	bool IsDrwanWeapon();
-	
-    UFUNCTION( BlueprintPure, Category="ActionsStates" )
-  	bool IsReadyToAttack();
-
-    UFUNCTION( BlueprintPure, Category="ActionsStates" )
-	bool IsAttacking();
-	*/
-	UFUNCTION( BlueprintPure, Category="ActionsStates" )
-	bool IsSaveAttack();
-
-	UFUNCTION( BlueprintPure, Category="ActionsStates" )
-	bool IsFlinching();
-
-	UFUNCTION( BlueprintPure, Category="ActionsStates" )
-	bool IsLockedEnemy();
-
-	// 角色使用能力
-    UFUNCTION( BlueprintCallable, Category="Actions" )
-    void PickupWeapon();
-
-    UFUNCTION( BlueprintCallable, Category="Actions" )
-    void DrawnWeapon();
-
-    UFUNCTION( BlueprintCallable, Category="Actions" )
-    void SheathWeapon();
-
-    UFUNCTION( BlueprintCallable, Category="Actions" )
-    void LightAttack();
-
-	UFUNCTION( BlueprintCallable, Category="Actions" )
-	void MeleeAttack();
-
-    UFUNCTION( BlueprintCallable, Category="Actions" )
-    void BlockAttack();
-
-	UFUNCTION( BlueprintCallable, Category="Actions" )
-	void LockEnemy();
-
     UFUNCTION( BlueprintCallable, Category="Actions" )
 	void Dead();
 
 	UFUNCTION( BlueprintCallable, Category="Actions" )
-	void StartSprint();
-
-	UFUNCTION( BlueprintCallable, Category="Actions" )
-	void StopSprint();
-
-	UFUNCTION( BlueprintCallable, Category="Actions" )
 	void UseItem( UItemData* Item );
-
-	//動畫判定
-	UFUNCTION( BlueprintCallable, Category="Notification")
-	void HandleDrawnNotification();
-
-	UFUNCTION( BlueprintCallable, Category="Notification" )
-	void HandleSheathNotification();
-
-	UFUNCTION( BlueprintImplementableEvent, Category="Events" )
-	void OnLightAttack();
 
 	UFUNCTION( BlueprintCallable, Category="Notification" )
 	void HandleEquipmentUpdated();
@@ -279,46 +206,18 @@ public:
 	class UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
 	class UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
 
-	UFUNCTION( BlueprintCallable )
-	UPickUpItemAbility* GetPickUpItemAbility() const { return PickUpItemAbility; }
-
-	UFUNCTION( BlueprintCallable )
-	UDrawnNSheathAbility* GetDrawnNSheathAbility() const { return DrawnNSheathAbility; }
-
-	UFUNCTION( BlueprintCallable )
-    UNormalAttackAbility* GetNormalAttackAbility() const { return NormalAttackAbility; }
-
-	UMeleeAttackAbility* GetMeleeAttackAbility() const { return MeleeAttackAbility; }
-	UFlinchAbility2* GetFlinchAbility() const { return FlinchAbility; }
-	UAbility2* GetCurrentActiveAbility() const { return CurrentActiveAbility; }
 	FVector GetObjectDroppedLocation() const { return ObjectDroppedLocation->GetComponentLocation(); }
 	FTimerHandle GetMovementTimeHandle() const { return TimeHandle; }
-	ECharacterStates GetCurrentState() const { return CurrentState; }
-
 	double GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh );
 
 	//Setter
 	void SetMovementTimerHandle( double Duration, bool bEnableMovement );
-	void SetSaveAttack( bool bInputAttack );
-	void SetIsFlinching( bool bFlinch );
-	void SetActiveAbility( UAbility2* ActiveAbility );
-	void SetLockedEnemy( bool Locked );
-	void SetCurrentState( ECharacterStates eState ) { CurrentState = eState; }
 
 private:
 	void ResetStatsToDefault();
 
 private:
-	AWeapon* EquippedWeapon;	
 	FTimerHandle TimeHandle;
-
-    bool bSaveAttack;
-	bool bFlinching;
-	bool bIsLockedEnemy;
-
-	ULockEnemyAbility* LockEnemyAbility = nullptr;
-	UAbility2* CurrentActiveAbility = nullptr;
     FTimerHandle ResetCounterHandle;
 
-	ECharacterStates  CurrentState = ECharacterStates::ECS_Idle;
 };

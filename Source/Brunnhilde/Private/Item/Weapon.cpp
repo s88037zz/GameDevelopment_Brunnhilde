@@ -168,9 +168,9 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
 		ABrunnhildeCharacter* OwnCharacter = Cast<ABrunnhildeCharacter>( GetOwner() );
         ABrunnhildeCharacter* DamagedCharacter = Cast<ABrunnhildeCharacter>( OtherActor );
 
-        if ( OwnCharacter->GetCurrentState() == ECharacterStates::ECS_Attacking )
+        if ( OwnCharacter->CurrentState == ECharacterFSM::ECFSM_Attacking )
         {
-            UAbility2* ActiveAbility = OwnCharacter->GetCurrentActiveAbility();
+			/*
 			if( Cast<UAttackAbility>( ActiveAbility ) &&
 				LastOwnerAttackCounter != Cast<UAttackAbility>( ActiveAbility )->AttackCounter )
 			{
@@ -189,6 +189,7 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
 					LastOwnerAttackCounter = -1;
 				}, delay, false );
 			}
+			*/
         }
 		
 	}

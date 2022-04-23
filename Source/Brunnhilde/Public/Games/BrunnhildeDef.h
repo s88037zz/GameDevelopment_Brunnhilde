@@ -49,15 +49,16 @@ enum class EItemRarityTypes : uint8
 };
 
 UENUM( BlueprintType )
-enum class ECharacterStates : uint8
+enum class ECharacterFSM : uint8
 {
-	ECS_Idle,
-	ECS_Move,
-	ECS_PrepareToAttck,
-	ECS_ReadyToAttack,
-	ECS_Attacking,
-	ECS_Damaged,
+	ECFSM_Idle,
+	ECFSM_Fighting,
+	ECFSM_Attacking,
+	ECFSM_AcceptedAttackCombo,
+	ECFSM_Flinch,
+	ECFSM_KnockDown
 };
+
 
 #define DEFAULT_WEAPON_EQEUIPED_SOCKET     "Weapon_Equiped_Socket"
 #define DEFAULT_WEAPON_HOLD_SOCKET         "Weapon_Hold_Socket"

@@ -15,16 +15,15 @@ class BRUNNHILDE_API UAttackAbility : public UAbility2
 	GENERATED_BODY()
 
 public:
+	virtual void BeginAbility() override;
+
 	/* common used*/
 	int ResetAttackCounter();
 	int GetNextComboIdx();
 	void Initialize( ABrunnhildeCharacter* Character );
 	void InitMontage();
-
 	//  method1: input + notification
-	void HandleAttackInput();
 	void HandleNotification_AttackComboNext();
-
 	// method2: only input
 	void HandleAttackInput02();
 
@@ -42,7 +41,7 @@ public:
     int AttackCounter = -1;
 	FTimerHandle AttackStatusHandle;
 
-protected:
+protected:      
 	virtual void BeginPlay() override;
 
 private:

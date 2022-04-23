@@ -98,3 +98,17 @@ USkeletalMeshComponent* UAbility2::GetControlMesh()
     }
     return nullptr;
 }
+
+void UAbility2::ChangeStateTo( ECharacterFSM State )
+{
+    GetControlCharacter()->CurrentState = State;
+}
+
+bool UAbility2::IsState( ECharacterFSM State )
+{
+    if ( !GetControlCharacter() )
+    {
+        return false;
+    }
+    return GetControlCharacter()->CurrentState == State;
+}

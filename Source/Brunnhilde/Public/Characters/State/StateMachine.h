@@ -4,10 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Games/BrunnhildeDef.h"
 #include "StateMachine.generated.h"
 
 class UAnimMontage;
-
+class UAttackAbility;
+class UFlinchAbility2;
+class UDrawnNSheathAbility;
+class ABrunnhildeCharacter;
+class UPickUpItemAbility;
+class ULockEnemyAbility;
+class USprintAbility2;
+class UPlayerInputComponent;
 /**
  * 
  */
@@ -18,29 +26,59 @@ class BRUNNHILDE_API UStateMachine : public UObject
 
 public:
 	UStateMachine() = default;
+	UStateMachine( ABrunnhildeCharacter* Character );
 
 	void Tick();
 
+	UFUNCTION( BlueprintCallable )
+	ABrunnhildeCharacter* GetControlCharacter() { return m_Character; }
+	UFUNCTION( BlueprintCallable )
+	void SetControlCharacter( ABrunnhildeCharacter* Character );
+	UFUNCTION( BlueprintCallable )
+	void SetupPlayerInputComponent( UInputComponent* PlayerInputComponent );
+
+
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UDrawnNSheathAbility* DrawnSheathAbility;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UAttackAbility* AttackAbility;
+	UFUNCTION( BlueprintCallable, Category="Notification" )
+	void HandleDrawnNotification();
+	UFUNCTION( BlueprintCallable, Category="Notification" )
+	void HandleSheathNotification();
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UFlinchAbility2* FlinchAbility;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UPickUpItemAbility* PickUpItemAbility;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+    ULockEnemyAbility* LockEnemyClass;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	USprintAbility2* SprintAbility;
+
 	//State
-	void OnIdle();
-	void OnReadyToAttackState();
+	void OnIdleState();
+	void OnFightingState();
 	void OnAttackingState();
 	void OnAccpetedNextComboState();
+	void OnFlinchState();
+	void OnKnockDownState();
 
 	//Transition
-	void DoAttackAction();
-	void DoDrawnWeapon();
-	void DoSheathWeapon();
+	void AttackAction();
+	void DrawnWeaponAction();
+	void SheathWeaponAction();
+	void BeDamagedAction();
+	void PickItemAction();
+	void SprintAction();
+	void LockEnemyAction();
 
 private:
-	enum class ECharacterFSM : uint8
-	{
-		ECFSM_Idle,
-		ECFSM_ReadyToAttack,
-		ECFSM_Attacking,
-		ECFSM_AcceptedAttackCombo
-	};
+	void ChangeStateTo( ECharacterFSM State );
+	bool IsState( ECharacterFSM State );
 
-	ECharacterFSM eCurrentState = ECharacterFSM::ECFSM_Idle;
-	UAnimMontage* AttckMontage = nullptr;
+private:
+	ABrunnhildeCharacter* m_Character = nullptr;
+	UAnimMontage* m_NextMontage = nullptr;
+
+
 };

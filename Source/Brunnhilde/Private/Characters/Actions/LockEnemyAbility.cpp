@@ -3,11 +3,14 @@
 
 #include "Characters/Actions/LockEnemyAbility.h"
 #include "BrunnhildeCharacter.h"
+
+void ULockEnemyAbility::BeginAbility()
+{
+
+}
 void ULockEnemyAbility::Lock()
 {
-    if( GetControlCharacter() )
-    {
-        bool IsLockedEnemy = GetControlCharacter()->IsLockedEnemy();
-        GetControlCharacter()->SetLockedEnemy( !IsLockedEnemy );
-    }
+
 }
+
+

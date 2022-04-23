@@ -16,5 +16,8 @@ class BRUNNHILDE_API ULockEnemyAbility : public UAbility2
 	GENERATED_BODY()
 
 public:
+	virtual void BeginAbility() override;
+
 	void Lock();
+
 };

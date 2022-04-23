@@ -4,48 +4,31 @@
 #include "Characters/Actions/PickUpItemAbility.h"
 #include "Item/Weapon.h"
 #include "BrunnhildeCharacter.h"
+#include "Games/InventoryComponent.h"
 
+
+void UPickUpItemAbility::BeginAbility()
+{
+    PickUp();
+}
 
 void UPickUpItemAbility::PickUp()
 {
-    /*
+    ABrunnhildeCharacter* Character = GetControlCharacter();
+
     TArray<AActor*> OverlappingActors;
     TSubclassOf<AWeapon> ClassFilter;
     GetControlCharacter()->GetOverlappingActors( OverlappingActors, ClassFilter );
-    AWeapon* EquippedWeapon = GetControlCharacter()->GetEquippedWeapon();
-
     for ( auto& Actor : OverlappingActors )
     {
-        // Not the same with current weapon
-        if ( Cast< AWeapon >( Actor ) &&
-             Actor != EquippedWeapon )
+        AItem* Item = Cast< AItem >( Actor );
+        if ( IsValid( Item ) )
         {
-            AWeapon* Weapon = Cast< AWeapon >( Actor );
-
-            if ( EquippedWeapon )
-            {
-                EquippedWeapon->HandleDrop();
-            }
-
-            UMeshComponent* WeaponMesh = Weapon->GetMeshComponent();
-            if ( WeaponMesh->IsSimulatingPhysics() )
-            {
-                Weapon = Weapon->HandlePickupByCopy();
-            }
-            else
-            {
-                Weapon->HandlePickup( GetControlCharacter() );
-            }
-
-            GetControlCharacter()->SetEquippedWeapon( Weapon );
-
-            if ( !GetControlCharacter()->WeaponInventory.Contains( Weapon ) )
-            {
-                GetControlCharacter()->WeaponInventory.Add( Weapon );
-            }
-
-            break;
+            UItemData* ItemData = NewObject<UItemData>( Item );
+            Character->Inventory->AddItem( ItemData );
         }
-    }
-    */
+        
+        GetWorld()->DestroyActor( Actor );
+        break;        
+    } 
 }

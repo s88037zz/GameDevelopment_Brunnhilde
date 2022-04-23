@@ -24,6 +24,16 @@ class BRUNNHILDE_API UFlinchAbility2 : public UAbility2
 {
 	GENERATED_BODY()
 public:
+	virtual void BeginAbility() override;
+
+	UFUNCTION( BlueprintCallable )
+	void OnTakeDamaged( AActor * DamagedActor,
+						float Damage,
+						const class UDamageType* DamageType,
+						class AController* InstigatedBy,
+						AActor * DamageCauser );
+
+public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite )
 	UAnimMontage* FlinchMontage_L;
 
@@ -36,14 +46,6 @@ public:
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite )
 	TSubclassOf< UMatineeCameraShake > OnTakeDamageShakingType;
 
-public:
-
-	UFUNCTION( BlueprintCallable )
-	void OnTakeDamaged( AActor * DamagedActor,
-						float Damage,
-						const class UDamageType* DamageType,
-						class AController* InstigatedBy,
-						AActor * DamageCauser );
 private:
 	EDamagedDirection GetDamageDirection( AActor * DamagedCreator );
 

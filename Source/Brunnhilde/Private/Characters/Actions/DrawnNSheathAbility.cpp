@@ -14,8 +14,7 @@ void UDrawnNSheathAbility::TickComponent( float DeltaTime, ELevelTick TickType, 
     {
         return;
     }
-
-    if ( nullptr == GetControlCharacter()->GetCurrentActiveAbility() &&
+    if ( ECharacterFSM::ECFSM_Idle == GetControlCharacter()->CurrentState &&
         GetControlCharacter()->GetLastMovementInputVector() == FVector::ZeroVector )
     {
         TimeCounter += DeltaTime;
@@ -27,6 +26,18 @@ void UDrawnNSheathAbility::TickComponent( float DeltaTime, ELevelTick TickType, 
         }
     }
    
+}
+
+void UDrawnNSheathAbility::BeginAbility()
+{
+    if ( bWeaponDrawn )
+    {
+        Sheath();
+    }
+    else
+    {
+        Drawn();
+    }
 }
 
 void UDrawnNSheathAbility::Drawn()
@@ -52,7 +63,6 @@ void UDrawnNSheathAbility::Drawn()
         GetWorld()->GetTimerManager().SetTimer( TimerHandle, [this]()
         {
             GetControlMovement()->SetMovementMode( MOVE_Walking );      
-            GetControlCharacter()->SetCurrentState( ECharacterStates::ECS_ReadyToAttack );
 
         }, Duration, false );
 
@@ -80,7 +90,6 @@ void UDrawnNSheathAbility::Sheath()
         GetWorld()->GetTimerManager().SetTimer( TimerHandle, [this]()
         {
             GetControlMovement()->SetMovementMode( MOVE_Walking );
-            GetControlCharacter()->SetCurrentState( ECharacterStates::ECS_Idle );
         }, Duration, false );
 
         bWeaponDrawn = false;

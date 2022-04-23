@@ -7,6 +7,12 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
+
+void UFlinchAbility2::BeginAbility()
+{
+	GetControlCharacter()->OnTakeAnyDamage.AddDynamic( this, &UFlinchAbility2::OnTakeDamaged );
+}
+
 void UFlinchAbility2::OnTakeDamaged( AActor* DamagedActor, float Damage, const UDamageType* DamageType,
 									AController* InstigatedBy, AActor* DamageCauser )
 {
@@ -18,7 +24,7 @@ void UFlinchAbility2::OnTakeDamaged( AActor* DamagedActor, float Damage, const U
 	if ( Cast< AWeapon >( DamageCauser ) )
 	{
 		AWeapon* Weapon = Cast< AWeapon >( DamageCauser );
-		ABrunnhildeCharacter* OwnerActor = Cast<ABrunnhildeCharacter>( Weapon->GetOwner() );
+		ABrunnhildeCharacter* OwnerActor = Cast< ABrunnhildeCharacter >( Weapon->GetOwner() );
 
 		// Weapon Exist Owner And Not Belong You
 		if ( Weapon && OwnerActor && OwnerActor != GetControlCharacter() )
@@ -27,9 +33,6 @@ void UFlinchAbility2::OnTakeDamaged( AActor* DamagedActor, float Damage, const U
 			if ( nullptr == GetControlActiveMontage() )
 			{
 
-				//!!
-				GetControlCharacter()->SetIsFlinching( true );
-				GetControlCharacter()->SetActiveAbility( this );
 				DamagedCounter++;
 
 				EDamagedDirection DamagedDirection = GetDamageDirection( Weapon );

@@ -13,7 +13,17 @@ UCLASS()
 class BRUNNHILDE_API UDrawnNSheathAbility : public UAbility2
 {
 	GENERATED_BODY()
-	
+
+protected:
+	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
+
+public:
+	virtual void BeginAbility() override;
+
+	void Drawn();
+	void Sheath();
+	void ResetIdle2SheathCounter();
+
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Montage" )
 	UAnimMontage* DrawnWeaponMontage;
@@ -24,20 +34,6 @@ public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite )
 	float Idle2SheathTime = 5.0f;
 
-protected:
-	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
-
-public:
-	UFUNCTION( BlueprintCallable )
-	void Drawn();
-	
-	UFUNCTION( BlueprintCallable )
-	void Sheath();
-
-	UFUNCTION( BlueprintCallable )
-	void ResetIdle2SheathCounter();
-
-public:
 	bool bWeaponDrawn;
 
 private:

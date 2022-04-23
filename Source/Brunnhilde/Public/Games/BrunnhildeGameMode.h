@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Characters/State/StateMachine.h"
 #include "BrunnhildeGameMode.generated.h"
 
 UCLASS(minimalapi)
@@ -13,6 +14,8 @@ class ABrunnhildeGameMode : public AGameModeBase
 
 public:
 	ABrunnhildeGameMode();
+
+
 };
 
 

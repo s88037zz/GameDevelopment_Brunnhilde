@@ -16,14 +16,9 @@ public:
 	// Sets default values for this component's properties
 	USprintAbility2();
 
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
+	virtual void BeginAbility() override;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
+public:
 	/* Endurance Cost  per second */
 	UPROPERTY( EditAnywhere, BlueprintReadWrite )
 	float EnduranceCost = 5;
@@ -42,5 +37,5 @@ public:
 
 private:
 	FTimerHandle SprintCostTimer;
-		
+	bool bIsSprint;
 };

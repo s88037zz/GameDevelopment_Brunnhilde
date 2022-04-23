@@ -21,10 +21,7 @@
 #include "ItemData/ArmourData.h"
 #include "ItemData/ItemData.h"
 #include "ItemData/EquipmentData.h"
-# define BlockingAttack "BlockingAttack_Start"
-# define ActiveMotionSlot "ActiveMotionSlot"
-
-
+#include "Characters/State/StateMachine.h"
 
 //////////////////////////////////////////////////////////////////////////
 // ABrunnhildeCharacter
@@ -75,100 +72,12 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
     ObjectDroppedLocation = CreateDefaultSubobject<USceneComponent>( TEXT( "ObjectDroppedLocation" ) );
 	ObjectDroppedLocation->AttachToComponent( GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform );
 
-	NormalAttackAbility = CreateDefaultSubobject< UNormalAttackAbility >( TEXT( "NormalAttackAbility" ) );
-	NormalAttackAbility->Initialize( this );
-		 
-	MeleeAttackAbility = CreateDefaultSubobject< UMeleeAttackAbility >( TEXT( "MeleeAttackAbility" ) );
-	MeleeAttackAbility->Initialize( this );
-
-	FlinchAbility = CreateDefaultSubobject< UFlinchAbility2 >( TEXT( "FlinchAbility" ) );
-	FlinchAbility->SetControlCharacter( this );
-	OnTakeAnyDamage.AddDynamic( FlinchAbility, &UFlinchAbility2::OnTakeDamaged );
-
-	SprintAbility = CreateDefaultSubobject< USprintAbility2 >( TEXT( "SprintAblity" ) );
-	SprintAbility->SetControlCharacter( this );
-
-	PickUpItemAbility = CreateDefaultSubobject< UPickUpItemAbility >( TEXT( "PickUpItemAbility" ) );
-	PickUpItemAbility->SetControlCharacter( this );
-
-	DrawnNSheathAbility = CreateDefaultSubobject< UDrawnNSheathAbility >( TEXT( "DrawnNSheathAbility" ) );
-	DrawnNSheathAbility->SetControlCharacter( this );
-
 	Inventory = CreateDefaultSubobject< UInventoryComponent >( TEXT( "Inventory" ) );
 	Inventory->Capacity = 15.f;
 	Inventory->OnEquipmentUpdated.AddDynamic( this, &ABrunnhildeCharacter::HandleEquipmentUpdated );
-
-	EquippedWeapon = nullptr;
-	bSaveAttack = false;
-	bFlinching =false;
 }
-
 
 //////////////////////////////////////////////////////////////////////////
-void ABrunnhildeCharacter::PickupWeapon()
-{
-	if ( IsValid( PickUpItemAbility ) )
-	{
-		PickUpItemAbility->PickUp();
-	}
-}
-
-void ABrunnhildeCharacter::DrawnWeapon()
-{
-	if ( IsValid( DrawnNSheathAbility ) )
-	{
-		DrawnNSheathAbility->Drawn();
-		return;
-	}
-	SetCurrentState( ECharacterStates::ECS_Idle );
-}
-
-void ABrunnhildeCharacter::SheathWeapon()
-{
-	if ( IsValid( DrawnNSheathAbility ) )
-	{
-		DrawnNSheathAbility->Sheath();
-	}
-}
-
-void ABrunnhildeCharacter::LightAttack()
-{	
-	if ( CurrentState != ECharacterStates::ECS_ReadyToAttack  && CurrentState != ECharacterStates::ECS_Move )
-	{
-		SetCurrentState( ECharacterStates::ECS_ReadyToAttack );
-	}
-
-	else if ( ( CurrentState == ECharacterStates::ECS_ReadyToAttack || CurrentState == ECharacterStates::ECS_Attacking )  && IsValid( NormalAttackAbility ) )
-	{
-		SetCurrentState( ECharacterStates::ECS_Attacking );
-	}
-}
-
-void ABrunnhildeCharacter::MeleeAttack()
-{
-	if ( CurrentState != ECharacterStates::ECS_ReadyToAttack && CurrentState != ECharacterStates::ECS_Move )
-	{
-		SetCurrentState( ECharacterStates::ECS_ReadyToAttack );
-	}
-
-	else if ( ( CurrentState == ECharacterStates::ECS_ReadyToAttack || CurrentState == ECharacterStates::ECS_Attacking ) && IsValid( NormalAttackAbility ) )
-	{
-		SetCurrentState( ECharacterStates::ECS_Attacking );
-	}
-}
-
-void ABrunnhildeCharacter::BlockAttack()
-{
-}
-
-void ABrunnhildeCharacter::LockEnemy()
-{
-	if( LockEnemyAbility )
-	{
-		LockEnemyAbility->Lock();
-	}
-}
-
 
 void ABrunnhildeCharacter::Dead()
 {
@@ -183,7 +92,7 @@ void ABrunnhildeCharacter::Dead()
 
 	}
 }
-
+/*
 void ABrunnhildeCharacter::StartSprint()
 {
 	SprintAbility->StartSprint();
@@ -193,7 +102,7 @@ void ABrunnhildeCharacter::StopSprint()
 {
 	SprintAbility->StopSprint();
 }
-
+*/
 void ABrunnhildeCharacter::UseItem( UItemData* Item )
 {
 	if ( Item )
@@ -202,6 +111,7 @@ void ABrunnhildeCharacter::UseItem( UItemData* Item )
 	}
 }
 
+/*
 void ABrunnhildeCharacter::HandleDrawnNotification()
 {
 	if ( !IsValid( DrawnNSheathAbility ) )
@@ -231,7 +141,7 @@ void ABrunnhildeCharacter::HandleSheathNotification()
 		DrawnNSheathAbility->bWeaponDrawn = false;
 	}
 }
-
+*/
 
 //////////////////////////////////////////////////////////////////////////
 // Input
@@ -260,6 +170,7 @@ void ABrunnhildeCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ABrunnhildeCharacter::OnResetVR);
+
 }
 
 UItemData* ABrunnhildeCharacter::GetEquipedWeapon()
@@ -314,37 +225,11 @@ double ABrunnhildeCharacter::GetMontageLeftTime( UAnimMontage* Montage, USkeleta
 
 void ABrunnhildeCharacter::BeginPlay()
 {
-	Super::BeginPlay();
-
-	if( IsValid( LockEnemyClass ) )
-	{
-		LockEnemyAbility = NewObject<ULockEnemyAbility>( this, LockEnemyClass );
-		check( LockEnemyAbility );
-
-		LockEnemyAbility->Initialize( this );
-	}
-
 }
 
 void ABrunnhildeCharacter::Tick( float DeltaSeconds )
 {
 	Super::Tick( DeltaSeconds );
-	switch ( CurrentState )
-	{
-		case ECharacterStates::ECS_Idle:
-			break;
-		case ECharacterStates::ECS_PrepareToAttck:
-			DrawnWeapon();
-			break;
-		case ECharacterStates::ECS_ReadyToAttack:
-			DrawnNSheathAbility->ResetIdle2SheathCounter();
-			break;
-		case ECharacterStates::ECS_Attacking:
-			NormalAttackAbility->HandleAttackInput02();
-			break;
-		default:
-			return;
-	}
 }
 
 void ABrunnhildeCharacter::OnResetVR()
@@ -410,43 +295,6 @@ void ABrunnhildeCharacter::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 
 	}
-}
-
-
-//Getter 
-bool ABrunnhildeCharacter::IsSaveAttack()
-{
-	return bSaveAttack;
-}
-
-bool ABrunnhildeCharacter::IsFlinching()
-{
-	return bFlinching;
-}
-
-bool ABrunnhildeCharacter::IsLockedEnemy()
-{
-	return bIsLockedEnemy;
-}
-
-void ABrunnhildeCharacter::SetSaveAttack( bool bInputAttack )
-{
-	bSaveAttack = bInputAttack;
-}
-
-void ABrunnhildeCharacter::SetIsFlinching( bool bFlinch )
-{
-	bFlinching = bFlinch;
-}
-
-void ABrunnhildeCharacter::SetActiveAbility( UAbility2* ActiveAbility )
-{
-	CurrentActiveAbility = ActiveAbility;
-}
-
-void ABrunnhildeCharacter::SetLockedEnemy( bool Locked )
-{
-	bIsLockedEnemy = Locked;
 }
 
 void ABrunnhildeCharacter::HandleEquipmentUpdated()

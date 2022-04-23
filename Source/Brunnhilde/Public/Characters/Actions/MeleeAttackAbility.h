@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS( Blueprintable )
 class BRUNNHILDE_API UMeleeAttackAbility : public UAttackAbility
 {
 	GENERATED_BODY()

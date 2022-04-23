@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS( Blueprintable )
 class BRUNNHILDE_API UDrawnNSheathAbility : public UAbility2
 {
 	GENERATED_BODY()

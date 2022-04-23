@@ -26,34 +26,19 @@ class BRUNNHILDE_API UStateMachine : public UObject
 
 public:
 	UStateMachine() = default;
-	UStateMachine( ABrunnhildeCharacter* Character );
-
 	void Tick();
 
 	UFUNCTION( BlueprintCallable )
-	ABrunnhildeCharacter* GetControlCharacter() { return m_Character; }
+	ABrunnhildeCharacter* GetControlCharacter() { return Character; }
 	UFUNCTION( BlueprintCallable )
-	void SetControlCharacter( ABrunnhildeCharacter* Character );
+	void Initialize( ABrunnhildeCharacter* Character );
 	UFUNCTION( BlueprintCallable )
 	void SetupPlayerInputComponent( UInputComponent* PlayerInputComponent );
 
-
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	UDrawnNSheathAbility* DrawnSheathAbility;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	UAttackAbility* AttackAbility;
 	UFUNCTION( BlueprintCallable, Category="Notification" )
 	void HandleDrawnNotification();
 	UFUNCTION( BlueprintCallable, Category="Notification" )
 	void HandleSheathNotification();
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	UFlinchAbility2* FlinchAbility;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	UPickUpItemAbility* PickUpItemAbility;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-    ULockEnemyAbility* LockEnemyClass;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
-	USprintAbility2* SprintAbility;
 
 	//State
 	void OnIdleState();
@@ -72,13 +57,42 @@ public:
 	void SprintAction();
 	void LockEnemyAction();
 
+public:
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	TSubclassOf< UDrawnNSheathAbility > DrawnSheathClass;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	TSubclassOf< UAttackAbility >       AttackClass;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	TSubclassOf< UFlinchAbility2 >      FlinchClass;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	TSubclassOf< UPickUpItemAbility >   PickUpItemClass;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	TSubclassOf< ULockEnemyAbility >    LockEnemyClass;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	TSubclassOf< USprintAbility2 >      SprintClass;
+
+
+	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UDrawnNSheathAbility* DrawnSheathAbility;
+	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UAttackAbility*       AttackAbility;
+	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UFlinchAbility2*      FlinchAbility;
+	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UPickUpItemAbility*   PickUpItemAbility;
+	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	ULockEnemyAbility*    LockEnemyAbility;
+	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	USprintAbility2*      SprintAbility;
+
 private:
 	void ChangeStateTo( ECharacterFSM State );
 	bool IsState( ECharacterFSM State );
-
+	void SetControlCharacter( ABrunnhildeCharacter* ControlCharacter );
+	void SetupAbilities();
 private:
-	ABrunnhildeCharacter* m_Character = nullptr;
-	UAnimMontage* m_NextMontage = nullptr;
+	ABrunnhildeCharacter* Character = nullptr;
+	UAnimMontage* NextMontage = nullptr;
 
 
 };

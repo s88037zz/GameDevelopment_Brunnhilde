@@ -11,7 +11,7 @@
 /**
  * 
  */
-UCLASS()
+UCLASS( Blueprintable )
 class BRUNNHILDE_API UNormalAttackAbility : public UAttackAbility
 {
     GENERATED_BODY()

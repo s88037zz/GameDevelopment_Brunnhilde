@@ -9,6 +9,7 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 #include "Components/SkeletalMeshComponent.h"
 #include "Animation\AnimNode_StateMachine.h"
@@ -92,17 +93,7 @@ void ABrunnhildeCharacter::Dead()
 
 	}
 }
-/*
-void ABrunnhildeCharacter::StartSprint()
-{
-	SprintAbility->StartSprint();
-}
 
-void ABrunnhildeCharacter::StopSprint()
-{
-	SprintAbility->StopSprint();
-}
-*/
 void ABrunnhildeCharacter::UseItem( UItemData* Item )
 {
 	if ( Item )
@@ -146,7 +137,7 @@ void ABrunnhildeCharacter::HandleSheathNotification()
 //////////////////////////////////////////////////////////////////////////
 // Input
 
-void ABrunnhildeCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
+void ABrunnhildeCharacter::SetupPlayerInputComponent( class UInputComponent* PlayerInputComponent )
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
@@ -171,15 +162,17 @@ void ABrunnhildeCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ABrunnhildeCharacter::OnResetVR);
 
+	PlayerInputComponent->BindAction( "NormalAttack", IE_Pressed,  StateMachine, &UStateMachine::AttackAction );
+	PlayerInputComponent->BindAction( "Pickup",       IE_Pressed,  StateMachine, &UStateMachine::PickItemAction );
+	PlayerInputComponent->BindAction( "Sprint",       IE_Pressed,  StateMachine, &UStateMachine::SprintAction );
+	PlayerInputComponent->BindAction( "Sprint",       IE_Released, StateMachine, &UStateMachine::SprintAction );
+	PlayerInputComponent->BindAction( "LockEnemy",    IE_Released, StateMachine, &UStateMachine::LockEnemyAction );
+	//if ( StateMachine ) StateMachine->SetupPlayerInputComponent( PlayerInputComponent );
 }
 
 UItemData* ABrunnhildeCharacter::GetEquipedWeapon()
 {
-	if ( Inventory->IsWeaponEquiped() )
-	{
-		return Inventory->GetEquipedWeapon();
-	}
-	return nullptr;
+	return Inventory->IsWeaponEquiped() ? Inventory->GetEquipedWeapon() : nullptr;
 }
 
 
@@ -225,6 +218,12 @@ double ABrunnhildeCharacter::GetMontageLeftTime( UAnimMontage* Montage, USkeleta
 
 void ABrunnhildeCharacter::BeginPlay()
 {
+	Super::BeginPlay();
+	if ( IsValid( StateMachineClass ) )
+	{
+		StateMachine = NewObject< UStateMachine >( this, StateMachineClass );
+		StateMachine->Initialize( this );
+	}
 }
 
 void ABrunnhildeCharacter::Tick( float DeltaSeconds )

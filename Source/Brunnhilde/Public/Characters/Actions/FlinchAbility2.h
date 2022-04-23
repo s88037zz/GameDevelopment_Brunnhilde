@@ -19,7 +19,7 @@ enum class EDamagedDirection : int
 	Left = 2
 };
 
-UCLASS()
+UCLASS( Blueprintable )
 class BRUNNHILDE_API UFlinchAbility2 : public UAbility2
 {
 	GENERATED_BODY()

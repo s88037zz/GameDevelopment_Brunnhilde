@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS( config=Engine, Blueprintable, Blueprintable)
+UCLASS( config=Engine, Blueprintable )
 class BRUNNHILDE_API UAttackCombo : public UObject
 {
 	GENERATED_BODY()

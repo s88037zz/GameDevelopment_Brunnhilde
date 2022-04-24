@@ -200,12 +200,12 @@ void UStateMachine::SetControlCharacter( ABrunnhildeCharacter* ControlCharacter 
 
 void UStateMachine::SetupAbilities()
 {
-    DrawnSheathAbility = NewObject< UDrawnNSheathAbility >( this, DrawnSheathClass );
-    AttackAbility      = NewObject< UAttackAbility >( this, AttackClass );
-    FlinchAbility      = NewObject< UFlinchAbility2 >( this, FlinchClass );
-    PickUpItemAbility  = NewObject< UPickUpItemAbility >( this, PickUpItemClass );
-    LockEnemyAbility   = NewObject< ULockEnemyAbility >( this, LockEnemyClass );
-    SprintAbility      = NewObject< USprintAbility2 >( this, SprintClass );
+    if ( DrawnSheathClass )  DrawnSheathAbility = NewObject< UDrawnNSheathAbility >( this, DrawnSheathClass );
+    if ( AttackClass ) AttackAbility      = NewObject< UAttackAbility >( this, AttackClass );
+    if ( FlinchClass ) FlinchAbility      = NewObject< UFlinchAbility2 >( this, FlinchClass );
+    if ( PickUpItemClass ) PickUpItemAbility  = NewObject< UPickUpItemAbility >( this, PickUpItemClass );
+    if ( LockEnemyClass ) LockEnemyAbility   = NewObject< ULockEnemyAbility >( this, LockEnemyClass );
+    if ( SprintClass ) SprintAbility      = NewObject< USprintAbility2 >( this, SprintClass );
 
     if ( AttackAbility )         AttackAbility->SetControlCharacter( Character );
     if ( FlinchAbility )         FlinchAbility->SetControlCharacter( Character );

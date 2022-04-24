@@ -80,6 +80,38 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
 
 //////////////////////////////////////////////////////////////////////////
 
+void ABrunnhildeCharacter::Attack()
+{
+	if( IsValid( StateMachine ) )
+	{
+		StateMachine->AttackAction();
+	}
+}
+
+void ABrunnhildeCharacter::PickItem()
+{
+	if ( IsValid( StateMachine ) )
+	{
+		StateMachine->PickItemAction();
+	}
+}
+
+void ABrunnhildeCharacter::Sprint()
+{
+	if ( IsValid( StateMachine ) )
+	{
+		StateMachine->SprintAction();
+	}
+}
+
+void ABrunnhildeCharacter::LockEnemy()
+{
+	if ( IsValid( StateMachine ) )
+	{
+		StateMachine->LockEnemyAction();
+	}
+}
+
 void ABrunnhildeCharacter::Dead()
 {
     if ( !DeadMontage )
@@ -161,12 +193,11 @@ void ABrunnhildeCharacter::SetupPlayerInputComponent( class UInputComponent* Pla
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ABrunnhildeCharacter::OnResetVR);
-
-	PlayerInputComponent->BindAction( "NormalAttack", IE_Pressed,  StateMachine, &UStateMachine::AttackAction );
-	PlayerInputComponent->BindAction( "Pickup",       IE_Pressed,  StateMachine, &UStateMachine::PickItemAction );
-	PlayerInputComponent->BindAction( "Sprint",       IE_Pressed,  StateMachine, &UStateMachine::SprintAction );
-	PlayerInputComponent->BindAction( "Sprint",       IE_Released, StateMachine, &UStateMachine::SprintAction );
-	PlayerInputComponent->BindAction( "LockEnemy",    IE_Released, StateMachine, &UStateMachine::LockEnemyAction );
+	PlayerInputComponent->BindAction( "NormalAttack", IE_Pressed,  this, &ABrunnhildeCharacter::Attack );
+	PlayerInputComponent->BindAction( "Pickup",       IE_Pressed,  this, &ABrunnhildeCharacter::PickItem );
+	PlayerInputComponent->BindAction( "Sprint",       IE_Pressed,  this, &ABrunnhildeCharacter::Sprint );
+	PlayerInputComponent->BindAction( "Sprint",       IE_Released, this, &ABrunnhildeCharacter::Sprint );
+	PlayerInputComponent->BindAction( "LockEnemy",    IE_Released, this, &ABrunnhildeCharacter::LockEnemy );
 	//if ( StateMachine ) StateMachine->SetupPlayerInputComponent( PlayerInputComponent );
 }
 

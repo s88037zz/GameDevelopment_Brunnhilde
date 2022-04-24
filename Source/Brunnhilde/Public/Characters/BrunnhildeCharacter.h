@@ -24,6 +24,30 @@ class ABrunnhildeCharacter : public ACharacter
 
 public:
 	ABrunnhildeCharacter();
+
+public:
+	UFUNCTION( BlueprintCallable, Category="Actions" )
+	void Attack();
+	UFUNCTION( BlueprintCallable, Category="Actions" )
+	void PickItem();
+	UFUNCTION( BlueprintCallable, Category="Actions" )
+	void Sprint();
+	UFUNCTION( BlueprintCallable, Category="Actions" )
+	void LockEnemy();
+    UFUNCTION( BlueprintCallable, Category="Actions" )
+	void Dead();
+
+	UFUNCTION( BlueprintCallable, Category="Actions" )
+	UItemData* GetEquipedWeapon();
+
+	UFUNCTION( BlueprintCallable, Category="Actions" )
+	void UseItem( UItemData* Item );
+
+	UFUNCTION( BlueprintCallable, Category="Actions" )
+	void HandleEquipmentUpdated();
+
+
+public:
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = ( AllowPrivateAccess = "true" ) )
 	class USpringArmComponent* CameraBoom;
@@ -40,26 +64,25 @@ public:
 
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category=Camera )
 	float BaseTurnRate;
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category=Camera )
 	float BaseLookUpRate;
 
 	//測試效果
-    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Montages", meta=( DisplayName="DeadMontage" ) )
-    UAnimMontage* DeadMontage;
-
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Montages", meta=( DisplayName="DeadMontage" ) )
+	UAnimMontage* DeadMontage;
 
 	// 角色重要能力
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
 	UInventoryComponent* Inventory;
 
 	//裝備參數設定
-    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
-    FName WeaponHoldSocket;
-    UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
-    FName WeaponEquippedSocket;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
+	FName WeaponHoldSocket;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
+	FName WeaponEquippedSocket;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
 	FName WeaponFightingSocket;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
@@ -72,8 +95,8 @@ public:
 	FName ArmourFeetSocket;
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
-	float DamagedImpactRate = 1.0f;
-	
+		float DamagedImpactRate = 1.0f;
+
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State Machine" )
 	ECharacterFSM CurrentState = ECharacterFSM::ECFSM_Idle;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State Machine" )
@@ -109,18 +132,6 @@ public:
 	int DefaultIntelligence = 20;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
 	int DefaultWisdom = 20;
-
-public:
-    UFUNCTION( BlueprintCallable, Category="Actions" )
-	void Dead();
-
-	UFUNCTION( BlueprintCallable, Category="Actions" )
-	void UseItem( UItemData* Item );
-
-	UFUNCTION( BlueprintCallable, Category="Notification" )
-	void HandleEquipmentUpdated();
-
-
 /* Third Person Character Default function */
 protected:
 	/* Begin Play ( Regist Delegete) */
@@ -154,10 +165,6 @@ protected:
 	// End of APawn interface
 
 public:
-	UFUNCTION( BlueprintCallable, Category="Getter" )
-	UItemData* GetEquipedWeapon();
-
-	// Getter
 	class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 	class UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
@@ -172,10 +179,8 @@ public:
 
 private:
 	void ResetStatsToDefault();
-
 private:
 	FTimerHandle TimeHandle;
     FTimerHandle ResetCounterHandle;
 	UStateMachine* StateMachine;
-
 };

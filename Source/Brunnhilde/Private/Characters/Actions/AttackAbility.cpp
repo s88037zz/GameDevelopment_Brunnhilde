@@ -7,9 +7,27 @@
 #include "Kismet/GameplayStatics.h"
 #include "BrunnhildeCharacter.h"
 
-void UAttackAbility::BeginAbility()
+bool UAttackAbility::BeginAbility()
 {
-    HandleAttackInput02();
+    //HandleAttackInput02();
+    ABrunnhildeCharacter* Character = GetControlCharacter();
+    if ( IsState( ECharacterFSM::ECFSM_Fighting ) )
+    {
+        Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
+        Character->SetRequiredNextMontage( true );
+        AttackCounter++;
+    }
+    else if ( IsState( ECharacterFSM::ECFSM_Attacking ) )
+    {
+        if ( IsAcceptedActtion() )
+        {
+            Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
+            Character->SetRequiredNextMontage( true );
+            AttackCounter++;
+        }
+    }
+    AttackCounter = AttackCounter % AttackCombos.Num();
+    return true;
 }
 
 int UAttackAbility::ResetAttackCounter()
@@ -133,7 +151,6 @@ void UAttackAbility::HandleAttackInput02()
         {
 
             double Length = CurrentAttackMontage->GetSectionLength( 0 );
-
             double LeftTime = Character->GetMontageLeftTime( CurrentAttackMontage,
                                                              GetControlMesh() );
 
@@ -164,6 +181,38 @@ void UAttackAbility::HandleAttackInput02()
             }
         }
     }
+}
+
+bool UAttackAbility::IsAcceptedActtion()
+{
+    //Check validation
+    if ( !IsValid( GetControlCharacter() ) )
+    {
+        return false;
+    }
+
+    if ( !IsValid( GetControlMovement() ) )
+    {
+        return false;
+    }
+
+    UAnimMontage* CurrentAttackMontage = GetControlActiveMontage();
+    if ( CurrentAttackMontage )
+    {
+
+        double Length = CurrentAttackMontage->GetSectionLength( 0 );
+        double LeftTime = GetControlCharacter()->GetMontageLeftTime( CurrentAttackMontage,
+                                                 GetControlMesh() );
+
+
+        float Threshold = CurrentActiveCombo ? CurrentActiveCombo->LeftTimeToCombo : 0.5;
+
+        if ( LeftTime / Length < Threshold )
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 void UAttackAbility::BeginPlay()

@@ -34,7 +34,7 @@ public:
     double SetControlPlayAnimMontage( UAnimMontage* Montage );
 
     UFUNCTION( BlueprintCallable )
-    virtual void BeginAbility() PURE_VIRTUAL( UAbility2, );
+    virtual bool BeginAbility() PURE_VIRTUAL( UAbility2::BeginAbility, return true; );
 
 public:
     ABrunnhildeCharacter* GetControlCharacter();

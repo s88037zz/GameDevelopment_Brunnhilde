@@ -7,9 +7,10 @@
 #include "Games/InventoryComponent.h"
 
 
-void UPickUpItemAbility::BeginAbility()
+bool UPickUpItemAbility::BeginAbility()
 {
     PickUp();
+    return true;
 }
 
 void UPickUpItemAbility::PickUp()

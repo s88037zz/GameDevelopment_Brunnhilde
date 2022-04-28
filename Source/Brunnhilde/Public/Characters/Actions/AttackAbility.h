@@ -15,7 +15,7 @@ class BRUNNHILDE_API UAttackAbility : public UAbility2
 	GENERATED_BODY()
 
 public:
-	virtual void BeginAbility() override;
+	virtual bool BeginAbility() override;
 
 	/* common used*/
 	int ResetAttackCounter();
@@ -26,6 +26,7 @@ public:
 	void HandleNotification_AttackComboNext();
 	// method2: only input
 	void HandleAttackInput02();
+	bool IsAcceptedActtion();
 
 public:
 	UPROPERTY( BlueprintReadWrite, EditAnywhere )

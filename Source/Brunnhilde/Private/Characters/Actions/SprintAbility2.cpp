@@ -17,7 +17,7 @@ USprintAbility2::USprintAbility2()
 }
 
 
-void USprintAbility2::BeginAbility()
+bool USprintAbility2::BeginAbility()
 {
     if ( bIsSprint )
     {
@@ -27,6 +27,7 @@ void USprintAbility2::BeginAbility()
     {
         StartSprint();
     }
+    return true;
 }
 
 

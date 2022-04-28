@@ -15,7 +15,7 @@ class BRUNNHILDE_API UPickUpItemAbility : public UAbility2
 	GENERATED_BODY()
 
 public:
-	virtual void BeginAbility() override;
+	virtual bool BeginAbility() override;
 
 	void PickUp();
 

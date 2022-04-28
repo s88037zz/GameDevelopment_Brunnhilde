@@ -18,10 +18,10 @@ protected:
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
 public:
-	virtual void BeginAbility() override;
+	virtual bool BeginAbility() override;
 
-	void Drawn();
-	void Sheath();
+	bool Drawn();
+	bool Sheath();
 	void ResetIdle2SheathCounter();
 
 public:

@@ -44,6 +44,7 @@ void UAbility2::Initialize( ABrunnhildeCharacter* Character )
 void UAbility2::SetControlCharacter( ABrunnhildeCharacter* Character )
 {
 	ControlCharacter = Character;
+    
 }
 
 

@@ -24,7 +24,7 @@ class BRUNNHILDE_API UFlinchAbility2 : public UAbility2
 {
 	GENERATED_BODY()
 public:
-	virtual void BeginAbility() override;
+	virtual bool BeginAbility() override;
 
 	UFUNCTION( BlueprintCallable )
 	void OnTakeDamaged( AActor * DamagedActor,

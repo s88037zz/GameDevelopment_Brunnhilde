@@ -8,9 +8,10 @@
 #include "GameFramework/CharacterMovementComponent.h"
 
 
-void UFlinchAbility2::BeginAbility()
+bool UFlinchAbility2::BeginAbility()
 {
 	GetControlCharacter()->OnTakeAnyDamage.AddDynamic( this, &UFlinchAbility2::OnTakeDamaged );
+	return true;
 }
 
 void UFlinchAbility2::OnTakeDamaged( AActor* DamagedActor, float Damage, const UDamageType* DamageType,

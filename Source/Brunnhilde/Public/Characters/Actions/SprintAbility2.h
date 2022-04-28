@@ -16,7 +16,7 @@ public:
 	// Sets default values for this component's properties
 	USprintAbility2();
 
-	virtual void BeginAbility() override;
+	virtual bool BeginAbility() override;
 
 public:
 	/* Endurance Cost  per second */

@@ -3,3 +3,7 @@
 
 #include "Characters/Actions/DropingTruesureAbility.h"
 
+bool UDropingTruesureAbility::BeginAbility()
+{
+    return true;
+}

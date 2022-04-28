@@ -9,9 +9,12 @@
 #include "Characters/Actions/PickUpItemAbility.h"
 #include "Characters/Actions/LockEnemyAbility.h"
 #include "Characters/Actions/SprintAbility2.h"
+#include "ItemData/ItemData.h"
 #include "Components/InputComponent.h"
 
-void UStateMachine::Tick()
+
+
+void UStateMachine::Process()
 {
     switch ( Character->CurrentState )
     {
@@ -54,25 +57,8 @@ void UStateMachine::SetupPlayerInputComponent( UInputComponent* PlayerInputCompo
     PlayerInputComponent->BindAction( "LockEnemy",      IE_Released,  this, &UStateMachine::LockEnemyAction );
 }
 
-void UStateMachine::HandleDrawnNotification()
-{
-    //Check validate
-    if ( !IsValid( Character ) )
-    {
-        return;
-    }
-
-    //AttackAbility->HandleNotification_AttackComboNext();
-}
-
-void UStateMachine::HandleSheathNotification()
-{
-}
-
 void UStateMachine::OnIdleState()
 {
-    NextMontage = nullptr;
-    ChangeStateTo( ECharacterFSM::ECFSM_Idle );
 }
 
 void UStateMachine::OnFightingState()
@@ -81,6 +67,19 @@ void UStateMachine::OnFightingState()
 
 void UStateMachine::OnAttackingState()
 {
+    UAnimMontage* CurrnetMontage =  Character->GetCurrentMontage();
+    if ( CurrnetMontage && Character->IsRequiredNextMontage() )
+    {
+        if( Character->NextMontageQueue.Num() == 0 )
+        {
+            return;
+        }
+        UAnimMontage* NextMontage = Character->NextMontageQueue.Pop( true );
+        if( NextMontage )
+        {
+            Character->PlayAnimMontage( NextMontage );
+        }
+    }
 }
 void UStateMachine::OnAccpetedNextComboState()
 {
@@ -96,17 +95,15 @@ void UStateMachine::AttackAction()
 {
     if ( ECharacterFSM::ECFSM_Idle == Character->CurrentState )
     {
-        DrawnSheathAbility->BeginAbility();
+        if( DrawnSheathAbility->BeginAbility() )    ChangeStateTo( ECharacterFSM::ECFSM_Fighting );
     }
     else if ( ECharacterFSM::ECFSM_Fighting == Character->CurrentState )
     {
-        AttackAbility->BeginAbility();
-        ChangeStateTo( ECharacterFSM::ECFSM_Attacking );
+        if ( AttackAbility->BeginAbility() )        ChangeStateTo( ECharacterFSM::ECFSM_Attacking );
     }
     else if ( ECharacterFSM::ECFSM_Attacking == Character->CurrentState )
     {
-        AttackAbility->BeginAbility();
-        ChangeStateTo( ECharacterFSM::ECFSM_AcceptedAttackCombo );
+        if ( AttackAbility->BeginAbility() )        ChangeStateTo( ECharacterFSM::ECFSM_AcceptedAttackCombo );
     }
     return;
 }
@@ -120,8 +117,10 @@ void UStateMachine::DrawnWeaponAction()
 
     if ( ECharacterFSM::ECFSM_Idle == Character->CurrentState )
     {
-        DrawnSheathAbility->BeginAbility();
-        ChangeStateTo( ECharacterFSM::ECFSM_Fighting );
+        if ( DrawnSheathAbility->BeginAbility() )
+        {
+            ChangeStateTo( ECharacterFSM::ECFSM_Fighting );
+        }
     }
     return;
 }
@@ -133,13 +132,13 @@ void UStateMachine::SheathWeaponAction()
         return;
     }
 
-    if ( ECharacterFSM::ECFSM_Fighting != Character->CurrentState )
+    if ( ECharacterFSM::ECFSM_Fighting == Character->CurrentState )
     {
-        return;
+        if ( DrawnSheathAbility->BeginAbility() )
+        {
+            ChangeStateTo( ECharacterFSM::ECFSM_Fighting );
+        }
     }
-
-    DrawnSheathAbility->BeginAbility();
-    ChangeStateTo( ECharacterFSM::ECFSM_Idle );
 }
 
 void UStateMachine::BeDamagedAction()
@@ -151,29 +150,20 @@ void UStateMachine::BeDamagedAction()
 
     if ( ECharacterFSM::ECFSM_Flinch ==  Character->CurrentState )
     {
-        FlinchAbility->BeginAbility();
-        ChangeStateTo( ECharacterFSM::ECFSM_KnockDown );
+        if ( FlinchAbility->BeginAbility() )
+        {
+            ChangeStateTo( ECharacterFSM::ECFSM_KnockDown );
+        }
     }
     else
     {
-        FlinchAbility->BeginAbility();
-        ChangeStateTo( ECharacterFSM::ECFSM_Flinch );
+        if ( FlinchAbility->BeginAbility() )
+        {
+            ChangeStateTo( ECharacterFSM::ECFSM_Flinch );
+        }
     }
 }
 
-void UStateMachine::ChangeStateTo( ECharacterFSM State )
-{
-    Character->CurrentState = State;
-}
-
-bool UStateMachine::IsState( ECharacterFSM State )
-{
-    if ( !Character )
-    {
-        return false;
-    }
-    return Character->CurrentState == State;
-}
 
 void UStateMachine::PickItemAction()
 {
@@ -191,6 +181,36 @@ void UStateMachine::SprintAction()
 
 void UStateMachine::LockEnemyAction()
 {
+}
+
+void UStateMachine::DrawnWeaponNotifcation()
+{
+    if ( !IsValid( DrawnSheathAbility ) )
+    {
+        return;
+    }
+
+    UItemData* WeaponData = Character->GetEquipedWeapon();
+    if ( WeaponData )
+    {
+        WeaponData->OnDrawn( Character );
+        DrawnSheathAbility->bWeaponDrawn = true;
+    }
+}
+
+void UStateMachine::SheathWeaponNotifcation()
+{
+    if ( !IsValid( DrawnSheathAbility ) )
+    {
+        return;
+    }
+
+    UItemData* WeaponData = Character->GetEquipedWeapon();
+    if ( WeaponData )
+    {
+        WeaponData->OnSeath( Character );
+        DrawnSheathAbility->bWeaponDrawn = false;
+    }
 }
 
 void UStateMachine::SetControlCharacter( ABrunnhildeCharacter* ControlCharacter )
@@ -213,4 +233,18 @@ void UStateMachine::SetupAbilities()
     if ( PickUpItemAbility )     PickUpItemAbility->SetControlCharacter( Character );
     if ( PickUpItemAbility )     SprintAbility->SetControlCharacter( Character );
     if ( SprintAbility )         SprintAbility->SetControlCharacter( Character );
+}
+
+bool UStateMachine::IsState( ECharacterFSM State )
+{
+    if ( !Character )
+    {
+        return false;
+    }
+    return Character->CurrentState == State;
+}
+
+void UStateMachine::ChangeStateTo( ECharacterFSM State )
+{
+     Character->CurrentState = State;
 }

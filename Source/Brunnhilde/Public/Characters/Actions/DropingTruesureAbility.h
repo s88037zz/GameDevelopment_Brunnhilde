@@ -13,5 +13,6 @@ UCLASS( Blueprintable )
 class BRUNNHILDE_API UDropingTruesureAbility : public UAbility2
 {
 	GENERATED_BODY()
-	
+public:
+	virtual bool BeginAbility() override;
 };

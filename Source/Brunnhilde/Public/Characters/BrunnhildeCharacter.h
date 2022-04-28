@@ -8,14 +8,16 @@
 #include "BrunnhildeCharacter.generated.h"
 
 
-class UAnimMontage;
 class UAnimComposite;
 class AWeapon;
 class UItemData;
+class UCameraComponent;
+class USpringArmComponent;
 class UHealthComponent;
 class UEnduranceComponent;
 class UInventoryComponent;
 class UStateMachine;
+class UAnimMontage;
 
 UCLASS(config=Game)
 class ABrunnhildeCharacter : public ACharacter
@@ -26,39 +28,39 @@ public:
 	ABrunnhildeCharacter();
 
 public:
-	UFUNCTION( BlueprintCallable, Category="Actions" )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void Attack();
-	UFUNCTION( BlueprintCallable, Category="Actions" )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void PickItem();
-	UFUNCTION( BlueprintCallable, Category="Actions" )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void Sprint();
-	UFUNCTION( BlueprintCallable, Category="Actions" )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void LockEnemy();
-    UFUNCTION( BlueprintCallable, Category="Actions" )
-	void Dead();
-
-	UFUNCTION( BlueprintCallable, Category="Actions" )
-	UItemData* GetEquipedWeapon();
-
-	UFUNCTION( BlueprintCallable, Category="Actions" )
+    UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
+	void Dead(); 
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void UseItem( UItemData* Item );
 
-	UFUNCTION( BlueprintCallable, Category="Actions" )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
+	UItemData* GetEquipedWeapon();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
+	UStateMachine* GetStateMachine();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
 	void HandleEquipmentUpdated();
 
 
 public:
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = ( AllowPrivateAccess = "true" ) )
-	class USpringArmComponent* CameraBoom;
+	 USpringArmComponent* CameraBoom;
 	/** Follow camera */
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = ( AllowPrivateAccess = "true" ) )
-	class UCameraComponent* FollowCamera;
+	UCameraComponent* FollowCamera;
 	/** Blood **/
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = "Ailities", meta = ( AllowPrivateAccess = "true" ) )
-	class UHealthComponent* HealthCmp;
+	UHealthComponent* HealthCmp;
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = "Ailities", meta = ( AllowPrivateAccess = "true" ) )
-	class UEnduranceComponent* EnduranceCmp;
+	UEnduranceComponent* EnduranceCmp;
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = "Other", meta = ( AllowPrivateAccess = "true" ) )
 	class USceneComponent* ObjectDroppedLocation;
 
@@ -130,8 +132,12 @@ public:
 	int	DefaultDexterity = 20;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State Values" )
 	int DefaultIntelligence = 20;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | States" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State Values" )
 	int DefaultWisdom = 20;
+
+	UPROPERTY( EditAnywhere, BlueprintReadOnly, Category="Profile | Montages" )
+	TArray< UAnimMontage* > NextMontageQueue;
+
 /* Third Person Character Default function */
 protected:
 	/* Begin Play ( Regist Delegete) */
@@ -165,10 +171,12 @@ protected:
 	// End of APawn interface
 
 public:
-	class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-	class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-	class UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
-	class UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
+	USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+	UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+	UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
+	UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
+	bool IsRequiredNextMontage() const { return RequiredNextMontage; }
+
 
 	FVector GetObjectDroppedLocation() const { return ObjectDroppedLocation->GetComponentLocation(); }
 	FTimerHandle GetMovementTimeHandle() const { return TimeHandle; }
@@ -176,11 +184,15 @@ public:
 
 	//Setter
 	void SetMovementTimerHandle( double Duration, bool bEnableMovement );
+	void SetRequiredNextMontage( bool Required );
 
 private:
 	void ResetStatsToDefault();
+
 private:
 	FTimerHandle TimeHandle;
     FTimerHandle ResetCounterHandle;
 	UStateMachine* StateMachine;
+	bool RequiredNextMontage = false;
+
 };

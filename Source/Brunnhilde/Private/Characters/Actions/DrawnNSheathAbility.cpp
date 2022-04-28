@@ -28,24 +28,21 @@ void UDrawnNSheathAbility::TickComponent( float DeltaTime, ELevelTick TickType, 
    
 }
 
-void UDrawnNSheathAbility::BeginAbility()
+bool UDrawnNSheathAbility::BeginAbility()
 {
     if ( bWeaponDrawn )
     {
-        Sheath();
-    }
-    else
-    {
-        Drawn();
-    }
+        return Sheath();
+    }   
+    return Drawn();
 }
 
-void UDrawnNSheathAbility::Drawn()
+bool UDrawnNSheathAbility::Drawn()
 {
     if ( GetControlCharacter()->GetCurrentMontage() ||
          GetControlMovement()->IsFalling() )
     {
-        return;
+        return false;
     }
 
 
@@ -67,16 +64,17 @@ void UDrawnNSheathAbility::Drawn()
         }, Duration, false );
 
         bWeaponDrawn = true;
+        return true;
     }
-
+    return false;
 }
 
-void UDrawnNSheathAbility::Sheath()
+bool UDrawnNSheathAbility::Sheath()
 {
     if ( GetControlCharacter()->GetCurrentMontage() ||
          GetControlMovement()->IsFalling() )
     {
-        return;
+        return false;
     }
 
     ABrunnhildeCharacter* Character =  Cast<ABrunnhildeCharacter>( GetControlCharacter() );
@@ -93,7 +91,9 @@ void UDrawnNSheathAbility::Sheath()
         }, Duration, false );
 
         bWeaponDrawn = false;
+        return true;
     }
+    return false;
 }
 
 void UDrawnNSheathAbility::ResetIdle2SheathCounter()

@@ -134,38 +134,6 @@ void ABrunnhildeCharacter::UseItem( UItemData* Item )
 	}
 }
 
-/*
-void ABrunnhildeCharacter::HandleDrawnNotification()
-{
-	if ( !IsValid( DrawnNSheathAbility ) )
-	{
-		return;
-	}
-
-	UItemData* WeaponData = GetEquipedWeapon();
-	if ( WeaponData )
-	{	
-		WeaponData->OnDrawn( this );
-		DrawnNSheathAbility->bWeaponDrawn = true;
-	}
-}
-
-void ABrunnhildeCharacter::HandleSheathNotification()
-{
-	if ( !IsValid( DrawnNSheathAbility ) )
-	{
-		return;
-	}
-
-	UItemData* WeaponData = GetEquipedWeapon();
-	if ( WeaponData )
-	{
-		WeaponData->OnSeath( this );	
-		DrawnNSheathAbility->bWeaponDrawn = false;
-	}
-}
-*/
-
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -192,18 +160,23 @@ void ABrunnhildeCharacter::SetupPlayerInputComponent( class UInputComponent* Pla
 	PlayerInputComponent->BindTouch(IE_Released, this, &ABrunnhildeCharacter::TouchStopped);
 
 	// VR headset functionality
-	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &ABrunnhildeCharacter::OnResetVR);
+	PlayerInputComponent->BindAction( "ResetVR", IE_Pressed, this, &ABrunnhildeCharacter::OnResetVR);
+
 	PlayerInputComponent->BindAction( "NormalAttack", IE_Pressed,  this, &ABrunnhildeCharacter::Attack );
 	PlayerInputComponent->BindAction( "Pickup",       IE_Pressed,  this, &ABrunnhildeCharacter::PickItem );
 	PlayerInputComponent->BindAction( "Sprint",       IE_Pressed,  this, &ABrunnhildeCharacter::Sprint );
 	PlayerInputComponent->BindAction( "Sprint",       IE_Released, this, &ABrunnhildeCharacter::Sprint );
 	PlayerInputComponent->BindAction( "LockEnemy",    IE_Released, this, &ABrunnhildeCharacter::LockEnemy );
-	//if ( StateMachine ) StateMachine->SetupPlayerInputComponent( PlayerInputComponent );
 }
 
 UItemData* ABrunnhildeCharacter::GetEquipedWeapon()
 {
 	return Inventory->IsWeaponEquiped() ? Inventory->GetEquipedWeapon() : nullptr;
+}
+
+UStateMachine* ABrunnhildeCharacter::GetStateMachine()
+{
+	return StateMachine;
 }
 
 
@@ -223,6 +196,11 @@ void ABrunnhildeCharacter::SetMovementTimerHandle( double Duration, bool bEnable
 			GetCharacterMovement()->DisableMovement();
 		}, Duration, false );
 	}
+}
+
+void ABrunnhildeCharacter::SetRequiredNextMontage( bool Required )
+{
+	RequiredNextMontage = Required;
 }
 
 double ABrunnhildeCharacter::GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh )
@@ -260,6 +238,10 @@ void ABrunnhildeCharacter::BeginPlay()
 void ABrunnhildeCharacter::Tick( float DeltaSeconds )
 {
 	Super::Tick( DeltaSeconds );
+	if ( IsValid( StateMachine ) )
+	{
+		StateMachine->Process();
+	}
 }
 
 void ABrunnhildeCharacter::OnResetVR()

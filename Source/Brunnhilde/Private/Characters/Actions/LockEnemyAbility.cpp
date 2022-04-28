@@ -4,9 +4,9 @@
 #include "Characters/Actions/LockEnemyAbility.h"
 #include "BrunnhildeCharacter.h"
 
-void ULockEnemyAbility::BeginAbility()
+bool ULockEnemyAbility::BeginAbility()
 {
-
+    return true;
 }
 void ULockEnemyAbility::Lock()
 {

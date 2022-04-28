@@ -26,19 +26,14 @@ class BRUNNHILDE_API UStateMachine : public UObject
 
 public:
 	UStateMachine() = default;
-	void Tick();
+	void Process();
 
-	UFUNCTION( BlueprintCallable )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Settings" )
 	ABrunnhildeCharacter* GetControlCharacter() { return Character; }
-	UFUNCTION( BlueprintCallable )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Settings" )
 	void Initialize( ABrunnhildeCharacter* Character );
-	UFUNCTION( BlueprintCallable )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Settings")
 	void SetupPlayerInputComponent( UInputComponent* PlayerInputComponent );
-
-	UFUNCTION( BlueprintCallable, Category="Notification" )
-	void HandleDrawnNotification();
-	UFUNCTION( BlueprintCallable, Category="Notification" )
-	void HandleSheathNotification();
 
 	//State
 	void OnIdleState();
@@ -49,40 +44,51 @@ public:
 	void OnKnockDownState();
 
 	//Transition
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void AttackAction();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void DrawnWeaponAction();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void SheathWeaponAction();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void BeDamagedAction();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void PickItemAction();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void SprintAction();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void LockEnemyAction();
 
+	UFUNCTION( BlueprintCallable, Category="Funcs | Notifications" )
+	void DrawnWeaponNotifcation();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Notifications" )
+	void SheathWeaponNotifcation();
 public:
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
 	TSubclassOf< UDrawnNSheathAbility > DrawnSheathClass;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
 	TSubclassOf< UAttackAbility >       AttackClass;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
 	TSubclassOf< UFlinchAbility2 >      FlinchClass;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
 	TSubclassOf< UPickUpItemAbility >   PickUpItemClass;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
 	TSubclassOf< ULockEnemyAbility >    LockEnemyClass;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
 	TSubclassOf< USprintAbility2 >      SprintClass;
 
 
-	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	UDrawnNSheathAbility* DrawnSheathAbility;
-	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	UAttackAbility*       AttackAbility;
-	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	UFlinchAbility2*      FlinchAbility;
-	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	UPickUpItemAbility*   PickUpItemAbility;
-	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	ULockEnemyAbility*    LockEnemyAbility;
-	UPROPERTY( BlueprintReadWrite, Category="Abilities" )
+	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	USprintAbility2*      SprintAbility;
 
 private:
@@ -92,7 +98,6 @@ private:
 	void SetupAbilities();
 private:
 	ABrunnhildeCharacter* Character = nullptr;
-	UAnimMontage* NextMontage = nullptr;
 
 
 };

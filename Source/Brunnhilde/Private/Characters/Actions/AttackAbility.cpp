@@ -9,24 +9,31 @@
 
 bool UAttackAbility::BeginAbility()
 {
-    //HandleAttackInput02();
+    AttackCounter = 0;
+
     ABrunnhildeCharacter* Character = GetControlCharacter();
-    if ( IsState( ECharacterFSM::ECFSM_Fighting ) )
+    if ( IsState( ECharacterFSM::ECFSM_Fighting ) && AttackCounter < AttackCombos.Num() )
     {
         Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
         Character->SetRequiredNextMontage( true );
         AttackCounter++;
-    }
-    else if ( IsState( ECharacterFSM::ECFSM_Attacking ) )
+    } 
+    AttackCounter = AttackCounter % AttackCombos.Num();
+    return true;
+}
+
+bool UAttackAbility::UpdateAbility()
+{
+    ABrunnhildeCharacter* Character = GetControlCharacter();
+    if ( IsState( ECharacterFSM::ECFSM_Attacking ) )
     {
-        if ( IsAcceptedActtion() )
+        if ( IsAcceptedActtion() && AttackCounter < AttackCombos.Num() )
         {
             Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
             Character->SetRequiredNextMontage( true );
             AttackCounter++;
         }
     }
-    AttackCounter = AttackCounter % AttackCombos.Num();
     return true;
 }
 
@@ -46,13 +53,16 @@ int UAttackAbility::GetNextComboIdx()
     return ResetAttackCounter();
 }
 
+
 void UAttackAbility::Initialize( ABrunnhildeCharacter* Character )
 {
     Super::Initialize( Character );
-    InitMontage();
+    InitComboMontage();
+    AttackCounter = 0;
 }
 
-void UAttackAbility::InitMontage()
+
+void UAttackAbility::InitComboMontage()
 {
     for ( auto& AttackMontageClass : AttackComboClasses )
     {
@@ -213,10 +223,4 @@ bool UAttackAbility::IsAcceptedActtion()
         }
     }
     return false;
-}
-
-void UAttackAbility::BeginPlay()
-{
-    Super::BeginPlay();
-    InitMontage();
 }

@@ -47,15 +47,6 @@ void UStateMachine::Initialize( ABrunnhildeCharacter* ControlCharacter )
     SetControlCharacter( ControlCharacter );
     SetupAbilities();
 }
-void UStateMachine::SetupPlayerInputComponent( UInputComponent* PlayerInputComponent )
-{
-    check( PlayerInputComponent );
-    PlayerInputComponent->BindAction( "NormalAttack",   IE_Pressed,   this, &UStateMachine::AttackAction );
-    PlayerInputComponent->BindAction( "Pickup",         IE_Pressed,   this, &UStateMachine::PickItemAction );
-    PlayerInputComponent->BindAction( "Sprint",         IE_Pressed,   this, &UStateMachine::SprintAction );
-    PlayerInputComponent->BindAction( "Sprint",         IE_Released,  this, &UStateMachine::SprintAction );
-    PlayerInputComponent->BindAction( "LockEnemy",      IE_Released,  this, &UStateMachine::LockEnemyAction );
-}
 
 void UStateMachine::OnIdleState()
 {
@@ -67,22 +58,33 @@ void UStateMachine::OnFightingState()
 
 void UStateMachine::OnAttackingState()
 {
-    UAnimMontage* CurrnetMontage =  Character->GetCurrentMontage();
-    if ( CurrnetMontage && Character->IsRequiredNextMontage() )
+    if ( Character->IsRequiredNextMontage() && Character->NextMontageQueue.Num() != 0 )
     {
-        if( Character->NextMontageQueue.Num() == 0 )
-        {
-            return;
-        }
         UAnimMontage* NextMontage = Character->NextMontageQueue.Pop( true );
-        if( NextMontage )
-        {
-            Character->PlayAnimMontage( NextMontage );
-        }
+        Character->PlayAnimMontage( NextMontage );
+    }
+
+    /*
+    float Duration = Character->PlayAnimMontage( NextMontage );
+    GetWorld()->GetTimerManager().SetTimer( CharacterStateHandle, [&]()
+    {
+        ChangeStateTo( ECharacterFSM::ECFSM_Idle );
+    }, Duration, false );
+    */
+    UAnimMontage* CurrMontage = Character->GetCurrentMontage();
+    if ( !CurrMontage )
+    {
+        ChangeStateTo( ECharacterFSM::ECFSM_Idle );
     }
 }
+
 void UStateMachine::OnAccpetedNextComboState()
 {
+    UAnimMontage* CurrnetMontage =  Character->GetCurrentMontage();
+    if ( Character->IsRequiredNextMontage() )
+    {
+        ChangeStateTo( ECharacterFSM::ECFSM_Attacking );
+    }
 }
 void UStateMachine::OnFlinchState()
 {
@@ -103,7 +105,7 @@ void UStateMachine::AttackAction()
     }
     else if ( ECharacterFSM::ECFSM_Attacking == Character->CurrentState )
     {
-        if ( AttackAbility->BeginAbility() )        ChangeStateTo( ECharacterFSM::ECFSM_AcceptedAttackCombo );
+        if ( AttackAbility->UpdateAbility() )       ChangeStateTo( ECharacterFSM::ECFSM_AcceptedAttackCombo );
     }
     return;
 }
@@ -227,7 +229,7 @@ void UStateMachine::SetupAbilities()
     if ( LockEnemyClass ) LockEnemyAbility   = NewObject< ULockEnemyAbility >( this, LockEnemyClass );
     if ( SprintClass ) SprintAbility      = NewObject< USprintAbility2 >( this, SprintClass );
 
-    if ( AttackAbility )         AttackAbility->SetControlCharacter( Character );
+    if ( AttackAbility )         AttackAbility->Initialize( Character );  
     if ( FlinchAbility )         FlinchAbility->SetControlCharacter( Character );
     if ( DrawnSheathAbility )    DrawnSheathAbility->SetControlCharacter( Character );
     if ( PickUpItemAbility )     PickUpItemAbility->SetControlCharacter( Character );

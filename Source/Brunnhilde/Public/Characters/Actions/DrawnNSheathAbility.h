@@ -33,7 +33,6 @@ public:
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite )
 	float Idle2SheathTime = 5.0f;
-
 	bool bWeaponDrawn;
 
 private:

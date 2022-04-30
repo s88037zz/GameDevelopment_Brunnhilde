@@ -19,7 +19,7 @@ void UDrawnNSheathAbility::TickComponent( float DeltaTime, ELevelTick TickType, 
     {
         TimeCounter += DeltaTime;
 
-        if ( TimeCounter > Idle2SheathTime )
+        if ( TimeCounter > Idle2SheathTime && bWeaponDrawn )
         {
             Sheath();
             TimeCounter = 0;
@@ -30,10 +30,6 @@ void UDrawnNSheathAbility::TickComponent( float DeltaTime, ELevelTick TickType, 
 
 bool UDrawnNSheathAbility::BeginAbility()
 {
-    if ( bWeaponDrawn )
-    {
-        return Sheath();
-    }   
     return Drawn();
 }
 

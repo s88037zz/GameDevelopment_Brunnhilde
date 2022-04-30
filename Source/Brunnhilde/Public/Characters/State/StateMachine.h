@@ -32,8 +32,6 @@ public:
 	ABrunnhildeCharacter* GetControlCharacter() { return Character; }
 	UFUNCTION( BlueprintCallable, Category="Funcs | Settings" )
 	void Initialize( ABrunnhildeCharacter* Character );
-	UFUNCTION( BlueprintCallable, Category="Funcs | Settings")
-	void SetupPlayerInputComponent( UInputComponent* PlayerInputComponent );
 
 	//State
 	void OnIdleState();
@@ -96,8 +94,9 @@ private:
 	bool IsState( ECharacterFSM State );
 	void SetControlCharacter( ABrunnhildeCharacter* ControlCharacter );
 	void SetupAbilities();
+
 private:
 	ABrunnhildeCharacter* Character = nullptr;
-
+	FTimerHandle CharacterStateHandle;
 
 };

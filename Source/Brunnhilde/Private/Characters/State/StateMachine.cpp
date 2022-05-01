@@ -54,6 +54,18 @@ void UStateMachine::OnIdleState()
 
 void UStateMachine::OnFightingState()
 {
+    if ( Character->NextMontageQueue.Num() != 0 && Character->IsRequiredNextMontage() )
+    {
+        UAnimMontage* NextMontage = Character->NextMontageQueue.Pop(true);
+        Character->PlayAnimMontage( NextMontage );
+    }
+
+    UAnimMontage* CurMontage = Character->GetCurrentMontage();
+    if ( !CurMontage )
+    {
+        ECharacterFSM State = DrawnSheathAbility->bWeaponDrawn ? ECharacterFSM::ECFSM_Fighting : ECharacterFSM::ECFSM_Idle;
+        Character->CurrentState = State;
+    }
 }
 
 void UStateMachine::OnAttackingState()
@@ -64,30 +76,37 @@ void UStateMachine::OnAttackingState()
         Character->PlayAnimMontage( NextMontage );
     }
 
-    /*
-    float Duration = Character->PlayAnimMontage( NextMontage );
-    GetWorld()->GetTimerManager().SetTimer( CharacterStateHandle, [&]()
+    if ( !Character->IsValidLowLevel() )
     {
-        ChangeStateTo( ECharacterFSM::ECFSM_Idle );
-    }, Duration, false );
-    */
+        return;
+    }
     UAnimMontage* CurrMontage = Character->GetCurrentMontage();
     if ( !CurrMontage )
     {
-        ChangeStateTo( ECharacterFSM::ECFSM_Idle );
+        ECharacterFSM State = DrawnSheathAbility->bWeaponDrawn ? ECharacterFSM::ECFSM_Fighting : ECharacterFSM::ECFSM_Idle;
+        Character->CurrentState = State;
     }
 }
 
 void UStateMachine::OnAccpetedNextComboState()
 {
     UAnimMontage* CurrnetMontage =  Character->GetCurrentMontage();
-    if ( Character->IsRequiredNextMontage() )
+    if ( !IsState( ECharacterFSM::ECFSM_Flinch ) && Character->IsRequiredNextMontage() )
     {
         ChangeStateTo( ECharacterFSM::ECFSM_Attacking );
     }
 }
 void UStateMachine::OnFlinchState()
 {
+    AttackAbility->ResetAttackCounter();
+    Character->NextMontageQueue.Empty();
+
+    UAnimMontage* Montage = Character->GetCurrentMontage();
+    if ( !Montage )
+    {
+        ECharacterFSM State = DrawnSheathAbility->bWeaponDrawn ? ECharacterFSM::ECFSM_Fighting : ECharacterFSM::ECFSM_Idle;
+        Character->CurrentState = State;
+    }
 }
 void UStateMachine::OnKnockDownState()
 {
@@ -230,11 +249,11 @@ void UStateMachine::SetupAbilities()
     if ( SprintClass ) SprintAbility      = NewObject< USprintAbility2 >( this, SprintClass );
 
     if ( AttackAbility )         AttackAbility->Initialize( Character );  
-    if ( FlinchAbility )         FlinchAbility->SetControlCharacter( Character );
-    if ( DrawnSheathAbility )    DrawnSheathAbility->SetControlCharacter( Character );
-    if ( PickUpItemAbility )     PickUpItemAbility->SetControlCharacter( Character );
-    if ( PickUpItemAbility )     SprintAbility->SetControlCharacter( Character );
-    if ( SprintAbility )         SprintAbility->SetControlCharacter( Character );
+    if ( FlinchAbility )         FlinchAbility->Initialize( Character );
+    if ( DrawnSheathAbility )    DrawnSheathAbility->Initialize( Character );
+    if ( PickUpItemAbility )     PickUpItemAbility->Initialize( Character );
+    if ( PickUpItemAbility )     SprintAbility->Initialize( Character );
+    if ( SprintAbility )         SprintAbility->Initialize( Character );
 }
 
 bool UStateMachine::IsState( ECharacterFSM State )

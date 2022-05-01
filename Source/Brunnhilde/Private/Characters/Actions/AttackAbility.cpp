@@ -9,31 +9,42 @@
 
 bool UAttackAbility::BeginAbility()
 {
-    AttackCounter = 0;
-
-    ABrunnhildeCharacter* Character = GetControlCharacter();
-    if ( IsState( ECharacterFSM::ECFSM_Fighting ) && AttackCounter < AttackCombos.Num() )
+    UAnimMontage* CurrentMontage = GetControlCharacter()->GetCurrentMontage();
+    if( CurrentMontage || !IsState( ECharacterFSM::ECFSM_Fighting ) || AttackCounter >= AttackCombos.Num() )
     {
-        Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
-        Character->SetRequiredNextMontage( true );
-        AttackCounter++;
-    } 
-    AttackCounter = AttackCounter % AttackCombos.Num();
+        return false;
+    }
+
+    AttackCounter = 0;
+    ABrunnhildeCharacter* Character = GetControlCharacter();
+
+    Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
+    Character->SetRequiredNextMontage( true );
+    AttackCounter = ( AttackCounter + 1 ) % AttackCombos.Num();
     return true;
+}
+
+void UAttackAbility::Initialize( ABrunnhildeCharacter* Character )
+{
+    Super::Initialize( Character );
+    InitComboMontage();
+    AttackCounter = 0;
 }
 
 bool UAttackAbility::UpdateAbility()
 {
-    ABrunnhildeCharacter* Character = GetControlCharacter();
-    if ( IsState( ECharacterFSM::ECFSM_Attacking ) )
+    if ( !IsState( ECharacterFSM::ECFSM_Attacking )
+         || !IsInAcceptableActtionRange
+         || AttackCounter >= AttackCombos.Num() )
     {
-        if ( IsAcceptedActtion() && AttackCounter < AttackCombos.Num() )
-        {
-            Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
-            Character->SetRequiredNextMontage( true );
-            AttackCounter++;
-        }
+        return false;
     }
+
+    ABrunnhildeCharacter* Character = GetControlCharacter();
+    Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
+    Character->SetRequiredNextMontage( true );
+    IsInAcceptableActtionRange = false; //將AnimNotification設定的變數Reset
+    AttackCounter = ( AttackCounter + 1 ) % AttackCombos.Num();
     return true;
 }
 
@@ -53,15 +64,6 @@ int UAttackAbility::GetNextComboIdx()
     return ResetAttackCounter();
 }
 
-
-void UAttackAbility::Initialize( ABrunnhildeCharacter* Character )
-{
-    Super::Initialize( Character );
-    InitComboMontage();
-    AttackCounter = 0;
-}
-
-
 void UAttackAbility::InitComboMontage()
 {
     for ( auto& AttackMontageClass : AttackComboClasses )
@@ -70,35 +72,6 @@ void UAttackAbility::InitComboMontage()
         check( IsValid( Combo ) );
         AttackCombos.Add( Combo );
     }
-}
-
-
-void UAttackAbility::HandleNotification_AttackComboNext()
-{
-    //Check validate
-    ABrunnhildeCharacter* Character = GetControlCharacter();
-    if ( !IsValid( Character ) )
-    {
-        return;
-    }
-
-    // Handle Notification
-    if ( IsState( ECharacterFSM::ECFSM_AcceptedAttackCombo ) )
-    {
-        GetControlMovement()->DisableMovement();
-
-        AttackCounter = ( AttackCounter + 1 ) % AttackCombos.Num();
-        double Duration = SetControlPlayAnimMontage( AttackCombos[AttackCounter]->AttackMontage );
-        Character->SetMovementTimerHandle( Duration, true );
-
-        ChangeStateTo( ECharacterFSM::ECFSM_Attacking );
-    }
-    else
-    {
-        ResetAttackCounter();
-        ChangeStateTo( ECharacterFSM::ECFSM_Idle );
-    }
-
 }
 
 void UAttackAbility::HandleAttackInput02()
@@ -191,36 +164,4 @@ void UAttackAbility::HandleAttackInput02()
             }
         }
     }
-}
-
-bool UAttackAbility::IsAcceptedActtion()
-{
-    //Check validation
-    if ( !IsValid( GetControlCharacter() ) )
-    {
-        return false;
-    }
-
-    if ( !IsValid( GetControlMovement() ) )
-    {
-        return false;
-    }
-
-    UAnimMontage* CurrentAttackMontage = GetControlActiveMontage();
-    if ( CurrentAttackMontage )
-    {
-
-        double Length = CurrentAttackMontage->GetSectionLength( 0 );
-        double LeftTime = GetControlCharacter()->GetMontageLeftTime( CurrentAttackMontage,
-                                                 GetControlMesh() );
-
-
-        float Threshold = CurrentActiveCombo ? CurrentActiveCombo->LeftTimeToCombo : 0.5;
-
-        if ( LeftTime / Length < Threshold )
-        {
-            return true;
-        }
-    }
-    return false;
 }

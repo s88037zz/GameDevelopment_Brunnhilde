@@ -30,7 +30,11 @@ void UDrawnNSheathAbility::TickComponent( float DeltaTime, ELevelTick TickType, 
 
 bool UDrawnNSheathAbility::BeginAbility()
 {
-    return Drawn();
+    if ( !bWeaponDrawn )
+    {
+        return Drawn();
+    }   
+    return true;
 }
 
 bool UDrawnNSheathAbility::Drawn()
@@ -43,9 +47,12 @@ bool UDrawnNSheathAbility::Drawn()
 
 
     ABrunnhildeCharacter* Character =  Cast<ABrunnhildeCharacter>( GetControlCharacter() );
-    if ( !bWeaponDrawn &&
-         Character->Inventory->IsWeaponEquiped() )
+    if ( !bWeaponDrawn )
     {
+        if ( !Character->Inventory->IsWeaponEquiped() )
+        {
+            return false;
+        }
 
         GetControlMovement()->DisableMovement();
 
@@ -58,11 +65,9 @@ bool UDrawnNSheathAbility::Drawn()
             GetControlMovement()->SetMovementMode( MOVE_Walking );      
 
         }, Duration, false );
-
         bWeaponDrawn = true;
-        return true;
     }
-    return false;
+    return true;
 }
 
 bool UDrawnNSheathAbility::Sheath()

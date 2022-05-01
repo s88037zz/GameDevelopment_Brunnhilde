@@ -16,18 +16,15 @@ class BRUNNHILDE_API UAttackAbility : public UAbility2
 
 public:
 	virtual bool BeginAbility() override;
+	virtual void Initialize( ABrunnhildeCharacter* Character ) override;
 	bool UpdateAbility();
 
 	/* common used*/
 	int ResetAttackCounter();
 	int GetNextComboIdx();
-	void Initialize( ABrunnhildeCharacter* Character );
 	void InitComboMontage();
-	//  method1: input + notification
-	void HandleNotification_AttackComboNext();
 	// method2: only input
 	void HandleAttackInput02();
-	bool IsAcceptedActtion();
 
 public:
 	UPROPERTY( BlueprintReadWrite, EditAnywhere )
@@ -36,6 +33,9 @@ public:
 	/* Endurance Cost in each attack */
 	UPROPERTY( BlueprintReadWrite, EditAnywhere )
 	int EnduranceCost = 10;
+
+	UPROPERTY( BlueprintReadWrite, EditAnywhere )
+	bool IsInAcceptableActtionRange = false;
 
 	UFUNCTION( BlueprintCallable )
 	TArray< UAttackCombo* > GetAttackCombos() const { return AttackCombos; }

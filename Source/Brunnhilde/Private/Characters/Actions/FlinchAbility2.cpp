@@ -7,11 +7,10 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
-
-bool UFlinchAbility2::BeginAbility()
+void UFlinchAbility2::Initialize( ABrunnhildeCharacter* Character )
 {
+	Super::Initialize( Character );
 	GetControlCharacter()->OnTakeAnyDamage.AddDynamic( this, &UFlinchAbility2::OnTakeDamaged );
-	return true;
 }
 
 void UFlinchAbility2::OnTakeDamaged( AActor* DamagedActor, float Damage, const UDamageType* DamageType,
@@ -25,10 +24,11 @@ void UFlinchAbility2::OnTakeDamaged( AActor* DamagedActor, float Damage, const U
 	if ( Cast< AWeapon >( DamageCauser ) )
 	{
 		AWeapon* Weapon = Cast< AWeapon >( DamageCauser );
-		ABrunnhildeCharacter* OwnerActor = Cast< ABrunnhildeCharacter >( Weapon->GetOwner() );
+		ABrunnhildeCharacter* OwnerCharacter = Cast< ABrunnhildeCharacter >( Weapon->GetOwner() );
+		ABrunnhildeCharacter* DamagedCharacter = Cast< ABrunnhildeCharacter >( DamagedActor );
 
 		// Weapon Exist Owner And Not Belong You
-		if ( Weapon && OwnerActor && OwnerActor != GetControlCharacter() )
+		if ( Weapon && OwnerCharacter && OwnerCharacter != GetControlCharacter() )
 		{
 			// Check Owner Is Attacking And Self Don't Play Any Montage
 			if ( nullptr == GetControlActiveMontage() )
@@ -60,6 +60,7 @@ void UFlinchAbility2::OnTakeDamaged( AActor* DamagedActor, float Damage, const U
 				}, Duration, false );
 				
 				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake( OnTakeDamageShakingType );
+
 			}
 
 		}

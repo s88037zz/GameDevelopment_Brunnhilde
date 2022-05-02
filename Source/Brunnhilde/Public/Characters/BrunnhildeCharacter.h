@@ -10,7 +10,6 @@
 
 class UAnimComposite;
 class AWeapon;
-class UItemData;
 class UCameraComponent;
 class USpringArmComponent;
 class UHealthComponent;
@@ -36,13 +35,9 @@ public:
 	void Sprint();
 	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void LockEnemy();
-    UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
-	void Dead(); 
-	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
-	void UseItem( UItemData* Item );
 
 	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
-	UItemData* GetEquipedWeapon();
+	AWeapon* GetEquipedWeapon();
 	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
 	UStateMachine* GetStateMachine();
 	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
@@ -71,10 +66,6 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category=Camera )
 	float BaseLookUpRate;
-
-	//測試效果
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Montages", meta=( DisplayName="DeadMontage" ) )
-	UAnimMontage* DeadMontage;
 
 	// 角色重要能力
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )

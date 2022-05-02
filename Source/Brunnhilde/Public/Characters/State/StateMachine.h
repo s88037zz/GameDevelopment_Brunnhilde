@@ -15,6 +15,7 @@ class ABrunnhildeCharacter;
 class UPickUpItemAbility;
 class ULockEnemyAbility;
 class USprintAbility2;
+class UDeadAbility;
 class UPlayerInputComponent;
 /**
  * 
@@ -40,6 +41,9 @@ public:
 	void OnAccpetedNextComboState();
 	void OnFlinchState();
 	void OnKnockDownState();
+	void OnDeadState();
+	void OnPickupItemState();
+
 
 	//Transition
 	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
@@ -56,6 +60,9 @@ public:
 	void SprintAction();
 	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void LockEnemyAction();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
+	void PickupItemAction();
+
 
 	UFUNCTION( BlueprintCallable, Category="Funcs | Notifications" )
 	void DrawnWeaponNotifcation();
@@ -74,7 +81,8 @@ public:
 	TSubclassOf< ULockEnemyAbility >    LockEnemyClass;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
 	TSubclassOf< USprintAbility2 >      SprintClass;
-
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
+	TSubclassOf< UDeadAbility >         DeadClass;
 
 	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	UDrawnNSheathAbility* DrawnSheathAbility;
@@ -88,6 +96,8 @@ public:
 	ULockEnemyAbility*    LockEnemyAbility;
 	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	USprintAbility2*      SprintAbility;
+	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
+	UDeadAbility*         DeadAbility;
 
 private:
 	void ChangeStateTo( ECharacterFSM State );

@@ -3,8 +3,8 @@
 
 #include "Games/InventoryComponent.h"
 #include "Item/Armour.h"
+#include "Item/Weapon.h"
 #include "BrunnhildeCharacter.h"
-#include "ItemData/EquipmentData.h"
 
 // Sets default values for this component's properties
 UInventoryComponent::UInventoryComponent( ABrunnhildeCharacter* Owner )
@@ -26,13 +26,7 @@ void UInventoryComponent::BeginPlay()
 }
 
 
-// Called every frame
-void UInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	// ...
-}
-
-bool UInventoryComponent::AddItem( UItemData* Item )
+bool UInventoryComponent::AddItem( AItem* Item )
 {
 	if ( Items.Num() > Capacity || !IsValid( Item ) )
 	{
@@ -48,7 +42,7 @@ bool UInventoryComponent::AddItem( UItemData* Item )
 	return true;
 }
 
-bool UInventoryComponent::RemoveItem( UItemData* Item )
+bool UInventoryComponent::RemoveItem( AItem* Item )
 {
 	if ( Item )
 	{
@@ -63,7 +57,7 @@ bool UInventoryComponent::RemoveItem( UItemData* Item )
 }
 
 
-bool UInventoryComponent::UseItem( UItemData* Item )
+bool UInventoryComponent::UseItem( AItem* Item )
 {
 	if ( nullptr == Item || Item->ItemType != EItemTypes::EIT_PROP )
 	{
@@ -86,7 +80,7 @@ bool UInventoryComponent::UseItem( UItemData* Item )
 }
 
 
-bool UInventoryComponent::EquipItem( UItemData* Item )
+bool UInventoryComponent::EquipItem( AItem* Item )
 {
 	if ( nullptr == Item )
 	{
@@ -99,7 +93,7 @@ bool UInventoryComponent::EquipItem( UItemData* Item )
 	}
 
 	ABrunnhildeCharacter* Character = Cast< ABrunnhildeCharacter >( GetOwner() );
-	UEquipmentData* EquipmentData = Cast< UEquipmentData >( Item );
+	AItem* EquipmentData = Cast< AItem >( Item );
 	if ( IsValid( EquipmentData ) && IsValid( Character ) )
 	{	
 		//Excute Equip Weapon
@@ -127,7 +121,7 @@ bool UInventoryComponent::UnEquipItem( EItemTypes EquipementType )
 
 	if ( EquipedEquipments.Contains( EquipementType ) )
 	{
-		UItemData* Item = EquipedEquipments[ EquipementType ];
+		AItem* Item = EquipedEquipments[ EquipementType ];
 		Item->OnUnEquiped( Character );
 
 		//Update Inventory Data
@@ -150,11 +144,11 @@ bool UInventoryComponent::IsWeaponEquiped()
 	return EquipedEquipments.Find( EItemTypes::EIT_WEAPON ) != nullptr;
 }
 
-UItemData* UInventoryComponent::GetEquipedWeapon( EItemTypes WeaponType )
+AWeapon* UInventoryComponent::GetEquipedWeapon( EItemTypes WeaponType )
 {
 	if ( IsWeaponEquiped() )
 	{
-		return EquipedEquipments[ WeaponType ];
+		return Cast< AWeapon >( EquipedEquipments[ WeaponType ] );
 	}
 	return nullptr;
 }

@@ -56,7 +56,9 @@ enum class ECharacterFSM : uint8
 	ECFSM_Attacking,
 	ECFSM_AcceptedAttackCombo,
 	ECFSM_Flinch,
-	ECFSM_KnockDown
+	ECFSM_KnockDown,
+	ECFSM_Dead,
+	ECFSM_Pickup
 };
 
 

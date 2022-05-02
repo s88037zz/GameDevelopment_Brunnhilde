@@ -9,14 +9,11 @@
 #include "BrunnhildeCharacter.h"
 #include "Kismet/GameplayStatics.h"
 
-void AWeapon::Use( ABrunnhildeCharacter* Character )
-{
-}
 
 // Sets default values
 AWeapon::AWeapon()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	RootCmp = CreateDefaultSubobject<USceneComponent>( TEXT( "Root" ) );
 	RootComponent = RootCmp;
@@ -44,7 +41,11 @@ AWeapon::AWeapon( AWeapon* Weapon )
 	this->BoxCmp      = Weapon->BoxCmp;
 }
 
-void AWeapon::Equip( ABrunnhildeCharacter* Character, FString AttachSocket )
+void AWeapon::OnUse( ABrunnhildeCharacter* Character )
+{
+}
+
+void AWeapon::OnEquiped( ABrunnhildeCharacter* Character )
 {
 	if ( Character )
 	{
@@ -53,24 +54,19 @@ void AWeapon::Equip( ABrunnhildeCharacter* Character, FString AttachSocket )
 						   FAttachmentTransformRules::SnapToTargetIncludingScale,
 						   FName( *AttachSocket ) );
 		SetOwner( Character );
-		OnEquiped();
 	}
 }
 
 
-void AWeapon::UnEquip()
+void AWeapon::OnUnEquiped( ABrunnhildeCharacter* Character )
 {
-	// Let weapon can attach on character
-	OnUnEquiped();
 	FDetachmentTransformRules Rule = FDetachmentTransformRules::KeepWorldTransform;
 	DetachFromActor( Rule );
 	SetOwner( nullptr );
-
 }
 
-void AWeapon::Drawn( AActor* ACharacter, FString AttachSocket )
+void AWeapon::OnDrawn( ABrunnhildeCharacter* Character )
 {
-	ABrunnhildeCharacter* Character = Cast<ABrunnhildeCharacter>( ACharacter );
 	if ( IsValid( Character ) )
 	{
 		GetMeshComponent()->AttachToComponent( Character->GetMesh(), 
@@ -79,7 +75,7 @@ void AWeapon::Drawn( AActor* ACharacter, FString AttachSocket )
 	}
 }
 
-void AWeapon::Sheath( AActor* ACharacter, FString AttachSocket )
+void AWeapon::OnSheath( ABrunnhildeCharacter* ACharacter )
 
 {
 	ABrunnhildeCharacter* Character = Cast<ABrunnhildeCharacter>( ACharacter );
@@ -90,31 +86,6 @@ void AWeapon::Sheath( AActor* ACharacter, FString AttachSocket )
 											   FName( *AttachSocket ) );
 	}
 }
-/*
-AWeapon* AWeapon::HandlePickupByCopy()
-{
-	AActor* PlayerActor = UGameplayStatics::GetPlayerPawn( GetWorld(), 0 );
-	if ( PlayerActor )
-	{
-		ABrunnhildeCharacter* Character = Cast<ABrunnhildeCharacter>( PlayerActor );
-		if ( Character )
-		{
-			// Let weapon can attach on character
-			AWeapon* Copy = DeepCopy();
-			if ( Copy )
-			{
-                Copy->AttachToComponent( Character->GetMesh(), 
-										 FAttachmentTransformRules::SnapToTargetIncludingScale, 
-										 FName( *EquipedSocket );
-                Copy->SetOwner( PlayerActor );
-                Destroy();
-                return Copy;
-			}		
-		}
-	}
-	return nullptr;
-}
-*/
 
 void AWeapon::HandleDrop()
 {

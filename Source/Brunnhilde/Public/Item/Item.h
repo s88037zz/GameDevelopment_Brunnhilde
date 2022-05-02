@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "GameFramework/Actor.h"
-#include "ItemData/ItemData.h"
+#include "Games/BrunnhildeDef.h"
 #include "Item.generated.h"
 
 class ABrunnhildeCharacter;
@@ -25,43 +25,57 @@ public:
 	UFUNCTION( BlueprintCallable, Category="Item | UFUNCTION" )
 	UStaticMeshComponent* GetMeshComponent() { return MeshCmp; }
 
-	virtual void Use( ABrunnhildeCharacter* Character ) PURE_VIRTUAL( AItem, );
-	virtual void Equip( ABrunnhildeCharacter* Character, FString AttachSocket ) PURE_VIRTUAL( AItem, );
-	virtual void UnEquip() PURE_VIRTUAL( AItem, );
-
-	UFUNCTION( BlueprintImplementableEvent, Category="Weapon | UFUNCTION" )
-	void OnEquiped();
-	UFUNCTION( BlueprintImplementableEvent, Category="Weapon | UFUNCTION" )
-	void OnUnEquiped();
+	// 物件被使用或裝備...時要做的事
+	virtual void OnUse( ABrunnhildeCharacter* Character ) PURE_VIRTUAL( AItem, );
+	virtual void OnEquiped( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
+	virtual void OnUnEquiped( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
+	virtual void OnDrawn( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
+	virtual void OnSheath( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
 
 public: 
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | UPROPERTY" )
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Setting" )
 	FText UseActionText;
-
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | UPROPERTY" )
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Setting" )
 	class UStaticMesh* PickupMesh;
-
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | UPROPERTY" )
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Setting " )
+	class UStaticMesh* DroppedMesh;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Setting" )
 	class UTexture2D* Thumnail;
-
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | UPROPERTY" )
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Setting" )
 	FText ItemDisplayName;
-
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | UPROPERTY", meta=( MultiLine=true ) )
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Setting", meta=( MultiLine=true ) )
 	FText ItemDiscription;
-
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Item | UPROPERTY", meta=( Clamp=0.0 ) )
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Setting", meta=( Clamp=0.0 ) )
 	float Weight;
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Profile | Setting" )
+	EItemRarityTypes RarityType = EItemRarityTypes::EIRT_Common;
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Profile | Setting" )
+	EItemTypes ItemType = EItemTypes::EIT_PROP;
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Profile | Setting" )
+	FString AttachSocket;
 
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Constitution;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Mentality;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Endurance;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Strength;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Dexterity;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Intelligence;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Wisdom;
+
+	//Component
 	UPROPERTY()
 	class UInventoryComponent* OwningInventory;
-
-	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Item | UPROPERTY", meta=( AllowPrivateAccess="true" ) )
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Profile | Component", meta=( AllowPrivateAccess="true" ) )
 	class USceneComponent* RootCmp = nullptr;
-
-	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Item | UPROPERTY", meta=( AllowPrivateAccess="true" ) )
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Profile | Component", meta=( AllowPrivateAccess="true" ) )
 	class UArrowComponent* ArrowCmp = nullptr;
-
-	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Item | UPROPERTY", meta=( AllowPrivateAccess="true" ) )
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Profile | Component", meta=( AllowPrivateAccess="true" ) )
 	class UStaticMeshComponent* MeshCmp = nullptr;
 };

@@ -2,7 +2,6 @@
 
 
 #include "Item/Item.h"
-#include "ItemData/ItemData.h"
 
 AItem::AItem()
 {

@@ -41,8 +41,14 @@ bool UAttackAbility::UpdateAbility()
     }
 
     ABrunnhildeCharacter* Character = GetControlCharacter();
+    if ( Character->GetEnduranceCmp()->GetCurrentEndurance() < EnduranceCost )
+    {
+        return false;
+    }
+
     Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
     Character->SetRequiredNextMontage( true );
+
     IsInAcceptableActtionRange = false; //將AnimNotification設定的變數Reset
     AttackCounter = ( AttackCounter + 1 ) % AttackCombos.Num();
     return true;
@@ -54,16 +60,6 @@ int UAttackAbility::ResetAttackCounter()
     return AttackCounter;
 }
 
-int UAttackAbility::GetNextComboIdx()
-{
-    if( CurrentActiveCombo )
-    {
-        int Idx = AttackCombos.Find( CurrentActiveCombo );
-        return ( Idx + 1 ) % AttackCombos.Num();
-    }
-    return ResetAttackCounter();
-}
-
 void UAttackAbility::InitComboMontage()
 {
     for ( auto& AttackMontageClass : AttackComboClasses )
@@ -73,46 +69,15 @@ void UAttackAbility::InitComboMontage()
         AttackCombos.Add( Combo );
     }
 }
-
+/*
 void UAttackAbility::HandleAttackInput02()
 
 {
-    //Check validation
-    if ( !IsValid( GetControlCharacter() ) )
-    {
-        return;
-    }
-
-    if ( !IsValid( GetControlMovement() ) )
-    {
-        return;
-    }
-
-    // Is Endurance Enough
-
-    ABrunnhildeCharacter* Character = GetControlCharacter();
-    if ( Character->GetEnduranceCmp()->GetCurrentEndurance() < EnduranceCost )
-    {
-        return;
-    }
-
     // Handle Input
     if ( Character->CurrentState == ECharacterFSM::ECFSM_Attacking )
     {
         GetControlMovement()->DisableMovement();
 
-        AttackCounter = ResetAttackCounter();
-        if ( AttackCombos.IsValidIndex( AttackCounter ) 
-             && IsValid( AttackCombos[ AttackCounter ] ) )
-        {
-            CurrentActiveCombo = AttackCombos[AttackCounter];
-        }
-        else
-        {
-            return;
-        }
-
-        double Duration = SetControlPlayAnimMontage( CurrentActiveCombo->AttackMontage );
 
         UGameplayStatics::PlaySoundAtLocation( GetWorld(), CurrentActiveCombo->SoundEffect,
                                                Character->GetTransform().GetLocation() );
@@ -132,36 +97,11 @@ void UAttackAbility::HandleAttackInput02()
         UAnimMontage* CurrentAttackMontage = GetControlActiveMontage();
         if ( CurrentAttackMontage )
         {
-
-            double Length = CurrentAttackMontage->GetSectionLength( 0 );
-            double LeftTime = Character->GetMontageLeftTime( CurrentAttackMontage,
-                                                             GetControlMesh() );
-
-
-            float Threshold = CurrentActiveCombo ? CurrentActiveCombo->LeftTimeToCombo : 0.5;
-
-            if ( LeftTime / Length < Threshold )
-            {
-
-                AttackCounter = GetNextComboIdx();
-                CurrentActiveCombo = AttackCombos[AttackCounter];
-
-
-                double Duration = SetControlPlayAnimMontage( AttackCombos[AttackCounter]->AttackMontage );
-                UGameplayStatics::PlaySoundAtLocation( GetWorld(), AttackCombos[AttackCounter]->SoundEffect,
+            UGameplayStatics::PlaySoundAtLocation( GetWorld(), AttackCombos[AttackCounter]->SoundEffect,
                                                        Character->GetTransform().GetLocation() );
-                GetWorld()->GetFirstPlayerController()
-                    ->PlayerCameraManager->PlayCameraShake( CurrentActiveCombo->OnHitShakingType );
-
-
-                Character->SetMovementTimerHandle( Duration, true );
-                Character->GetEnduranceCmp()->Reduce( EnduranceCost );
-
-                GetWorld()->GetTimerManager().SetTimer( AttackStatusHandle, [this]()
-                {
-                    ResetAttackCounter();                   
-                }, Duration, false );
-            }
+            GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake( CurrentActiveCombo->OnHitShakingType );
+            Character->GetEnduranceCmp()->Reduce( EnduranceCost );        
         }
     }
 }
+*/

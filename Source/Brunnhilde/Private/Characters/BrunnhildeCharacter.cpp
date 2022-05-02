@@ -19,9 +19,6 @@
 #include "InventoryComponent.h"
 #include "Item/Weapon.h"
 #include "Item/Armour.h"
-#include "ItemData/ArmourData.h"
-#include "ItemData/ItemData.h"
-#include "ItemData/EquipmentData.h"
 #include "Characters/State/StateMachine.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -64,7 +61,6 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
 	//* Health Component Setting*/
 	HealthCmp = CreateDefaultSubobject< UHealthComponent >( TEXT( "Health" ) );
 	HealthCmp->MaxHealth = Constitution * 5;
-	HealthCmp->OnDied.AddDynamic( this, &ABrunnhildeCharacter::Dead );
 
 	//* Endurance Component Setting*/
 	EnduranceCmp = CreateDefaultSubobject< UEnduranceComponent >( TEXT( "Endurance") );
@@ -112,28 +108,6 @@ void ABrunnhildeCharacter::LockEnemy()
 	}
 }
 
-void ABrunnhildeCharacter::Dead()
-{
-    if ( !DeadMontage )
-    {
-        return;
-    }
-	if ( HealthCmp->GetCurrentHealth() <= 0 )
-	{
-		GetCharacterMovement()->DisableMovement();
-        float duration = PlayAnimMontage( DeadMontage );
-
-	}
-}
-
-void ABrunnhildeCharacter::UseItem( UItemData* Item )
-{
-	if ( Item )
-	{
-		Item->OnUse( this );
-	}
-}
-
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -169,7 +143,7 @@ void ABrunnhildeCharacter::SetupPlayerInputComponent( class UInputComponent* Pla
 	PlayerInputComponent->BindAction( "LockEnemy",    IE_Released, this, &ABrunnhildeCharacter::LockEnemy );
 }
 
-UItemData* ABrunnhildeCharacter::GetEquipedWeapon()
+AWeapon* ABrunnhildeCharacter::GetEquipedWeapon()
 {
 	return Inventory->IsWeaponEquiped() ? Inventory->GetEquipedWeapon() : nullptr;
 }
@@ -315,7 +289,7 @@ void ABrunnhildeCharacter::HandleEquipmentUpdated()
 
 	for ( auto& Equpiment : Inventory->GetEquipments() )
 	{	
-		UArmourData* ArmourData = Cast< UArmourData >( Equpiment.Value );
+		AItem* ArmourData = Cast< AItem >( Equpiment.Value );
 		if (  IsValid( ArmourData ) )
 		{
 			Constitution += ArmourData->Constitution;

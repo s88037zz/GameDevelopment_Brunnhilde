@@ -10,9 +10,9 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE( FOnInventoryUpdated );
 DECLARE_DYNAMIC_MULTICAST_DELEGATE( FOnEquipmentUpdated );
 
-class UItemData;
+class AItem;
+class AWeapon;
 class ABrunnhildeCharacter;
-class AActor;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BRUNNHILDE_API UInventoryComponent : public UActorComponent
@@ -30,28 +30,25 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 	UFUNCTION( BlueprintCallable )
-	TMap< EItemTypes, UItemData* > GetEquipments() { return EquipedEquipments; }
+	TMap< EItemTypes, AItem* > GetEquipments() { return EquipedEquipments; }
 	
 	UFUNCTION( BlueprintCallable )
-	bool AddItem( UItemData* Item );
+	bool AddItem( AItem* Item );
 	UFUNCTION( BlueprintCallable )
-	bool RemoveItem( UItemData* Item );
+	bool RemoveItem( AItem* Item );
 	UFUNCTION( BlueprintCallable )
-	bool UseItem( UItemData* Item );
+	bool UseItem( AItem* Item );
 
 	UFUNCTION( BlueprintCallable )
-	bool EquipItem( UItemData* Item );
+	bool EquipItem( AItem* Item );
 	UFUNCTION( BlueprintCallable )
 	bool UnEquipItem( EItemTypes EquipmentType );
 	UFUNCTION( BlueprintCallable )
 	bool IsWeaponEquiped();
 
 	UFUNCTION( BlueprintCallable )
-	UItemData* GetEquipedWeapon( EItemTypes WeaponType = EItemTypes::EIT_WEAPON );
+	AWeapon* GetEquipedWeapon( EItemTypes WeaponType = EItemTypes::EIT_WEAPON );
 
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
@@ -64,11 +61,11 @@ public:
 	FOnEquipmentUpdated OnEquipmentUpdated;
 
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
-	TArray< UItemData* > Items;
+	TArray< AItem* > Items;
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Instanced, Category="Inventory" )
-	TArray< UItemData* > DefaultItems;
+	TArray< AItem* > DefaultItems;
 	
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Inventory" )
-	TMap< EItemTypes, UItemData* > EquipedEquipments;
+	TMap< EItemTypes, AItem* > EquipedEquipments;
 };

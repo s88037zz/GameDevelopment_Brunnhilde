@@ -2,7 +2,6 @@
 
 
 #include "Item/Armour.h"
-#include "ItemData/ArmourData.h"
 #include "Components/ArrowComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Characters/BrunnhildeCharacter.h"
@@ -22,14 +21,14 @@ AArmour::AArmour()
 	MeshCmp->SetCollisionEnabled( ECollisionEnabled::NoCollision );
 }
 
-void AArmour::Use( ABrunnhildeCharacter* Character )
+void AArmour::OnUse( ABrunnhildeCharacter* Character )
 {
 	if ( Character )
 	{
 	}
 }
 
-void AArmour::Equip( ABrunnhildeCharacter* Character, FString AttachSocket )
+void AArmour::OnEquiped( ABrunnhildeCharacter* Character )
 {
 	if ( Character )
 	{
@@ -37,15 +36,12 @@ void AArmour::Equip( ABrunnhildeCharacter* Character, FString AttachSocket )
 									 FAttachmentTransformRules::SnapToTargetIncludingScale, 
 									 FName( *AttachSocket ) );
 		SetOwner( Character );
-		OnEquiped();
 	}
 }
 
-void AArmour::UnEquip()
+void AArmour::OnUnEquiped( ABrunnhildeCharacter* Character )
 {
-	OnUnEquiped();
 	FDetachmentTransformRules Rule = FDetachmentTransformRules::KeepWorldTransform;
 	DetachFromActor( Rule );
 	SetOwner( nullptr );
-	
 }

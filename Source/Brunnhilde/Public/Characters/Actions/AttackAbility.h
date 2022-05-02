@@ -16,15 +16,15 @@ class BRUNNHILDE_API UAttackAbility : public UAbility2
 
 public:
 	virtual bool BeginAbility() override;
-	virtual void Initialize( ABrunnhildeCharacter* Character ) override;
 	bool UpdateAbility();
+
+	virtual void Initialize( ABrunnhildeCharacter* Character ) override;
+	void InitComboMontage();
 
 	/* common used*/
 	int ResetAttackCounter();
-	int GetNextComboIdx();
-	void InitComboMontage();
-	// method2: only input
-	void HandleAttackInput02();
+	UAttackCombo* GetCurrentCombo() const { return AttackCombos[ AttackCounter ]; }
+	int GetAttackCounter() const { return AttackCounter; }
 
 public:
 	UPROPERTY( BlueprintReadWrite, EditAnywhere )
@@ -40,11 +40,11 @@ public:
 	UFUNCTION( BlueprintCallable )
 	TArray< UAttackCombo* > GetAttackCombos() const { return AttackCombos; }
 
-    int AttackCounter = 0;
 	FTimerHandle AttackStatusHandle;
 
 private:
 	TArray< UAttackCombo* > AttackCombos;
-	UAttackCombo* CurrentActiveCombo;
+	int AttackCounter = 0;
+
 };
 

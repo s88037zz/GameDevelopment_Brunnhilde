@@ -21,17 +21,12 @@ public:
 	AWeapon();
 	AWeapon( AWeapon* Weapon );
 
-	virtual void Use( class ABrunnhildeCharacter* Character ) override;
-	virtual void Equip( ABrunnhildeCharacter* Character, FString AttachSocket ) override;
-	virtual void UnEquip() override;
-
-	UFUNCTION( BlueprintCallable, Category="Weapon | UFUNCTION" )
-	void Drawn( AActor* ACharacter, FString AttachSocket );
-	UFUNCTION( BlueprintCallable, Category="Weapon | UFUNCTION" )
-	void Sheath( AActor* ACharacter, FString AttachSocket );
-
-	UFUNCTION( BlueprintImplementableEvent, Category="Weapon | UFUNCTION" )
-    void OnHit();
+	// 物件被使用或裝備...時要做的事
+	virtual void OnUse( ABrunnhildeCharacter* Character ) override;
+	virtual void OnEquiped( ABrunnhildeCharacter* Character )  override;
+	virtual void OnUnEquiped( ABrunnhildeCharacter* Character )  override;
+	virtual void OnDrawn( ABrunnhildeCharacter* Character )  override;
+	virtual void OnSheath( ABrunnhildeCharacter* Character )  override;
 
 	/*
 	UFUNCTION( BlueprintCallable, Category="Weapon | UFUNCTION" )

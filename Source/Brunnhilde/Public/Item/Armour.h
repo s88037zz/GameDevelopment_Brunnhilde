@@ -16,7 +16,10 @@ public:
 	// Sets default values for this actor's properties
 	AArmour();
 
-	virtual void Use( class ABrunnhildeCharacter* Character ) override;
-	virtual void Equip( ABrunnhildeCharacter* Character, FString AttachSocket ) override;
-	virtual void UnEquip() override;
+	virtual void OnUse( ABrunnhildeCharacter* Character ) override;
+	virtual void OnEquiped( ABrunnhildeCharacter* Character )  override;
+	virtual void OnUnEquiped( ABrunnhildeCharacter* Character )  override;
+	//virtual void OnDrawn( ABrunnhildeCharacter* Character ) override;
+	//virtual void OnSeath( ABrunnhildeCharacter* Character ) override;
+
 };

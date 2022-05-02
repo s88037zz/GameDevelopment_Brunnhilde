@@ -9,7 +9,10 @@
 #include "Characters/Actions/PickUpItemAbility.h"
 #include "Characters/Actions/LockEnemyAbility.h"
 #include "Characters/Actions/SprintAbility2.h"
-#include "ItemData/ItemData.h"
+#include "Characters/Actions/DeadAbility.h"
+#include "Games/EnduranceComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "Item/Weapon.h"
 #include "Components/InputComponent.h"
 
 
@@ -36,6 +39,10 @@ void UStateMachine::Process()
         case ECharacterFSM::ECFSM_KnockDown:
             OnKnockDownState();
             break;
+        case ECharacterFSM::ECFSM_Dead:
+            OnDeadState();
+        case ECharacterFSM::ECFSM_Pickup:
+            OnPickupItemState();
         default:
             return;
     }
@@ -72,14 +79,30 @@ void UStateMachine::OnAttackingState()
 {
     if ( Character->IsRequiredNextMontage() && Character->NextMontageQueue.Num() != 0 )
     {
+        //Anim
         UAnimMontage* NextMontage = Character->NextMontageQueue.Pop( true );
         Character->PlayAnimMontage( NextMontage );
-    }
 
-    if ( !Character->IsValidLowLevel() )
-    {
+        //Effect
+        USoundBase* HitSound = AttackAbility->GetCurrentCombo()->SoundEffect;
+        if( IsValid( HitSound ) )
+        {
+            UGameplayStatics::PlaySoundAtLocation( GetWorld(), HitSound,
+                                                   Character->GetTransform().GetLocation() );
+        }
+        
+        TSubclassOf < UMatineeCameraShake > CameraShake =  AttackAbility->GetCurrentCombo()->OnHitShakingType;
+        if ( IsValid( HitSound ) )
+        {
+            GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake( CameraShake );
+        }
+
+        //Cost
+        Character->GetEnduranceCmp()->Reduce( AttackAbility->EnduranceCost );
+
         return;
     }
+
     UAnimMontage* CurrMontage = Character->GetCurrentMontage();
     if ( !CurrMontage )
     {
@@ -110,6 +133,40 @@ void UStateMachine::OnFlinchState()
 }
 void UStateMachine::OnKnockDownState()
 {
+}
+void UStateMachine::OnDeadState()
+{
+    if ( !IsValid( DeadAbility ) )
+    {
+        return;
+    }
+
+    UAnimMontage* CurMontage = Character->GetCurrentMontage();
+    if ( !CurMontage )
+    {
+        return;
+    }
+    
+    FTimerHandle TimerHandle;
+    GetWorld()->GetTimerManager().SetTimer( TimerHandle, [&]()
+    {
+        AActor* Actor = Cast< AActor >( GetControlCharacter() );
+        if ( nullptr == Actor )
+        {
+            return;
+        }
+        GetWorld()->DestroyActor( Actor );
+    }, DeadAbility->TimeToDisappear, false ); 
+    
+}
+void UStateMachine::OnPickupItemState()
+{
+    UAnimMontage* CurrMontage = Character->GetCurrentMontage();
+    if ( !CurrMontage )
+    {
+        ECharacterFSM State = DrawnSheathAbility->bWeaponDrawn ? ECharacterFSM::ECFSM_Fighting : ECharacterFSM::ECFSM_Idle;
+        Character->CurrentState = State;
+    }
 }
 
 void UStateMachine::AttackAction()
@@ -204,6 +261,13 @@ void UStateMachine::LockEnemyAction()
 {
 }
 
+void UStateMachine::PickupItemAction()
+{
+    if ( IsValid( PickUpItemAbility ) && IsState( ECharacterFSM::ECFSM_Idle ) && IsState( ECharacterFSM::ECFSM_Fighting ) )
+    {
+        PickUpItemAbility->BeginAbility();
+    }
+}
 void UStateMachine::DrawnWeaponNotifcation()
 {
     if ( !IsValid( DrawnSheathAbility ) )
@@ -211,10 +275,10 @@ void UStateMachine::DrawnWeaponNotifcation()
         return;
     }
 
-    UItemData* WeaponData = Character->GetEquipedWeapon();
-    if ( WeaponData )
+    AWeapon* Weapon = Character->GetEquipedWeapon();
+    if ( Weapon )
     {
-        WeaponData->OnDrawn( Character );
+        Weapon->OnDrawn( Character );
         DrawnSheathAbility->bWeaponDrawn = true;
     }
 }
@@ -226,10 +290,10 @@ void UStateMachine::SheathWeaponNotifcation()
         return;
     }
 
-    UItemData* WeaponData = Character->GetEquipedWeapon();
+    AWeapon* WeaponData = Character->GetEquipedWeapon();
     if ( WeaponData )
     {
-        WeaponData->OnSeath( Character );
+        WeaponData->OnSheath( Character );
         DrawnSheathAbility->bWeaponDrawn = false;
     }
 }
@@ -242,11 +306,12 @@ void UStateMachine::SetControlCharacter( ABrunnhildeCharacter* ControlCharacter 
 void UStateMachine::SetupAbilities()
 {
     if ( DrawnSheathClass )  DrawnSheathAbility = NewObject< UDrawnNSheathAbility >( this, DrawnSheathClass );
-    if ( AttackClass ) AttackAbility      = NewObject< UAttackAbility >( this, AttackClass );
-    if ( FlinchClass ) FlinchAbility      = NewObject< UFlinchAbility2 >( this, FlinchClass );
-    if ( PickUpItemClass ) PickUpItemAbility  = NewObject< UPickUpItemAbility >( this, PickUpItemClass );
-    if ( LockEnemyClass ) LockEnemyAbility   = NewObject< ULockEnemyAbility >( this, LockEnemyClass );
-    if ( SprintClass ) SprintAbility      = NewObject< USprintAbility2 >( this, SprintClass );
+    if ( AttackClass )       AttackAbility      = NewObject< UAttackAbility >( this, AttackClass );
+    if ( FlinchClass )       FlinchAbility      = NewObject< UFlinchAbility2 >( this, FlinchClass );
+    if ( PickUpItemClass )   PickUpItemAbility  = NewObject< UPickUpItemAbility >( this, PickUpItemClass );
+    if ( LockEnemyClass )    LockEnemyAbility   = NewObject< ULockEnemyAbility >( this, LockEnemyClass );
+    if ( SprintClass )       SprintAbility      = NewObject< USprintAbility2 >( this, SprintClass );
+    if ( DeadClass )         DeadAbility        = NewObject< UDeadAbility >( this, DeadClass );
 
     if ( AttackAbility )         AttackAbility->Initialize( Character );  
     if ( FlinchAbility )         FlinchAbility->Initialize( Character );
@@ -254,6 +319,7 @@ void UStateMachine::SetupAbilities()
     if ( PickUpItemAbility )     PickUpItemAbility->Initialize( Character );
     if ( PickUpItemAbility )     SprintAbility->Initialize( Character );
     if ( SprintAbility )         SprintAbility->Initialize( Character );
+    if ( DeadAbility )           DeadAbility->Initialize( Character );
 }
 
 bool UStateMachine::IsState( ECharacterFSM State )

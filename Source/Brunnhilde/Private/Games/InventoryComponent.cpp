@@ -19,10 +19,20 @@ UInventoryComponent::UInventoryComponent( ABrunnhildeCharacter* Owner )
 void UInventoryComponent::BeginPlay()
 {	
 	for ( auto& Item : DefaultItems )
-	{
+	{	
+		if ( nullptr == Item )
+		{
+			return;
+		}
+		// Hides visible components
+		Item->SetActorHiddenInGame( true );
+		// Disables collision components
+		Item->SetActorEnableCollision( false );
+		// Stops the Actor from ticking
+		Item->SetActorTickEnabled( false );
+
 		Items.Add( Item );
 	}
-	
 }
 
 
@@ -59,7 +69,7 @@ bool UInventoryComponent::RemoveItem( AItem* Item )
 
 bool UInventoryComponent::UseItem( AItem* Item )
 {
-	if ( nullptr == Item || Item->ItemType != EItemTypes::EIT_PROP )
+	if ( nullptr == Item || Item->GetItemSetting().ItemType != EItemTypes::EIT_PROP )
 	{
 		return false;
 	}
@@ -91,23 +101,25 @@ bool UInventoryComponent::EquipItem( AItem* Item )
 	{
 		return false;
 	}
-
 	ABrunnhildeCharacter* Character = Cast< ABrunnhildeCharacter >( GetOwner() );
-	AItem* EquipmentData = Cast< AItem >( Item );
-	if ( IsValid( EquipmentData ) && IsValid( Character ) )
-	{	
-		//Excute Equip Weapon
-		EquipmentData->OnEquiped( Character );
+	AItem* NewEquipment = Cast< AItem >( Item );
 
-		//Update Inventory Data
-		UnEquipItem( EquipmentData->ItemType );
-		EquipedEquipments.Add( EquipmentData->ItemType, Item );
-		RemoveItem( Item );
-		OnEquipmentUpdated.Broadcast();
-		return true;
+	if ( !IsValid( NewEquipment ) || !IsValid( Character ) )
+	{
+		return false;
 	}
+
+	// Unequip Current Euqipment with same type
+	UnEquipItem( NewEquipment->GetItemSetting().ItemType );
 	
-	return false;
+	//Excute Equip Weapon
+	NewEquipment->OnEquiped( Character );
+			
+	//Update Inventory Data
+	EquipedEquipments.Add( NewEquipment->GetItemSetting().ItemType, Item );
+	RemoveItem( Item );
+	OnEquipmentUpdated.Broadcast();
+	return true;
 }
 
 bool UInventoryComponent::UnEquipItem( EItemTypes EquipementType )
@@ -144,11 +156,20 @@ bool UInventoryComponent::IsWeaponEquiped()
 	return EquipedEquipments.Find( EItemTypes::EIT_WEAPON ) != nullptr;
 }
 
-AWeapon* UInventoryComponent::GetEquipedWeapon( EItemTypes WeaponType )
+AWeapon* UInventoryComponent::GetEquipedWeapon( EItemTypes eWeaponType )
 {
 	if ( IsWeaponEquiped() )
 	{
-		return Cast< AWeapon >( EquipedEquipments[ WeaponType ] );
+		return Cast< AWeapon >( EquipedEquipments[ eWeaponType ] );
+	}
+	return nullptr;
+}
+
+AItem* UInventoryComponent::GetEquipmentByType( EItemTypes eType )
+{
+	if ( EquipedEquipments.Contains( eType ) )
+	{
+		return EquipedEquipments[ eType ];
 	}
 	return nullptr;
 }

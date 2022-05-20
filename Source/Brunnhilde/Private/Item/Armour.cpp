@@ -7,7 +7,7 @@
 #include "Characters/BrunnhildeCharacter.h"
 
 // Sets default values
-AArmour::AArmour()
+AArmour::AArmour(): AItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	RootComponent = CreateDefaultSubobject<USceneComponent>( TEXT( "Root" ) );
@@ -19,6 +19,18 @@ AArmour::AArmour()
 	MeshCmp = CreateDefaultSubobject<UStaticMeshComponent>( TEXT( "WeaponMesh" ) );
 	MeshCmp->AttachToComponent( RootCmp, FAttachmentTransformRules::KeepRelativeTransform );
 	MeshCmp->SetCollisionEnabled( ECollisionEnabled::NoCollision );
+	
+}
+
+void AArmour::BeginPlay()
+{
+}
+
+AItem* AArmour::DeepCopy()
+{
+	AArmour* Armour = GetWorld()->SpawnActor< AArmour >();
+	Super::DeepCopyTo( Armour );
+	return Armour;
 }
 
 void AArmour::OnUse( ABrunnhildeCharacter* Character )
@@ -34,8 +46,12 @@ void AArmour::OnEquiped( ABrunnhildeCharacter* Character )
 	{
 		MeshCmp->AttachToComponent( Character->GetMesh(),
 									 FAttachmentTransformRules::SnapToTargetIncludingScale, 
-									 FName( *AttachSocket ) );
+									 FName( *ItemSetting.EquipedSocket ) );
+		MeshCmp->SetStaticMesh( ItemSetting.PickupMesh );
+		SetActorHiddenInGame( false );
+		SetActorTickEnabled( true );
 		SetOwner( Character );
+
 	}
 }
 
@@ -43,5 +59,6 @@ void AArmour::OnUnEquiped( ABrunnhildeCharacter* Character )
 {
 	FDetachmentTransformRules Rule = FDetachmentTransformRules::KeepWorldTransform;
 	DetachFromActor( Rule );
+	MeshCmp->SetStaticMesh( nullptr );
 	SetOwner( nullptr );
 }

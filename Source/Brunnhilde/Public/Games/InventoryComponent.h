@@ -48,7 +48,9 @@ public:
 	bool IsWeaponEquiped();
 
 	UFUNCTION( BlueprintCallable )
-	AWeapon* GetEquipedWeapon( EItemTypes WeaponType = EItemTypes::EIT_WEAPON );
+	AWeapon* GetEquipedWeapon( EItemTypes eWeaponType = EItemTypes::EIT_WEAPON );
+	UFUNCTION( BlueprintCallable )
+	AItem* GetEquipmentByType( EItemTypes eType );
 
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )

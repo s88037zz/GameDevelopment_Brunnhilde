@@ -43,7 +43,6 @@ public:
 	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
 	void HandleEquipmentUpdated();
 
-
 public:
 	/** Camera boom positioning the camera behind the character */
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = ( AllowPrivateAccess = "true" ) )
@@ -72,6 +71,7 @@ public:
 	UInventoryComponent* Inventory;
 
 	//裝備參數設定
+	/*
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
 	FName WeaponHoldSocket;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
@@ -86,9 +86,9 @@ public:
 	FName ArmourHandSocket;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
 	FName ArmourFeetSocket;
-
+	*/
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
-		float DamagedImpactRate = 1.0f;
+	float DamagedImpactRate = 1.0f;
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State Machine" )
 	ECharacterFSM CurrentState = ECharacterFSM::ECFSM_Idle;
@@ -126,7 +126,7 @@ public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State Values" )
 	int DefaultWisdom = 20;
 
-	UPROPERTY( EditAnywhere, BlueprintReadOnly, Category="Profile | Montages" )
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Profile | Montages" )
 	TArray< UAnimMontage* > NextMontageQueue;
 
 /* Third Person Character Default function */
@@ -183,7 +183,7 @@ private:
 private:
 	FTimerHandle TimeHandle;
     FTimerHandle ResetCounterHandle;
-	UStateMachine* StateMachine;
+	UStateMachine* StateMachine = nullptr;
 	bool RequiredNextMontage = false;
 
 };

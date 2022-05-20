@@ -61,7 +61,39 @@ enum class ECharacterFSM : uint8
 	ECFSM_Pickup
 };
 
+USTRUCT( BlueprintType )
+struct FCharcaterAttributes
+{
+	GENERATED_BODY()
+public:
+	inline void operator=( FCharcaterAttributes Attri )
+	{
+		Constitution    = Attri.Constitution;
+		Mentality       = Attri.Mentality;
+		Endurance       = Attri.Endurance;
+		Strength        = Attri.Strength;
+		Dexterity       = Attri.Dexterity;
+		Intelligence    = Attri.Intelligence;
+		Wisdom          = Attri.Wisdom;
+	};
+public:
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Constitution;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Mentality;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Endurance;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Strength;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Dexterity;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Intelligence;
+	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
+	int Wisdom;
+};
 
+#define NONE_SOCKET     ""
 #define DEFAULT_WEAPON_EQEUIPED_SOCKET     "Weapon_Equiped_Socket"
 #define DEFAULT_WEAPON_HOLD_SOCKET         "Weapon_Hold_Socket"
 #define DEFAULT_ARMOUR_HEAD_SOCKET         "Armour_Head_Socket"

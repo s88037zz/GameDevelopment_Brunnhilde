@@ -72,6 +72,7 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
 	Inventory = CreateDefaultSubobject< UInventoryComponent >( TEXT( "Inventory" ) );
 	Inventory->Capacity = 15.f;
 	Inventory->OnEquipmentUpdated.AddDynamic( this, &ABrunnhildeCharacter::HandleEquipmentUpdated );
+
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -141,6 +142,8 @@ void ABrunnhildeCharacter::SetupPlayerInputComponent( class UInputComponent* Pla
 	PlayerInputComponent->BindAction( "Sprint",       IE_Pressed,  this, &ABrunnhildeCharacter::Sprint );
 	PlayerInputComponent->BindAction( "Sprint",       IE_Released, this, &ABrunnhildeCharacter::Sprint );
 	PlayerInputComponent->BindAction( "LockEnemy",    IE_Released, this, &ABrunnhildeCharacter::LockEnemy );
+
+
 }
 
 AWeapon* ABrunnhildeCharacter::GetEquipedWeapon()
@@ -204,18 +207,19 @@ void ABrunnhildeCharacter::BeginPlay()
 	Super::BeginPlay();
 	if ( IsValid( StateMachineClass ) )
 	{
-		StateMachine = NewObject< UStateMachine >( this, StateMachineClass );
-		StateMachine->Initialize( this );
-	}
+		StateMachine = NewObject< UStateMachine >( this, StateMachineClass, "StateMachine" );
+		if ( StateMachine )
+		{
+			StateMachine->RegisterComponent();
+			StateMachine->Initialize( this );
+			this->AddInstanceComponent( StateMachine );
+		}
+	} 
 }
 
 void ABrunnhildeCharacter::Tick( float DeltaSeconds )
 {
 	Super::Tick( DeltaSeconds );
-	if ( IsValid( StateMachine ) )
-	{
-		StateMachine->Process();
-	}
 }
 
 void ABrunnhildeCharacter::OnResetVR()
@@ -287,18 +291,18 @@ void ABrunnhildeCharacter::HandleEquipmentUpdated()
 {
 	ResetStatsToDefault();
 
-	for ( auto& Equpiment : Inventory->GetEquipments() )
+	for ( auto& EqupimentPair : Inventory->GetEquipments() )
 	{	
-		AItem* ArmourData = Cast< AItem >( Equpiment.Value );
-		if (  IsValid( ArmourData ) )
+		AItem* Equpiment = Cast< AItem >( EqupimentPair.Value );
+		if (  IsValid( Equpiment ) )
 		{
-			Constitution += ArmourData->Constitution;
-			Mentality += ArmourData->Mentality;
-			Endurance += ArmourData->Endurance;
-			Strength += ArmourData->Strength;
-			Dexterity += ArmourData->Dexterity;
-			Intelligence += ArmourData->Intelligence;
-			Wisdom += ArmourData->Wisdom;
+			Constitution += Equpiment->GetItemSetting().GetCharacterAttibutes().Constitution;
+			Mentality += Equpiment->GetItemSetting().GetCharacterAttibutes().Mentality;
+			Endurance += Equpiment->GetItemSetting().GetCharacterAttibutes().Endurance;
+			Strength += Equpiment->GetItemSetting().GetCharacterAttibutes().Strength;
+			Dexterity += Equpiment->GetItemSetting().GetCharacterAttibutes().Dexterity;
+			Intelligence += Equpiment->GetItemSetting().GetCharacterAttibutes().Intelligence;
+			Wisdom += Equpiment->GetItemSetting().GetCharacterAttibutes().Wisdom;
 		}
 	}
 }

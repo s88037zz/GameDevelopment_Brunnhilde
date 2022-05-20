@@ -11,7 +11,7 @@
 
 
 // Sets default values
-AWeapon::AWeapon()
+AWeapon::AWeapon(): AItem()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -30,15 +30,21 @@ AWeapon::AWeapon()
 	BoxCmp->AttachToComponent( RootCmp, FAttachmentTransformRules::KeepRelativeTransform );
 	BoxCmp->SetCollisionEnabled( ECollisionEnabled::QueryAndPhysics );
 
-	LastOwnerAttackCounter = -1;
+	ItemSetting.EquipedSocket = DEFAULT_WEAPON_EQEUIPED_SOCKET;
+	ItemSetting.HoldSocket    = DEFAULT_WEAPON_HOLD_SOCKET;
 }
 
-AWeapon::AWeapon( AWeapon* Weapon )
+AWeapon::AWeapon( AWeapon* Weapon ) 
+:AItem( Weapon )
 {
-	this->RootCmp     = Weapon->RootCmp;
-	this->ArrowCmp    = Weapon->ArrowCmp;
-	this->MeshCmp     = Weapon->MeshCmp;
-	this->BoxCmp      = Weapon->BoxCmp;
+	AWeapon();
+}
+
+AItem* AWeapon::DeepCopy()
+{
+	AWeapon* Weapon = GetWorld()->SpawnActor< AWeapon >();
+	Super::DeepCopyTo( Weapon );
+	return Weapon;
 }
 
 void AWeapon::OnUse( ABrunnhildeCharacter* Character )
@@ -52,7 +58,11 @@ void AWeapon::OnEquiped( ABrunnhildeCharacter* Character )
 		// Let weapon can attach on character
  		AttachToComponent( Character->GetMesh(),
 						   FAttachmentTransformRules::SnapToTargetIncludingScale,
-						   FName( *AttachSocket ) );
+						   FName( *ItemSetting.EquipedSocket ) );
+		MeshCmp->SetStaticMesh( ItemSetting.PickupMesh );
+		SetActorHiddenInGame( false );
+		//SetActorEnableCollision( true )
+		SetActorTickEnabled( true );
 		SetOwner( Character );
 	}
 }
@@ -62,6 +72,7 @@ void AWeapon::OnUnEquiped( ABrunnhildeCharacter* Character )
 {
 	FDetachmentTransformRules Rule = FDetachmentTransformRules::KeepWorldTransform;
 	DetachFromActor( Rule );
+	MeshCmp->SetStaticMesh( nullptr );
 	SetOwner( nullptr );
 }
 
@@ -71,7 +82,7 @@ void AWeapon::OnDrawn( ABrunnhildeCharacter* Character )
 	{
 		GetMeshComponent()->AttachToComponent( Character->GetMesh(), 
 											   FAttachmentTransformRules::SnapToTargetIncludingScale,
-											   FName( *AttachSocket ) );
+											   FName( *ItemSetting.HoldSocket ) );
 	}
 }
 
@@ -83,7 +94,7 @@ void AWeapon::OnSheath( ABrunnhildeCharacter* ACharacter )
 	{
 		GetMeshComponent()->AttachToComponent( Character->GetMesh(),
 											   FAttachmentTransformRules::SnapToTargetIncludingScale,
-											   FName( *AttachSocket ) );
+											   FName( *ItemSetting.EquipedSocket ) );
 	}
 }
 
@@ -96,25 +107,15 @@ void AWeapon::HandleDrop()
         if ( Character )
         {
 			FVector DroppedLocation = Character->GetObjectDroppedLocation();
+			FDetachmentTransformRules DetachRule = FDetachmentTransformRules::KeepRelativeTransform;
             SetActorLocation( DroppedLocation );
-            DetachRootComponentFromParent( true );
+            DetachFromActor( DetachRule );
 			MeshCmp->RecreatePhysicsState(); // physic usually update in next frame
             MeshCmp->SetSimulatePhysics( true );
             SetOwner( nullptr );
 		}
     }
 }
-
-AWeapon* AWeapon::DeepCopy()
-{	
-	FActorSpawnParameters Params;
-	AWeapon* Copy = GetWorld()->SpawnActor< AWeapon >( GetClass(),
-													   GetActorLocation(),
-													   FRotator::ZeroRotator, 
-													   Params );
-	return Copy;
-}
-
 void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,
 						   int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult )
 {
@@ -140,28 +141,17 @@ void AWeapon::ApplyDamage02( UPrimitiveComponent* OverlappedComponent, AActor* O
         ABrunnhildeCharacter* DamagedCharacter = Cast<ABrunnhildeCharacter>( OtherActor );
 
         if ( OwnCharacter->CurrentState == ECharacterFSM::ECFSM_Attacking )
-        {
-			/*
-			if( Cast<UAttackAbility>( ActiveAbility ) &&
-				LastOwnerAttackCounter != Cast<UAttackAbility>( ActiveAbility )->AttackCounter )
-			{
-				UGameplayStatics::ApplyDamage( DamagedCharacter, 10, nullptr, this, UDamageType::StaticClass() );
-				LastOwnerAttackCounter = Cast<UAttackAbility>( ActiveAbility )->AttackCounter;
-				
-				UAnimMontage* CurrentMontage = OwnCharacter->GetCurrentMontage();
-				if ( !CurrentMontage->IsValidLowLevel() ) 
-				{
-					return;
-				};
-
-				double delay = OwnCharacter->GetMontageLeftTime( CurrentMontage, OwnCharacter->GetMesh() );
-				GetWorld()->GetTimerManager().SetTimer( ResetCounterHandle, [this]()
-				{
-					LastOwnerAttackCounter = -1;
-				}, delay, false );
-			}
-			*/
+        {		
         }
 		
 	}
+}
+
+void AWeapon::ApplyDamage( AActor* DamagedActor, float BaseDamage, AController* EventInstigator, 
+						   AActor* DamageCauser, TSubclassOf<UDamageType> DamageTypeClass )
+{
+	UGameplayStatics::ApplyDamage( DamagedActor, BaseDamage, EventInstigator,
+								   DamageCauser, DamageTypeClass );
+	CurElfEnergy += RechargeValue;
+	CurElfEnergy = FMath::Clamp( CurElfEnergy, 0, MaxElfEnergy );
 }

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Components/ActorComponent.h"
 #include "Games/BrunnhildeDef.h"
 #include "StateMachine.generated.h"
 
@@ -16,18 +17,22 @@ class UPickUpItemAbility;
 class ULockEnemyAbility;
 class USprintAbility2;
 class UDeadAbility;
+class UDropingTreasureAbility;
 class UPlayerInputComponent;
 /**
  * 
  */
-UCLASS(Blueprintable)
-class BRUNNHILDE_API UStateMachine : public UObject
+
+UCLASS(Blueprintable, meta=( BlueprintSpawnableComponent ) )
+class BRUNNHILDE_API UStateMachine : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:
-	UStateMachine() = default;
-	void Process();
+	UStateMachine();
+	virtual void BeginPlay() override;
+	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
+	void UpdateState();
 
 	UFUNCTION( BlueprintCallable, Category="Funcs | Settings" )
 	ABrunnhildeCharacter* GetControlCharacter() { return Character; }
@@ -43,7 +48,6 @@ public:
 	void OnKnockDownState();
 	void OnDeadState();
 	void OnPickupItemState();
-
 
 	//Transition
 	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
@@ -83,6 +87,8 @@ public:
 	TSubclassOf< USprintAbility2 >      SprintClass;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
 	TSubclassOf< UDeadAbility >         DeadClass;
+	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category=" Profile | Abilities" )
+	TSubclassOf< UDropingTreasureAbility >  DropingTreasureClass;
 
 	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	UDrawnNSheathAbility* DrawnSheathAbility;
@@ -98,6 +104,9 @@ public:
 	USprintAbility2*      SprintAbility;
 	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
 	UDeadAbility*         DeadAbility;
+	UPROPERTY( BlueprintReadWrite, Category=" Profile | Abilities" )
+	UDropingTreasureAbility* DropingTreasureAbility;
+	
 
 private:
 	void ChangeStateTo( ECharacterFSM State );

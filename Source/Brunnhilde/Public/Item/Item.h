@@ -14,25 +14,28 @@ class UStaticMeshComponent;
 /**
  * 
  */
-UCLASS( Abstract, BlueprintType, Blueprintable, DefaultToInstanced )
-class BRUNNHILDE_API AItem : public AActor
+
+USTRUCT( BlueprintType )
+struct FItemSetting
 {
 	GENERATED_BODY()
-
 public:
-	AItem();
-
-	UFUNCTION( BlueprintCallable, Category="Item | UFUNCTION" )
-	UStaticMeshComponent* GetMeshComponent() { return MeshCmp; }
-
-	// 物件被使用或裝備...時要做的事
-	virtual void OnUse( ABrunnhildeCharacter* Character ) PURE_VIRTUAL( AItem, );
-	virtual void OnEquiped( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
-	virtual void OnUnEquiped( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
-	virtual void OnDrawn( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
-	virtual void OnSheath( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
-
-public: 
+	FCharcaterAttributes& GetCharacterAttibutes() { return CharacterAttributes; }
+	inline void operator=( FItemSetting Data )
+	{
+		UseActionText   = Data.UseActionText;
+		PickupMesh      = Data.PickupMesh;
+		DroppedMesh     = Data.DroppedMesh;
+		Thumnail        = Data.Thumnail;
+		ItemDisplayName = Data.ItemDisplayName;
+		Weight          = Data.Weight;
+		RarityType      = Data.RarityType;
+		ItemType        = Data.ItemType;
+		EquipedSocket   = Data.EquipedSocket;
+		HoldSocket		= Data.HoldSocket;
+		CharacterAttributes = Data.CharacterAttributes;
+	};
+public:
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Setting" )
 	FText UseActionText;
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Setting" )
@@ -52,22 +55,49 @@ public:
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Profile | Setting" )
 	EItemTypes ItemType = EItemTypes::EIT_PROP;
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Profile | Setting" )
-	FString AttachSocket;
+	FString EquipedSocket;
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Profile | Setting" )
+	FString HoldSocket;
 
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
-	int Constitution;
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
-	int Mentality;
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
-	int Endurance;
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
-	int Strength;
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
-	int Dexterity;
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
-	int Intelligence;
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
-	int Wisdom;
+	UPROPERTY( EditAnyWhere, Category="Profile | Setting" )
+	FCharcaterAttributes CharacterAttributes;
+};
+
+UCLASS( BlueprintType, Blueprintable, DefaultToInstanced )
+class BRUNNHILDE_API AItem : public AActor
+{
+	GENERATED_BODY()
+
+public:
+	AItem();
+	AItem( AItem* Item );
+	UFUNCTION( BlueprintCallable, Category="Item | UFUNCTION" )
+	virtual AItem* DeepCopy();
+	UFUNCTION( BlueprintCallable, Category="Item | UFUNCTION" )
+	virtual void DeepCopyTo( AItem* CopyItem );
+
+	UFUNCTION( BlueprintCallable, BlueprintPure, Category="Item | UFUNCTION" )
+	UStaticMeshComponent* GetMeshComponent() { return MeshCmp; }
+	UFUNCTION( BlueprintCallable, BlueprintPure, Category="Item | UFUNCTION" )
+	FItemSetting& GetItemSetting() { return ItemSetting; }
+	UFUNCTION( BlueprintCallable, Category="Item | UFUNCTION" )
+	void SetItemSetting( FItemSetting Setting ) { ItemSetting = Setting; }
+
+	void SetupPickMesh();
+	void SetupDroppedMesh();
+
+	// 物件被使用或裝備...時要做的事
+	virtual void OnUse( ABrunnhildeCharacter* Character ) PURE_VIRTUAL( AItem, );
+	virtual void OnEquiped( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
+	virtual void OnUnEquiped( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
+	virtual void OnDrawn( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
+	virtual void OnSheath( ABrunnhildeCharacter* Character )  PURE_VIRTUAL( AItem, );
+
+	virtual void PostEditChangeProperty( struct FPropertyChangedEvent& e ) override;
+
+public: 
+	UPROPERTY( EditDefaultsOnly, Category="Profile | ItemSetting" )
+	FItemSetting ItemSetting;
 
 	//Component
 	UPROPERTY()

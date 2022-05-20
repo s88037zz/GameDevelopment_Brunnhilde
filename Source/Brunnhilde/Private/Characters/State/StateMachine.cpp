@@ -10,14 +10,19 @@
 #include "Characters/Actions/LockEnemyAbility.h"
 #include "Characters/Actions/SprintAbility2.h"
 #include "Characters/Actions/DeadAbility.h"
+#include "Characters/Actions/DropingTreasureAbility.h"
 #include "Games/EnduranceComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Item/Weapon.h"
 #include "Components/InputComponent.h"
 
+UStateMachine::UStateMachine()
+{
+    PrimaryComponentTick.bCanEverTick = true;
+    bAutoActivate = true;
+}
 
-
-void UStateMachine::Process()
+void UStateMachine::UpdateState()
 {
     switch ( Character->CurrentState )
     {
@@ -47,6 +52,17 @@ void UStateMachine::Process()
             return;
     }
 
+}
+
+void UStateMachine::BeginPlay()
+{
+    Super::BeginPlay();
+}
+
+void UStateMachine::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
+{
+    Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
+    UpdateState();
 }
 
 void UStateMachine::Initialize( ABrunnhildeCharacter* ControlCharacter )
@@ -170,7 +186,7 @@ void UStateMachine::OnPickupItemState()
 }
 
 void UStateMachine::AttackAction()
-{
+{   
     if ( ECharacterFSM::ECFSM_Idle == Character->CurrentState )
     {
         if( DrawnSheathAbility->BeginAbility() )    ChangeStateTo( ECharacterFSM::ECFSM_Fighting );
@@ -268,6 +284,7 @@ void UStateMachine::PickupItemAction()
         PickUpItemAbility->BeginAbility();
     }
 }
+
 void UStateMachine::DrawnWeaponNotifcation()
 {
     if ( !IsValid( DrawnSheathAbility ) )
@@ -305,13 +322,14 @@ void UStateMachine::SetControlCharacter( ABrunnhildeCharacter* ControlCharacter 
 
 void UStateMachine::SetupAbilities()
 {
-    if ( DrawnSheathClass )  DrawnSheathAbility = NewObject< UDrawnNSheathAbility >( this, DrawnSheathClass );
-    if ( AttackClass )       AttackAbility      = NewObject< UAttackAbility >( this, AttackClass );
-    if ( FlinchClass )       FlinchAbility      = NewObject< UFlinchAbility2 >( this, FlinchClass );
-    if ( PickUpItemClass )   PickUpItemAbility  = NewObject< UPickUpItemAbility >( this, PickUpItemClass );
-    if ( LockEnemyClass )    LockEnemyAbility   = NewObject< ULockEnemyAbility >( this, LockEnemyClass );
-    if ( SprintClass )       SprintAbility      = NewObject< USprintAbility2 >( this, SprintClass );
-    if ( DeadClass )         DeadAbility        = NewObject< UDeadAbility >( this, DeadClass );
+    if ( DrawnSheathClass )  DrawnSheathAbility        = NewObject< UDrawnNSheathAbility >( this, DrawnSheathClass );
+    if ( AttackClass )       AttackAbility             = NewObject< UAttackAbility >( this, AttackClass );
+    if ( FlinchClass )       FlinchAbility             = NewObject< UFlinchAbility2 >( this, FlinchClass );
+    if ( PickUpItemClass )   PickUpItemAbility         = NewObject< UPickUpItemAbility >( this, PickUpItemClass );
+    if ( LockEnemyClass )    LockEnemyAbility          = NewObject< ULockEnemyAbility >( this, LockEnemyClass );
+    if ( SprintClass )       SprintAbility             = NewObject< USprintAbility2 >( this, SprintClass );
+    if ( DeadClass )         DeadAbility               = NewObject< UDeadAbility >( this, DeadClass );
+    if ( DropingTreasureClass ) DropingTreasureAbility = NewObject< UDropingTreasureAbility >( this, DropingTreasureClass );
 
     if ( AttackAbility )         AttackAbility->Initialize( Character );  
     if ( FlinchAbility )         FlinchAbility->Initialize( Character );
@@ -320,6 +338,7 @@ void UStateMachine::SetupAbilities()
     if ( PickUpItemAbility )     SprintAbility->Initialize( Character );
     if ( SprintAbility )         SprintAbility->Initialize( Character );
     if ( DeadAbility )           DeadAbility->Initialize( Character );
+    if ( DropingTreasureAbility )   DropingTreasureAbility->Initialize( Character );
 }
 
 bool UStateMachine::IsState( ECharacterFSM State )

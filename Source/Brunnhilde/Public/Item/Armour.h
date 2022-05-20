@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+ // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -11,10 +11,14 @@ UCLASS()
 class BRUNNHILDE_API AArmour : public AItem
 {
 	GENERATED_BODY()
+protected:
+	virtual void BeginPlay() override;
 
 public:	
 	// Sets default values for this actor's properties
 	AArmour();
+	virtual AItem* DeepCopy() override;
+	EItemTypes ItemType = EItemTypes::EIT_ARMOUR_Head;
 
 	virtual void OnUse( ABrunnhildeCharacter* Character ) override;
 	virtual void OnEquiped( ABrunnhildeCharacter* Character )  override;

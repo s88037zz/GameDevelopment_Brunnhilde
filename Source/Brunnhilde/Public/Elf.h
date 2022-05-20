@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "BrunnhildeCharacter.h"
 #include "Elf.generated.h"
 
 UCLASS()
-class BRUNNHILDE_API AElf : public AActor
+class BRUNNHILDE_API AElf : public ABrunnhildeCharacter
 {
 	GENERATED_BODY()
 	

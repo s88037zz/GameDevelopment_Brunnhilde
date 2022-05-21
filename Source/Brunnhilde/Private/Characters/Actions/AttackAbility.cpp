@@ -47,7 +47,8 @@ bool UAttackAbility::UpdateAbility()
     }
 
     Character->NextMontageQueue.Push( AttackCombos[ AttackCounter ]->AttackMontage );
-    Character->SetRequiredNextMontage( true );
+    //由Notification設定
+    //Character->SetRequiredNextMontage( true );
 
     IsInAcceptableActtionRange = false; //將AnimNotification設定的變數Reset
     AttackCounter = ( AttackCounter + 1 ) % AttackCombos.Num();

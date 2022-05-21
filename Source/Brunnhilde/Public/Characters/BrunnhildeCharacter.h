@@ -36,10 +36,15 @@ public:
 	UFUNCTION( BlueprintCallable, Category="Funcs | Actions" )
 	void LockEnemy();
 
-	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
 	AWeapon* GetEquipedWeapon();
-	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
+	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
 	UStateMachine* GetStateMachine();
+	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
+	bool IsRequiredNextMontage() const { return RequiredNextMontage; }
+	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
+	void SetRequiredNextMontage( bool Required );
+	
 	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
 	void HandleEquipmentUpdated();
 
@@ -166,8 +171,6 @@ public:
 	UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 	UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
 	UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
-	bool IsRequiredNextMontage() const { return RequiredNextMontage; }
-
 
 	FVector GetObjectDroppedLocation() const { return ObjectDroppedLocation->GetComponentLocation(); }
 	FTimerHandle GetMovementTimeHandle() const { return TimeHandle; }
@@ -175,7 +178,6 @@ public:
 
 	//Setter
 	void SetMovementTimerHandle( double Duration, bool bEnableMovement );
-	void SetRequiredNextMontage( bool Required );
 
 private:
 	void ResetStatsToDefault();

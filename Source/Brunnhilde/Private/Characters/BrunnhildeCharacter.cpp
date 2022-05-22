@@ -205,7 +205,7 @@ double ABrunnhildeCharacter::GetMontageLeftTime( UAnimMontage* Montage, USkeleta
 void ABrunnhildeCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	if ( IsValid( StateMachineClass ) )
+		if ( IsValid( StateMachineClass ) )
 	{
 		StateMachine = NewObject< UStateMachine >( this, StateMachineClass, "StateMachine" );
 		if ( StateMachine )

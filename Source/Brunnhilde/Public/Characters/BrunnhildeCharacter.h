@@ -15,6 +15,7 @@ class USpringArmComponent;
 class UHealthComponent;
 class UEnduranceComponent;
 class UInventoryComponent;
+class USceneComponent;
 class UStateMachine;
 class UAnimMontage;
 
@@ -41,6 +42,9 @@ public:
 	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
 	UStateMachine* GetStateMachine();
 	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
+	FVector GetObjectDroppedLocation() const;
+
+	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
 	bool IsRequiredNextMontage() const { return RequiredNextMontage; }
 	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
 	void SetRequiredNextMontage( bool Required );
@@ -61,7 +65,7 @@ public:
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = "Ailities", meta = ( AllowPrivateAccess = "true" ) )
 	UEnduranceComponent* EnduranceCmp;
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = "Other", meta = ( AllowPrivateAccess = "true" ) )
-	class USceneComponent* ObjectDroppedLocation;
+	USceneComponent* ObjectDroppedCmp;
 
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
@@ -172,7 +176,6 @@ public:
 	UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
 	UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
 
-	FVector GetObjectDroppedLocation() const { return ObjectDroppedLocation->GetComponentLocation(); }
 	FTimerHandle GetMovementTimeHandle() const { return TimeHandle; }
 	double GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh );
 

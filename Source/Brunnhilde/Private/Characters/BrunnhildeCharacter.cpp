@@ -66,8 +66,8 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
 	EnduranceCmp = CreateDefaultSubobject< UEnduranceComponent >( TEXT( "Endurance") );
 	EnduranceCmp->MaxEndurance = Endurance * 5;
 
-    ObjectDroppedLocation = CreateDefaultSubobject<USceneComponent>( TEXT( "ObjectDroppedLocation" ) );
-	ObjectDroppedLocation->AttachToComponent( GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform );
+    ObjectDroppedCmp = CreateDefaultSubobject<USceneComponent>( TEXT( "ObjectDroppedLocation" ) );
+	ObjectDroppedCmp->AttachToComponent( GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform );
 
 	Inventory = CreateDefaultSubobject< UInventoryComponent >( TEXT( "Inventory" ) );
 	Inventory->Capacity = 15.f;
@@ -156,6 +156,10 @@ UStateMachine* ABrunnhildeCharacter::GetStateMachine()
 	return StateMachine;
 }
 
+FVector ABrunnhildeCharacter::GetObjectDroppedLocation() const
+{
+	return ObjectDroppedCmp->GetComponentTransform().GetLocation();
+}
 
 void ABrunnhildeCharacter::SetMovementTimerHandle( double Duration, bool bEnableMovement = true )
 {

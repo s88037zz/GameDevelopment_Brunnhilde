@@ -37,7 +37,7 @@ void UDropingTreasureAbility::OnDiead()
 
     ABrunnhildeCharacter* Character = GetControlCharacter();
     int i = FMath::RandRange( 0, Treasures.Num() - 1 );
-    AItem* Item = Treasures[ i ]->DeepCopy();
+    AItem* Item = Treasures[ i ]->DeepCopy();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     Item->SetupDroppedMesh();
-    Item->SetActorTransform( Character->GetTransform() );
+    Item->SetActorLocation( Character->GetObjectDroppedLocation() );
 }

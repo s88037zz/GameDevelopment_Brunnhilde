@@ -16,6 +16,7 @@ class UHealthComponent;
 class UEnduranceComponent;
 class UInventoryComponent;
 class USceneComponent;
+class UTransactionComponent;
 class UStateMachine;
 class UAnimMontage;
 
@@ -43,11 +44,31 @@ public:
 	UStateMachine* GetStateMachine();
 	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
 	FVector GetObjectDroppedLocation() const;
-
+	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
+	FVector GetStandLocation() const;
+	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
+	FTimerHandle GetMovementTimeHandle() const { return TimeHandle; }
+	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
+	void SetMovementTimerHandle( float Duration, bool bEnableMovement );
+	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
+	float GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh );
 	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
 	bool IsRequiredNextMontage() const { return RequiredNextMontage; }
 	UFUNCTION( BlueprintCallable, Category="Funcs | Members" )
 	void SetRequiredNextMontage( bool Required );
+
+	UFUNCTION( BlueprintCallable, Category="Funcs | Components")
+	USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+	UFUNCTION( BlueprintCallable, Category="Funcs | Components" )
+	UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+	UFUNCTION( BlueprintCallable, Category="Funcs | Components" )
+	UHealthComponent* GetHealthCmp() const { return HealthCmp; }
+	UFUNCTION( BlueprintCallable, Category="Funcs | Components" )
+	UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
+	UFUNCTION( BlueprintCallable, Category="Funcs | Components" )
+	UTransactionComponent* GetTransactionCmp() const { return TransactionCmp; }
+	UFUNCTION( BlueprintCallable, Category="Funcs | Components" )
+	UInventoryComponent* GetInventoryCmp() const { return InventoryCmp; }
 	
 	UFUNCTION( BlueprintCallable, Category="Funcs | Others" )
 	void HandleEquipmentUpdated();
@@ -64,6 +85,8 @@ public:
 	UHealthComponent* HealthCmp;
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = "Ailities", meta = ( AllowPrivateAccess = "true" ) )
 	UEnduranceComponent* EnduranceCmp;
+	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = "Ailities", meta = ( AllowPrivateAccess = "true" ) )
+	UTransactionComponent* TransactionCmp;
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category = "Other", meta = ( AllowPrivateAccess = "true" ) )
 	USceneComponent* ObjectDroppedCmp;
 
@@ -77,25 +100,9 @@ public:
 
 	// 角色重要能力
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )
-	UInventoryComponent* Inventory;
+	UInventoryComponent* InventoryCmp;
 
 	//裝備參數設定
-	/*
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
-	FName WeaponHoldSocket;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
-	FName WeaponEquippedSocket;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
-	FName WeaponFightingSocket;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
-	FName ArmourHeadSocket;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
-	FName ArmourChestSocket;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
-	FName ArmourHandSocket;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Socket" )
-	FName ArmourFeetSocket;
-	*/
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Equipment" )
 	float DamagedImpactRate = 1.0f;
 
@@ -117,8 +124,6 @@ public:
 	int	Dexterity = 20;
 	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | State Values" )
 	int Intelligence = 20;
-	UPROPERTY( VisibleAnywhere, BlueprintReadWrite, Category="Profile | State Values" )
-	int Wisdom = 20;
 
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State Values" )
 	int DefaultConstitution = 20;
@@ -132,8 +137,6 @@ public:
 	int	DefaultDexterity = 20;
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State Values" )
 	int DefaultIntelligence = 20;
-	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | State Values" )
-	int DefaultWisdom = 20;
 
 	UPROPERTY( VisibleAnywhere, BlueprintReadOnly, Category="Profile | Montages" )
 	TArray< UAnimMontage* > NextMontageQueue;
@@ -165,22 +168,8 @@ protected:
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
 
-protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	// End of APawn interface
-
-public:
-	USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-	UCameraComponent* GetFollowCamera() const { return FollowCamera; }
-	UHealthComponent* GetHealthCmp() const { return HealthCmp;  }
-	UEnduranceComponent* GetEnduranceCmp() const { return EnduranceCmp; }
-
-	FTimerHandle GetMovementTimeHandle() const { return TimeHandle; }
-	double GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh );
-
-	//Setter
-	void SetMovementTimerHandle( double Duration, bool bEnableMovement );
 
 private:
 	void ResetStatsToDefault();

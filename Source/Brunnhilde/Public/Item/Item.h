@@ -33,6 +33,7 @@ public:
 		ItemType        = Data.ItemType;
 		EquipedSocket   = Data.EquipedSocket;
 		HoldSocket		= Data.HoldSocket;
+		Price           = Data.Price;
 		CharacterAttributes = Data.CharacterAttributes;
 	};
 public:
@@ -58,8 +59,9 @@ public:
 	FString EquipedSocket;
 	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Profile | Setting" )
 	FString HoldSocket;
-
-	UPROPERTY( EditAnyWhere, Category="Profile | Setting" )
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Profile | Setting" )
+	int Price = 100;
+	UPROPERTY( EditAnyWhere, BlueprintReadWrite, Category="Profile | Setting" )
 	FCharcaterAttributes CharacterAttributes;
 };
 

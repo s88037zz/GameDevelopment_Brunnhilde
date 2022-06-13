@@ -36,7 +36,6 @@ enum class ECompetencyTypes : uint8
 	ECT_Strength        UMETA( DisplayName = "Strength" ),
 	ECT_Dexterity       UMETA( DisplayName = "Dexterity" ),
 	ECT_Intelligence    UMETA( DisplayName = "Intelligence" ),
-	ECT_Wisdom          UMETA( DisplayName = "Wisdom" ),
 }; 
 
 UENUM( BlueprintType )
@@ -74,7 +73,6 @@ public:
 		Strength        = Attri.Strength;
 		Dexterity       = Attri.Dexterity;
 		Intelligence    = Attri.Intelligence;
-		Wisdom          = Attri.Wisdom;
 	};
 public:
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
@@ -89,8 +87,6 @@ public:
 	int Dexterity;
 	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
 	int Intelligence;
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite, Category="Profile | Attribution", meta=( Clamp = 0 ) )
-	int Wisdom;
 };
 
 #define NONE_SOCKET     ""
@@ -100,3 +96,17 @@ public:
 #define DEFAULT_ARMOUR_CHEST_SOCKET        "Armour_Chest_Socket"
 #define DEFAULT_ARMOUR_HAND_SOCKET         "Armour_Hand_Socket"
 #define DEFAULT_ARMOUR_FEET_SOCKET         "Armour_Feet_Socket"
+
+#define OK true;
+#define FAIL false;
+
+#define CheckPtrIsValid( _var ) \
+if ( nullptr == _var  ){  \
+	return false; \
+}		
+
+
+/*
+#define MemoryCheck( _var ) \
+check( _var != nullptr ); \
+*/

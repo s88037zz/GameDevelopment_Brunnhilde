@@ -49,7 +49,7 @@ bool UDrawnNSheathAbility::Drawn()
     ABrunnhildeCharacter* Character =  Cast<ABrunnhildeCharacter>( GetControlCharacter() );
     if ( !bWeaponDrawn )
     {
-        if ( !Character->Inventory->IsWeaponEquiped() )
+        if ( !Character->InventoryCmp->IsWeaponEquiped() )
         {
             return false;
         }
@@ -80,7 +80,7 @@ bool UDrawnNSheathAbility::Sheath()
 
     ABrunnhildeCharacter* Character =  Cast<ABrunnhildeCharacter>( GetControlCharacter() );
     if ( bWeaponDrawn &&
-         Character->Inventory->IsWeaponEquiped() )
+         Character->InventoryCmp->IsWeaponEquiped() )
     {
         GetControlMovement()->DisableMovement();
         double Duration = SetControlPlayAnimMontage( SheathWeaponMontage );

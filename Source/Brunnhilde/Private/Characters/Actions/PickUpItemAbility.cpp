@@ -25,7 +25,7 @@ void UPickUpItemAbility::PickUp()
         AItem* Item = Cast< AItem >( Actor );
         if ( IsValid( Item ) )
         {
-            Character->Inventory->AddItem( Item );
+            Character->InventoryCmp->AddItem( Item );
         }
         
         GetWorld()->DestroyActor( Actor );

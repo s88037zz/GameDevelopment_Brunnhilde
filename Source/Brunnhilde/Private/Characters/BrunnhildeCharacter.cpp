@@ -5,18 +5,19 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
 
-#include "Components/SkeletalMeshComponent.h"
 #include "Animation\AnimNode_StateMachine.h"
-#include "HealthComponent.h"
-#include "EnduranceComponent.h"
+#include "Games/HealthComponent.h"
+#include "Games/EnduranceComponent.h"
+#include "Games/InventoryComponent.h"
+#include "Games/TransactionComponent.h"
 #include "Animation/AnimInstance.h"
-#include "InventoryComponent.h"
 #include "Item/Weapon.h"
 #include "Item/Armour.h"
 #include "Characters/State/StateMachine.h"
@@ -66,13 +67,16 @@ ABrunnhildeCharacter::ABrunnhildeCharacter()
 	EnduranceCmp = CreateDefaultSubobject< UEnduranceComponent >( TEXT( "Endurance") );
 	EnduranceCmp->MaxEndurance = Endurance * 5;
 
+	/* Object Dropped Locatoin Ref */
     ObjectDroppedCmp = CreateDefaultSubobject<USceneComponent>( TEXT( "ObjectDroppedLocation" ) );
 	ObjectDroppedCmp->AttachToComponent( GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform );
 
-	Inventory = CreateDefaultSubobject< UInventoryComponent >( TEXT( "Inventory" ) );
-	Inventory->Capacity = 15.f;
-	Inventory->OnEquipmentUpdated.AddDynamic( this, &ABrunnhildeCharacter::HandleEquipmentUpdated );
+	/*  Item Management */
+	InventoryCmp = CreateDefaultSubobject< UInventoryComponent >( TEXT( "Inventory" ) );
+	InventoryCmp->Capacity = 15.f;
+	InventoryCmp->OnEquipmentUpdated.AddDynamic( this, &ABrunnhildeCharacter::HandleEquipmentUpdated );
 
+	TransactionCmp = CreateDefaultSubobject< UTransactionComponent >( TEXT( "Transcation" ) );
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -148,7 +152,7 @@ void ABrunnhildeCharacter::SetupPlayerInputComponent( class UInputComponent* Pla
 
 AWeapon* ABrunnhildeCharacter::GetEquipedWeapon()
 {
-	return Inventory->IsWeaponEquiped() ? Inventory->GetEquipedWeapon() : nullptr;
+	return InventoryCmp->IsWeaponEquiped() ? InventoryCmp->GetEquipedWeapon() : nullptr;
 }
 
 UStateMachine* ABrunnhildeCharacter::GetStateMachine()
@@ -161,7 +165,16 @@ FVector ABrunnhildeCharacter::GetObjectDroppedLocation() const
 	return ObjectDroppedCmp->GetComponentTransform().GetLocation();
 }
 
-void ABrunnhildeCharacter::SetMovementTimerHandle( double Duration, bool bEnableMovement = true )
+FVector ABrunnhildeCharacter::GetStandLocation() const
+{
+	float Radius, HalfHeight = 0;
+	GetCapsuleComponent()->GetScaledCapsuleSize( Radius, HalfHeight );
+	FVector GoundLocation =  GetActorLocation();
+	GoundLocation.Z = GoundLocation.Z - HalfHeight;
+	return GoundLocation;
+}
+
+void ABrunnhildeCharacter::SetMovementTimerHandle( float Duration, bool bEnableMovement = true )
 {
 	if ( bEnableMovement )
 	{
@@ -184,7 +197,7 @@ void ABrunnhildeCharacter::SetRequiredNextMontage( bool Required )
 	RequiredNextMontage = Required;
 }
 
-double ABrunnhildeCharacter::GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh )
+float ABrunnhildeCharacter::GetMontageLeftTime( UAnimMontage* Montage, USkeletalMeshComponent* OwnerMesh )
 {	
 	if ( !Montage->IsValidLowLevelFast() )
 	{
@@ -209,7 +222,7 @@ double ABrunnhildeCharacter::GetMontageLeftTime( UAnimMontage* Montage, USkeleta
 void ABrunnhildeCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-		if ( IsValid( StateMachineClass ) )
+			if ( IsValid( StateMachineClass ) )
 	{
 		StateMachine = NewObject< UStateMachine >( this, StateMachineClass, "StateMachine" );
 		if ( StateMachine )
@@ -295,7 +308,7 @@ void ABrunnhildeCharacter::HandleEquipmentUpdated()
 {
 	ResetStatsToDefault();
 
-	for ( auto& EqupimentPair : Inventory->GetEquipments() )
+	for ( auto& EqupimentPair : InventoryCmp->GetEquipments() )
 	{	
 		AItem* Equpiment = Cast< AItem >( EqupimentPair.Value );
 		if (  IsValid( Equpiment ) )
@@ -306,7 +319,6 @@ void ABrunnhildeCharacter::HandleEquipmentUpdated()
 			Strength += Equpiment->GetItemSetting().GetCharacterAttibutes().Strength;
 			Dexterity += Equpiment->GetItemSetting().GetCharacterAttibutes().Dexterity;
 			Intelligence += Equpiment->GetItemSetting().GetCharacterAttibutes().Intelligence;
-			Wisdom += Equpiment->GetItemSetting().GetCharacterAttibutes().Wisdom;
 		}
 	}
 }
@@ -319,5 +331,4 @@ void ABrunnhildeCharacter::ResetStatsToDefault()
 	Strength = DefaultStrength;
 	Dexterity = DefaultDexterity;
 	Intelligence = DefaultIntelligence;
-	Wisdom = DefaultWisdom;
 }

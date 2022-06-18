@@ -6,9 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "TransactionComponent.generated.h"
 
-
 class AItem;
 class ABrunnhildeCharacter;
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BRUNNHILDE_API UTransactionComponent : public UActorComponent
 {
@@ -24,15 +24,13 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION( BlueprintCallable )
-	ABrunnhildeCharacter* GetTrader() const { return Trader; }
-	UFUNCTION( BlueprintCallable )
-	void SetTrader( ABrunnhildeCharacter* Character ) { Trader = Character; }
-	UFUNCTION( BlueprintCallable )
 	bool AddProductToOwner( AItem* Product );
 	UFUNCTION( BlueprintCallable )
 	bool RemoveProductFromOwner( AItem* Product );
 	UFUNCTION( BlueprintCallable )
-	bool Buy( AItem* Product );
+	bool Buy( AItem* Product, ABrunnhildeCharacter* ProductOwner );
+	UFUNCTION( BlueprintCallable )
+	bool IsEnoughToBuy( AItem* Product );
 
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Profile | Members" )
@@ -40,7 +38,4 @@ public:
 
 private:
 	bool IsProductBelongTo( ABrunnhildeCharacter* Character, AItem* Product );
-
-private:
-	ABrunnhildeCharacter* Trader;
 };

@@ -60,22 +60,22 @@ bool UTransactionComponent::RemoveProductFromOwner( AItem* Product )
 	return OK;
 }
 
-bool UTransactionComponent::Buy( AItem* Product )
+bool UTransactionComponent::Buy( AItem* Product, ABrunnhildeCharacter* ProductOwner )
 {
 	CheckPtrIsValid( Product );
 
 	ABrunnhildeCharacter* OwnCharacter = Cast< ABrunnhildeCharacter >( GetOwner() );
 	CheckPtrIsValid( OwnCharacter );
 
-	if( !IsProductBelongTo( Trader, Product ) || IsProductBelongTo( OwnCharacter, Product ) )
+	if( !IsProductBelongTo( ProductOwner, Product ) || IsProductBelongTo( OwnCharacter, Product ) )
 	{
 		return FAIL;
 	}
 
-	if ( CurCoin >= Product->GetItemSetting().Price )
+	if ( IsEnoughToBuy( Product ) )
 	{
-		Trader->GetTransactionCmp()->CurCoin += Product->GetItemSetting().Price;
-		Trader->GetTransactionCmp()->RemoveProductFromOwner( Product );
+		ProductOwner->GetTransactionCmp()->CurCoin += Product->GetItemSetting().Price;
+		ProductOwner->GetTransactionCmp()->RemoveProductFromOwner( Product );
 
 		CurCoin -= Product->GetItemSetting().Price;
 		AddProductToOwner( Product );
@@ -97,3 +97,7 @@ bool UTransactionComponent::IsProductBelongTo( ABrunnhildeCharacter* Character, 
 	return false;
 }
 
+bool UTransactionComponent::IsEnoughToBuy( AItem* Product )
+{
+	return CurCoin >= Product->GetItemSetting().Price;
+}

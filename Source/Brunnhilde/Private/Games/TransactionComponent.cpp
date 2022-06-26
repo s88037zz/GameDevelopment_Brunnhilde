@@ -67,7 +67,7 @@ bool UTransactionComponent::Buy( AItem* Product, ABrunnhildeCharacter* ProductOw
 	ABrunnhildeCharacter* OwnCharacter = Cast< ABrunnhildeCharacter >( GetOwner() );
 	CheckPtrIsValid( OwnCharacter );
 
-	if( !IsProductBelongTo( ProductOwner, Product ) || IsProductBelongTo( OwnCharacter, Product ) )
+		if( !IsProductBelongTo( ProductOwner, Product ) || IsProductBelongTo( OwnCharacter, Product ) )
 	{
 		return FAIL;
 	}

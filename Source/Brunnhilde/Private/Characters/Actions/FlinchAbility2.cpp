@@ -59,8 +59,9 @@ void UFlinchAbility2::OnTakeDamaged( AActor* DamagedActor, float Damage, const U
 					GetControlMovement()->SetMovementMode( MOVE_Walking );
 				}, Duration, false );
 				
-				GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake( OnTakeDamageShakingType );
-
+				//Âà¦V§ðÀ»ªÌ
+				FRotator kRotator = UKismetMathLibrary::FindLookAtRotation( DamagedActor->GetActorLocation(), OwnerCharacter->GetActorLocation() );
+				DamagedActor->SetActorRotation( kRotator.Quaternion(), ETeleportType::TeleportPhysics );
 			}
 
 		}

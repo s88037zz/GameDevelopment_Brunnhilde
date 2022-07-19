@@ -43,9 +43,6 @@ public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite )
 	UAnimMontage* FlinchMontage_R;
 
-	UPROPERTY( EditDefaultsOnly, BlueprintReadWrite )
-	TSubclassOf< UMatineeCameraShake > OnTakeDamageShakingType;
-
 private:
 	EDamagedDirection GetDamageDirection( AActor * DamagedCreator );
 

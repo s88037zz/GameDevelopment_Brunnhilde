@@ -100,17 +100,22 @@ void UStateMachine::OnAttackingState()
         Character->PlayAnimMontage( NextMontage );
 
         //Effect
-        USoundBase* HitSound = AttackAbility->GetCurrentCombo()->SoundEffect;
-        if( IsValid( HitSound ) )
+        if ( IsValid( AttackAbility->GetCurrentCombo() ) )
         {
-            UGameplayStatics::PlaySoundAtLocation( GetWorld(), HitSound,
-                                                   Character->GetTransform().GetLocation() );
-        }
-        
-        TSubclassOf < UMatineeCameraShake > CameraShake =  AttackAbility->GetCurrentCombo()->OnHitShakingType;
-        if ( IsValid( HitSound ) )
-        {
-            GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake( CameraShake );
+            //Sound
+            if ( IsValid( AttackAbility->GetCurrentCombo()->SoundEffect ) )
+            {
+                USoundBase* HitSound = AttackAbility->GetCurrentCombo()->SoundEffect;
+                    UGameplayStatics::PlaySoundAtLocation( GetWorld(), HitSound,
+                                                           Character->GetTransform().GetLocation() );
+            }
+            
+            //CameraShake
+            if ( IsValid( AttackAbility->GetCurrentCombo()->OnHitShakingType ) )
+            {
+                TSubclassOf < UMatineeCameraShake > CameraShake =  AttackAbility->GetCurrentCombo()->OnHitShakingType;
+                GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake( CameraShake );
+            }
         }
 
         //Cost

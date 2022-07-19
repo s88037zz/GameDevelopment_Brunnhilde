@@ -173,3 +173,19 @@ AItem* UInventoryComponent::GetEquipmentByType( EItemTypes eType )
 	}
 	return nullptr;
 }
+
+bool UInventoryComponent::ClearAll()
+{
+	for ( auto& kPair : EquipedEquipments )
+	{
+		GetWorld()->DestroyActor( kPair.Value );
+	}
+	EquipedEquipments.Reset();
+
+	for ( auto& pItem : Items )
+	{
+		GetWorld()->DestroyActor( pItem );
+	}
+	Items.Reset();
+	return OK;
+}

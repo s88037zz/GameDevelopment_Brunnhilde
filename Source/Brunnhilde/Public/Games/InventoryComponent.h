@@ -51,6 +51,8 @@ public:
 	AWeapon* GetEquipedWeapon( EItemTypes eWeaponType = EItemTypes::EIT_WEAPON );
 	UFUNCTION( BlueprintCallable )
 	AItem* GetEquipmentByType( EItemTypes eType );
+	UFUNCTION( BlueprintCallable )
+	bool ClearAll();
 
 public:
 	UPROPERTY( EditAnywhere, BlueprintReadWrite, Category="Inventory" )

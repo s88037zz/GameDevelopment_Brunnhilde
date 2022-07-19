@@ -222,7 +222,7 @@ float ABrunnhildeCharacter::GetMontageLeftTime( UAnimMontage* Montage, USkeletal
 void ABrunnhildeCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-			if ( IsValid( StateMachineClass ) )
+	if ( IsValid( StateMachineClass ) )
 	{
 		StateMachine = NewObject< UStateMachine >( this, StateMachineClass, "StateMachine" );
 		if ( StateMachine )
